@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/player_movement.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 322.766, 10 )
@@ -17,6 +18,7 @@ scale = Vector2( 10.9063, 0.34375 )
 texture = ExtResource( 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D"]
 position = Vector2( 0.450775, 0.298706 )
@@ -24,7 +26,9 @@ scale = Vector2( 0.0916905, 2.90909 )
 shape = SubResource( 1 )
 
 [node name="Player" type="KinematicBody2D" parent="."]
-position = Vector2( 495.465, 50.5128 )
+position = Vector2( 494.465, 50.5128 )
+collision_layer = 4
+collision_mask = 2147483649
 script = ExtResource( 2 )
 playerGravity = 588.0
 playerSpeed = 600
@@ -35,3 +39,6 @@ shape = SubResource( 2 )
 
 [node name="Player Sprite" type="Sprite" parent="Player"]
 texture = ExtResource( 1 )
+
+[node name="Node2D" parent="." instance=ExtResource( 3 )]
+position = Vector2( 492, 215 )
