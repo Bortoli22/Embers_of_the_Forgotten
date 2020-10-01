@@ -19,6 +19,19 @@ config/name="Embers_of_the_Forgotten"
 run/main_scene="res://Scenes/Playground.tscn"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_1="Wall"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_6="Player Center"
+2d_physics/layer_7="Friendly Hurtbox"
+2d_physics/layer_8="Friendly Hitbox"
+2d_physics/layer_9="Enemy Hurtbox"
+2d_physics/layer_10="Enemy Hitbox"
+2d_physics/layer_11="Triggers"
+2d_physics/layer_16="Coins"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
