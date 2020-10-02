@@ -9,6 +9,7 @@ export var floatDenominator = 1.3
 var playerVelocity = Vector2()
 var playerDistance
 var lastShot = OS.get_ticks_msec()
+var currency = 0
 
 
 # Called when the node enters the scene tree for the first time.
