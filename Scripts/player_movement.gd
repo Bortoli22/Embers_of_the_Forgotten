@@ -8,7 +8,6 @@ export var terminalVelocity = 1500
 export var floatDenominator = 1.3
 var playerVelocity = Vector2()
 var playerDistance
-var lastShot = OS.get_ticks_msec()
 var currency = 0
 
 
@@ -54,19 +53,8 @@ func _inputSequence():
 			playerVelocity.x -= (playerSpeed / 10)
 		else:
 			playerVelocity.x = -playerSpeed
-	elif Input.is_mouse_button_pressed(BUTTON_LEFT):
-		shoot()
 	else:
 		if playerVelocity.x > 1 || playerVelocity.x < -1:
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
-
-# Shoot a projectile
-func shoot():
-	if (OS.get_ticks_msec() - lastShot) > 500:
-		var projectile = load("res://projectile.tscn")
-		var p = projectile.instance() #The actual projectile object in the scene.
-		add_child_below_node(get_tree().get_current_scene(), p)
-		lastShot = OS.get_ticks_msec()
-	
