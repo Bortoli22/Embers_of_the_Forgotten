@@ -28,7 +28,10 @@ func _physics_process(delta):
 	if is_on_floor():
 		playerVelocity.y = playerGravity
 		if Input.is_action_pressed("ui_down"):
-			print("is crouched")
+			fsm.travel("Crouch_L")
+			crouched = true
+		else:
+			crouched = false
 	else:
 		if playerVelocity.y < terminalVelocity:
 			playerVelocity.y += delta * playerGravity 
@@ -47,11 +50,6 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
-	if Input.is_action_pressed("ui_down"):
-		fsm.travel("Crouch_L")
-		crouched = true
-	else:
-		crouched = false
 	
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		fsm.travel("Run_Right")
