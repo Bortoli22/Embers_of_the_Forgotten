@@ -6,14 +6,19 @@ export var playerGravity = 9.81
 export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var floatDenominator = 1.3
+
 var playerVelocity = Vector2()
 var playerDistance
 var currency = 0
+var fsm #finite state machine
+var xPositivity = true
+var crouched = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerVelocity.y = playerGravity
+	fsm = $AnimationStateMachine.get("parameters/playback")
 
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
@@ -42,18 +47,32 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
+	if Input.is_action_pressed("ui_down"):
+		fsm.travel("Crouch_L")
+		crouched = true
+	else:
+		crouched = false
 	
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
+		fsm.travel("Run_Right")
+		xPositivity = true
 		if playerVelocity.x < playerSpeed:
 			playerVelocity.x += (playerSpeed / 10)
 		else:
 			playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
+		fsm.travel("Run_Left")
+		xPositivity = false
 		if playerVelocity.x > -playerSpeed:
 			playerVelocity.x -= (playerSpeed / 10)
 		else:
 			playerVelocity.x = -playerSpeed
 	else:
+		if !crouched:
+			if xPositivity:
+				fsm.travel("Idle_Right")
+			else:
+				fsm.travel("Idle_Left")
 		if playerVelocity.x > 1 || playerVelocity.x < -1:
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
