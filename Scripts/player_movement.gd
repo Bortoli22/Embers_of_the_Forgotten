@@ -51,11 +51,10 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
-	print(wallgrabbing)
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
 			playerVelocity.y = 0
-		else:
+		else: 
 			fsm.travel("Run_Right")
 			xPositivity = true
 			if playerVelocity.x < playerSpeed:
@@ -79,12 +78,12 @@ func _inputSequence():
 			# but if it works the way ya like it, the leave it i guess
 			# - vincent
 			playerVelocity.y = -playerSpeed	
-	elif Input.is_action_pressed("wall_grab") && is_on_wall():
-		print("wall grabbing")
+	elif Input.is_action_pressed("wall_grab"):
 		wallgrabbing = true
 		playerVelocity.y = 0
 	elif Input.is_action_just_released("wall_grab"):
 		wallgrabbing = false
+	
 	else:
 		if !crouched:
 			if xPositivity:
@@ -95,5 +94,8 @@ func _inputSequence():
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
+			
+	if Input.is_action_pressed("dodge"):
+		playerVelocity.x = playerVelocity.x * 3
 			
 	
