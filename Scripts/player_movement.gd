@@ -13,6 +13,7 @@ var currency = 0
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
+var wallgrabbing = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -50,21 +51,40 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
-	
+	print(wallgrabbing)
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
-		fsm.travel("Run_Right")
-		xPositivity = true
-		if playerVelocity.x < playerSpeed:
-			playerVelocity.x += (playerSpeed / 10)
+		if wallgrabbing:
+			playerVelocity.y = 0
 		else:
-			playerVelocity.x = playerSpeed
+			fsm.travel("Run_Right")
+			xPositivity = true
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed / 10)
+			else:
+				playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
-		fsm.travel("Run_Left")
-		xPositivity = false
-		if playerVelocity.x > -playerSpeed:
-			playerVelocity.x -= (playerSpeed / 10)
+		if wallgrabbing:
+			playerVelocity.y = 0
 		else:
-			playerVelocity.x = -playerSpeed
+			fsm.travel("Run_Left")
+			xPositivity = false
+			if playerVelocity.x > -playerSpeed:
+				playerVelocity.x -= (playerSpeed / 10)
+			else:
+				playerVelocity.x = -playerSpeed
+	elif Input.is_action_pressed("ui_up"):
+		if is_on_floor(): 
+			# this bit should be replaced by who ever does jump code.
+			# i just had it for my testing purposes.
+			# but if it works the way ya like it, the leave it i guess
+			# - vincent
+			playerVelocity.y = -playerSpeed	
+	elif Input.is_action_pressed("wall_grab") && is_on_wall():
+		print("wall grabbing")
+		wallgrabbing = true
+		playerVelocity.y = 0
+	elif Input.is_action_just_released("wall_grab"):
+		wallgrabbing = false
 	else:
 		if !crouched:
 			if xPositivity:
@@ -75,3 +95,5 @@ func _inputSequence():
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
+			
+	
