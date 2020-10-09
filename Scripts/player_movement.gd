@@ -93,7 +93,7 @@ func _inputSequence():
 #Use this function for all non-DoT damage sources
 func damageHandler(dmgamount, kbdirection):
 	if invulnTimer <= 0:
-		invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(kbdirection)
 		healthChange(dmgamount)
 

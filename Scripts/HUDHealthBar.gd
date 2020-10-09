@@ -23,7 +23,7 @@ func change(newratio:float):
 	var chunkpos
 	if (newratio < ratio):
 		resize(newratio)
-		chunkpos = self.get_rect().size.x
+		chunkpos = (self.get_rect().size.x*2 + chunksize.x + 40) / 2
 		chunkinstance.init(chunkpos, chunksize)
 		add_child_below_node(self, chunkinstance)
 	else:
