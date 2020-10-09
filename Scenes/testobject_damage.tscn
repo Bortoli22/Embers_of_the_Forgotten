@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Enemy0.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 37.6161, 62.8262 )
+extents = Vector2( 37.6161, 26.9591 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 40.9206, 13.745 )
