@@ -15,6 +15,8 @@ var fsm #finite state machine
 var xPositivity = true
 var crouched = false
 var wallgrabbing = false
+#placeholder for ability list
+var abilities = ["wall_grab", "wall_jump"]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -53,8 +55,9 @@ func _physics_process(delta):
 # Get x velocity from LR inputs
 func _inputSequence():
 	lr_check()	
+	wall_grab_check()
 	jump_check()
-	wall_grab_check()	
+	
 	dodge_check()
 		
 		
@@ -99,19 +102,21 @@ func jump_check():
 			# - vincent
 			playerVelocity.y = -jump_power
 		else:
-			if next_to_left_wall():
-				playerVelocity.y = -jump_power
-				playerVelocity.x += jump_power
-				wallgrabbing = false
-			if next_to_right_wall():
-				playerVelocity.y = -jump_power
-				playerVelocity.x -= jump_power
-				wallgrabbing = false
+			if abilities.find("wall_jump") >= 0:
+				if next_to_left_wall():
+					playerVelocity.y = -jump_power
+					playerVelocity.x += jump_power
+					wallgrabbing = false
+				if next_to_right_wall():
+					playerVelocity.y = -jump_power
+					playerVelocity.x -= jump_power
+					wallgrabbing = false
 				
 func wall_grab_check():
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
-		wallgrabbing = true
-		playerVelocity.y = 0
+		if abilities.find("wall_grab") >= 0:
+			wallgrabbing = true
+			playerVelocity.y = 0
 	if Input.is_action_just_released("wall_grab"):
 		wallgrabbing = false
 			
