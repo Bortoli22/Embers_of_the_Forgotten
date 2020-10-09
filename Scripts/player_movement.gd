@@ -63,6 +63,8 @@ func _inputSequence():
 		fsm.travel("Run_Right")
 		xPositivity = true
 		if sprinting:
+			#increase player speed to 1.5x normal when sprinting
+			#change this value in both if statements to make sprinting >1.5x
 			playerSpeed = 600
 			if playerVelocity.x < playerSpeed:
 				playerVelocity.x += (playerSpeed)
