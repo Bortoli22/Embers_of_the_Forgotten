@@ -25,7 +25,8 @@ func change(newratio:float):
 		resize(newratio)
 		chunkpos = (self.get_rect().size.x*2 + chunksize.x + 40) / 2
 		chunkinstance.init(chunkpos, chunksize)
-		add_child_below_node(self, chunkinstance)
+		add_child(chunkinstance)
+		
 	else:
 		chunkpos = self.get_rect().size.x
 		chunkinstance.init(chunkpos, chunksize)

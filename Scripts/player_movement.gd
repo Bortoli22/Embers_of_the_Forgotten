@@ -20,6 +20,7 @@ var jump_power = 400
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
+var lastShot = OS.get_ticks_msec()
 
 var sprinting = false
 var wallgrabbing = false
@@ -75,9 +76,12 @@ func _inputSequence():
 	lr_check()	
 	wall_grab_check()
 	jump_check()
-	
+	shoot_check()
 	dodge_check()
 		
+func shoot_check():
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		shoot()
 		
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
@@ -205,4 +209,9 @@ func next_to_left_wall():
 func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
-		
+func shoot():
+	if (OS.get_ticks_msec() - lastShot) > 500:
+		var projectile = load("res://Scenes/projectile.tscn")
+		var p = projectile.instance() #The actual projectile object in the scene.
+		add_child_below_node(get_tree().get_current_scene(), p)
+		lastShot = OS.get_ticks_msec()
