@@ -213,11 +213,15 @@ func jump_check():
 			if abilities.find("wall_jump") >= 0:
 				if next_to_left_wall():
 					playerVelocity.y = -jump_power
-					playerVelocity.x += jump_power
+					playerVelocity.y += 250
+					#playerVelocity.x += jump_power
+					playerVelocity.x = 100
 					wallgrabbing = false
 				if next_to_right_wall():
 					playerVelocity.y = -jump_power
-					playerVelocity.x -= jump_power
+					playerVelocity.y += 250
+					#playerVelocity.x -= jump_power
+					playerVelocity.x = 100
 					wallgrabbing = false
 	elif Input.is_action_just_released("ui_up"):
 		jump_count += 1
