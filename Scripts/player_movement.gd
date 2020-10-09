@@ -84,7 +84,7 @@ func lr_check():
 				playerVelocity.x = -playerSpeed
 	
 	else:
-		if !crouched:
+		if !crouched && is_on_floor():
 			if xPositivity:
 				fsm.travel("Idle_Right")
 			else:
@@ -101,6 +101,10 @@ func jump_check():
 			# but if it works the way ya like it, then leave it i guess
 			# - vincent
 			playerVelocity.y = -jump_power
+			if xPositivity:
+				fsm.travel("Jump_L")
+			else:
+				fsm.travel("Jump_R")
 		else:
 			if abilities.find("wall_jump") >= 0:
 				if next_to_left_wall():
