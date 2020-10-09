@@ -133,12 +133,6 @@ func lr_check():
 func jump_check():
 	if Input.is_action_pressed("ui_up"):
 		if jump_count < max_JC: 
-			#jump_count = 0
-			# this bit should be replaced by who ever does jump code.
-			# i just had it for my testing purposes.
-			# but if it works the way ya like it, then leave it i guess
-			# - vincent
-			#controls height of jump
 			playerVelocity.y = -jump_power
 			jump_count += 1
 			print(jump_count)
@@ -160,7 +154,6 @@ func jump_check():
 					wallgrabbing = false
 	if is_on_floor():
 		jump_count = 0
-		print(is_on_floor())
 				
 func wall_grab_check():
 	
