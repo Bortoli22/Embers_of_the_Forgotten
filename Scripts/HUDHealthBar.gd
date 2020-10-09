@@ -1,5 +1,6 @@
 extends ColorRect
-var maxlength
+var maxX = 420
+var y
 var ratio:float
 
 # Declare member variables here. Examples:
@@ -9,6 +10,7 @@ var ratio:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	y = self.get_rect().size.y
 	pass # Replace with function body.
 
 func init(initRatio):
@@ -17,12 +19,19 @@ func init(initRatio):
 func change(newratio:float):
 	var chunk = load("res://Scenes/HBChunk.tscn")
 	var chunkinstance = chunk.instance()
+	var chunksize = Vector2(abs(newratio - ratio)*maxX, y)
+	var chunkpos
 	if (newratio < ratio):
-		chunkinstance.init(0)
+		resize(newratio)
+		chunkpos = self.get_rect().size.x
+		chunkinstance.init(chunkpos, chunksize)
 		add_child_below_node(self, chunkinstance)
 	else:
-		chunkinstance.init(1)
-		ratio = newratio
+		chunkpos = self.get_rect().size.x
+		chunkinstance.init(chunkpos, chunksize)
+		resize(newratio)
+	ratio = newratio
 
 func resize(newratio):
+	self.set_size(Vector2(maxX*newratio,y))
 	pass

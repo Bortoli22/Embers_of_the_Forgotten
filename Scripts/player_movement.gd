@@ -7,6 +7,7 @@ export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var floatDenominator = 1.3
 export var playerHealthMax = 1000
+export var playerOnHitInvuln = 2
 
 var playerVelocity = Vector2()
 var playerHealth
@@ -15,10 +16,12 @@ var currency
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
+var main
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	main = get_tree().get_root().get_node("Main")
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
 	initDefault() #TEMP
@@ -87,9 +90,10 @@ func _inputSequence():
 		else:
 			playerVelocity.x = 0
 
+#Use this function for all non-DoT damage sources
 func damageHandler(dmgamount, kbdirection):
 	if invulnTimer <= 0:
-		invulnTimer = 2 #implement countdown in another delta function
+		invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(kbdirection)
 		healthChange(dmgamount)
 
@@ -100,4 +104,4 @@ func knockback(kbdirection):
 
 func healthChange(amount):
 	playerHealth += amount
-	get_parent().get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
+	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))

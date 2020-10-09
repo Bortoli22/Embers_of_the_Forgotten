@@ -17,5 +17,5 @@ func _ready():
 func add_money(value):
 	var Player = get_parent()
 	Player.currency += value
-	Player.get_parent().get_node("HUD").change_money(get_parent().currency)
+	Player.main.get_node("CanvasLayer").get_node("HUD").change_money(Player.currency)
 	#trigger sounds and stuff
