@@ -9,13 +9,10 @@ var ratio:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func init(initRatio):
+	ratio = initRatio
 
 func change(newratio:float):
 	var chunk = load("res://Scenes/HBChunk.tscn")

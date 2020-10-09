@@ -15,5 +15,7 @@ func _ready():
 	#pass
 
 func add_money(value):
-	get_parent().currency += value
+	var Player = get_parent()
+	Player.currency += value
+	Player.get_parent().get_node("HUD").change_money(get_parent().currency)
 	#trigger sounds and stuff

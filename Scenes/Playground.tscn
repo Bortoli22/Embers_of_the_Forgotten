@@ -385,7 +385,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 20
+frame = 17
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
 space_override = 1

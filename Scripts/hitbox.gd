@@ -1,6 +1,6 @@
 extends Node2D
 
-var damageValue = 10
+var damageValue = -200
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

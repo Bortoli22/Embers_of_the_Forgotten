@@ -100,4 +100,4 @@ func knockback(kbdirection):
 
 func healthChange(amount):
 	playerHealth += amount
-	get_parent().get_node("HUD").change_health(float(playerHealth)/float(playerHealthMax))
+	get_parent().get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
