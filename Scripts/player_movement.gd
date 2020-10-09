@@ -66,6 +66,11 @@ func _inputSequence():
 		
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
+		if wallgrabbing:
+				playerVelocity.y = 0
+		else: 
+			fsm.travel("Run_Right")
+			xPositivity = true
 		#check if sprint key hit inside here
 		if Input.is_action_pressed("ui_shift"):
 			printerr("hit shift 1!")
@@ -75,7 +80,7 @@ func lr_check():
 		#change the rate at which the player moves horizontally 
 		fsm.travel("Run_Right")
 		xPositivity = true
-		if sprinting:
+		if sprinting && is_on_floor():
 			#increase player speed to 1.5x normal when sprinting
 			#change this value in both if statements to make sprinting >1.5x
 			playerSpeed = 600
@@ -84,16 +89,16 @@ func lr_check():
 			else:
 				playerVelocity.x = playerSpeed
 		else:
-		  if wallgrabbing:
-			  playerVelocity.y = 0
-		  else: 
-			  fsm.travel("Run_Right")
-			  xPositivity = true
-			  if playerVelocity.x < playerSpeed:
-			    playerVelocity.x += (playerSpeed / 10)
-			  else:
-			    playerVelocity.x = playerSpeed
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed / 10)
+			else:
+				playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
+		if wallgrabbing:
+			  playerVelocity.y = 0
+		else:
+			fsm.travel("Run_Left")
+			xPositivity = false
 		#check if sprint key hit inside here
 		if Input.is_action_pressed("ui_shift"):
 			printerr("hit shift 2!")
@@ -101,18 +106,13 @@ func lr_check():
 		#change the rate at which the player moves horizontally 
 		fsm.travel("Run_Left")
 		xPositivity = false
-		if sprinting:
+		if sprinting && is_on_floor():
 			playerSpeed = 600
 			if playerVelocity.x > -playerSpeed:
 				playerVelocity.x -= (playerSpeed)
 			else:
 				playerVelocity.x = -playerSpeed
 		else:
-		  if wallgrabbing:
-			  playerVelocity.y = 0
-		  else:
-			  fsm.travel("Run_Left")
-			  xPositivity = false
 			if playerVelocity.x > -playerSpeed:
 				playerVelocity.x -= (playerSpeed / 10)
 			else:
