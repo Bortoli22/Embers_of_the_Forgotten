@@ -1,12 +1,8 @@
 extends ColorRect
+
 var maxX = 420
 var y
 var ratio:float
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,7 +22,6 @@ func change(newratio:float):
 		chunkpos = (self.get_rect().size.x*2 + chunksize.x + 40) / 2
 		chunkinstance.init(chunkpos, chunksize)
 		add_child(chunkinstance)
-		
 	else:
 		chunkpos = self.get_rect().size.x
 		chunkinstance.init(chunkpos, chunksize)

@@ -1,10 +1,6 @@
 extends Control
 var main
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,13 +11,10 @@ func _ready():
 	print(get_node("HealthBar/HealthEmpty").color)
 	get_node("HealthBar/HealthGreen").init(float(initHealth)/float(initHealthMax))
 	get_node("HealthBar/HealthText").text = str(initHealth) + "/" + str(initHealthMax)
-	get_node("Money").text = str(main.get_node("Player").currency)
+	get_node("Money").text = "$" + str(main.get_node("Player").currency)
 	pass
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-
-
+#updating HUD values
 func change_health(newHealth, ratio:float):
 	get_node("HealthBar/HealthGreen").change(ratio)
 	get_node("HealthBar/HealthText").text = str(newHealth) + "/" + str(main.get_node("Player").playerHealthMax)
@@ -29,7 +22,7 @@ func change_health(newHealth, ratio:float):
 		died()
 
 func change_money(newMoney):
-	get_node("Money").text = str(newMoney)
+	get_node("Money").text = "$" + str(newMoney)
 
 func died():
 	get_node("HealthBar/HealthEmpty").color = Color(0,0,0,255)
