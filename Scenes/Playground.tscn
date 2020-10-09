@@ -384,7 +384,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 21
+frame = 18
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
 space_override = 1
@@ -423,7 +423,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 62 )
 
-[node name="Container" type="Control" parent="."]
+[node name="HUD" type="Control" parent="."]
 margin_left = 3.76172
 margin_top = 10.9885
 margin_right = 342.762
@@ -433,7 +433,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money" type="Label" parent="Container"]
+[node name="Money" type="Label" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "BIG BOY TEXT"
@@ -441,11 +441,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="Node2D" parent="Container"]
+[node name="HealthBar" type="Node2D" parent="HUD"]
 position = Vector2( 3.77977, 565.075 )
 script = ExtResource( 10 )
 
-[node name="HealthFrame" type="ColorRect" parent="Container/HealthBar"]
+[node name="HealthFrame" type="ColorRect" parent="HUD/HealthBar"]
 margin_left = -1.29962
 margin_top = -8.9248
 margin_right = 424.7
@@ -455,7 +455,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthEmpty" type="ColorRect" parent="Container/HealthBar"]
+[node name="HealthEmpty" type="ColorRect" parent="HUD/HealthBar"]
 margin_left = 2.43872
 margin_top = -4.04419
 margin_right = 420.439
@@ -466,7 +466,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthGreen" type="ColorRect" parent="Container/HealthBar"]
+[node name="HealthGreen" type="ColorRect" parent="HUD/HealthBar"]
 margin_left = 2.43872
 margin_top = -4.04419
 margin_right = 420.439
@@ -478,9 +478,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CHUNK" parent="Container/HealthBar/HealthGreen" instance=ExtResource( 9 )]
+[node name="CHUNK" parent="HUD/HealthBar/HealthGreen" instance=ExtResource( 9 )]
 
-[node name="Label" type="Label" parent="Container/HealthBar"]
+[node name="HealthText" type="Label" parent="HUD/HealthBar"]
 margin_left = 192.828
 margin_top = -3.29291
 margin_right = 232.828

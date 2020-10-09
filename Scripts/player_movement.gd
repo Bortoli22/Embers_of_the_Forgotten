@@ -6,10 +6,11 @@ export var playerGravity = 9.81
 export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var floatDenominator = 1.3
+export var playerHealthMax = 1000
 
 var playerVelocity = Vector2()
-var playerDistance
-var currency = 0
+var playerHealth
+var currency
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -20,6 +21,13 @@ func _ready():
 	playerVelocity.y = playerGravity
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
+func initDefault():
+	currency = 0
+	playerHealth = playerHealthMax
+	
+func initLoad(stcurrency, stHealth):
+	currency = stcurrency
+	playerHealth = stHealth
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -75,3 +83,7 @@ func _inputSequence():
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
+
+func healthChange(amount):
+	playerHealth += amount
+	get_parent().get_node("HUD").change_health(amount)

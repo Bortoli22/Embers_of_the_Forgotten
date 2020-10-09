@@ -15,7 +15,5 @@ func _ready():
 	#pass
 
 func add_money(value):
-	print("ty")
 	get_parent().currency += value
-	print(value)
 	#trigger sounds and stuff

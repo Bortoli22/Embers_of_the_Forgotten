@@ -12,5 +12,10 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	get_node("Money").text = "$$$:" + var2str(get_parent().get_node("Player").currency)
+
+
+func change_health(amount):
+		get_node("HealthBar").get_node("HealthGreen").change(amount)
+	
+func die():
+	pass
