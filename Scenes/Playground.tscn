@@ -390,7 +390,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 13
+frame = 19
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
 space_override = 1
@@ -501,7 +501,7 @@ margin_top = -4.04419
 margin_right = 420.439
 margin_bottom = 10.9558
 rect_pivot_offset = Vector2( 105.02, 7.5 )
-color = Color( 0, 0.372549, 0.0313726, 1 )
+color = Color( 0.0117647, 0.282353, 0.0352941, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

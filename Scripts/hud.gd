@@ -23,7 +23,8 @@ func _ready():
 func change_health(newHealth, ratio:float):
 	get_node("HealthBar").get_node("HealthGreen").change(ratio)
 	get_node("HealthBar").get_node("HealthText").text = str(newHealth) + "/" + str(main.get_node("Player").playerHealthMax)
-	
+	if (newHealth == 0):
+		died()
 
 func change_money(newMoney):
 	get_node("Money").text = str(newMoney)

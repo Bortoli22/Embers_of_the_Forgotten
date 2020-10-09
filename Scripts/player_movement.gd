@@ -115,6 +115,9 @@ func damageHandler(dmgamount, kbdirection):
 		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(kbdirection)
 		healthChange(dmgamount)
+		if playerHealth == 0:
+			#die i guess
+			pass
 
 func knockback(kbdirection):
 	#calculate knockback
@@ -123,6 +126,8 @@ func knockback(kbdirection):
 
 func healthChange(amount):
 	playerHealth += amount
+	if playerHealth < 0:
+		playerHealth = 0
 	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
 	
 func jump_check():
