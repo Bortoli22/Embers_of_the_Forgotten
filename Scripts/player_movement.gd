@@ -10,6 +10,7 @@ export var floatDenominator = 1.3
 var playerVelocity = Vector2()
 var playerDistance
 var currency = 0
+var jump_power = 400
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -40,7 +41,7 @@ func _physics_process(delta):
 				playerVelocity.y += 50
 		else: 
 			playerVelocity.y = terminalVelocity
-	print(playerVelocity.y)
+	#print(playerVelocity.y)
 	
 	#obtain new x velocity
 	_inputSequence()
@@ -51,6 +52,13 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
+	lr_check()	
+	jump_check()
+	wall_grab_check()	
+	dodge_check()
+		
+		
+func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
 			playerVelocity.y = 0
@@ -71,18 +79,6 @@ func _inputSequence():
 				playerVelocity.x -= (playerSpeed / 10)
 			else:
 				playerVelocity.x = -playerSpeed
-	elif Input.is_action_pressed("ui_up"):
-		if is_on_floor(): 
-			# this bit should be replaced by who ever does jump code.
-			# i just had it for my testing purposes.
-			# but if it works the way ya like it, the leave it i guess
-			# - vincent
-			playerVelocity.y = -playerSpeed	
-	elif Input.is_action_pressed("wall_grab"):
-		wallgrabbing = true
-		playerVelocity.y = 0
-	elif Input.is_action_just_released("wall_grab"):
-		wallgrabbing = false
 	
 	else:
 		if !crouched:
@@ -94,8 +90,40 @@ func _inputSequence():
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
+func jump_check():
+	if Input.is_action_pressed("ui_up"):
+		if is_on_floor(): 
+			# this bit should be replaced by who ever does jump code.
+			# i just had it for my testing purposes.
+			# but if it works the way ya like it, then leave it i guess
+			# - vincent
+			playerVelocity.y = -jump_power
+		else:
+			if next_to_left_wall():
+				playerVelocity.y = -jump_power
+				playerVelocity.x += jump_power
+				wallgrabbing = false
+			if next_to_right_wall():
+				playerVelocity.y = -jump_power
+				playerVelocity.x -= jump_power
+				wallgrabbing = false
+				
+func wall_grab_check():
+	if Input.is_action_pressed("wall_grab") && is_on_wall():
+		wallgrabbing = true
+		playerVelocity.y = 0
+	if Input.is_action_just_released("wall_grab"):
+		wallgrabbing = false
 			
-	if Input.is_action_pressed("dodge"):
-		playerVelocity.x = playerVelocity.x * 3
+func dodge_check():
+	if Input.is_action_just_pressed("dodge"):
+		playerVelocity.x = playerVelocity.x * 10
+		
+func next_to_left_wall():
+	return $WallRaycasts/LeftRaycasts/LeftRay1.is_colliding() || $WallRaycasts/LeftRaycasts/LeftRay2.is_colliding()
+
+func next_to_right_wall():
+	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
+		
 			
 	
