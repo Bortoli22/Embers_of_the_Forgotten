@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Assets/Test Ground.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/player_movement.gd" type="Script" id=2]
@@ -334,9 +334,15 @@ states/Run_Right_Stop/node = SubResource( 28 )
 states/Run_Right_Stop/position = Vector2( 885, 309 )
 transitions = [ "Idle_Right", "Run_Right", SubResource( 29 ), "Run_Right", "Run_Right_Stop", SubResource( 30 ), "Run_Right_Stop", "Idle_Right", SubResource( 31 ), "Jump_L", "Land_L", SubResource( 32 ), "Land_L", "Idle_Left", SubResource( 33 ), "Idle_Left", "Run_Left", SubResource( 34 ), "Run_Left", "Run_Left_Stop", SubResource( 35 ), "Run_Left_Stop", "Idle_Left", SubResource( 36 ), "Crouch_Up_L", "Idle_Right", SubResource( 37 ), "Crouch_R", "Crouch_Up_L", SubResource( 38 ), "Idle_Left", "Jump_L", SubResource( 39 ), "Run_Left", "Jump_L", SubResource( 40 ), "Idle_Right", "Crouch_R", SubResource( 41 ), "Idle_Left", "Crouch_L", SubResource( 42 ), "Crouch_L", "Crouch_Up_R", SubResource( 43 ), "Crouch_Up_R", "Idle_Left", SubResource( 44 ), "Jump_R", "Land_R", SubResource( 45 ), "Land_R", "Idle_Right", SubResource( 46 ), "Idle_Right", "Jump_R", SubResource( 47 ), "Run_Right", "Jump_R", SubResource( 48 ), "Idle_Right", "Idle_Left", SubResource( 49 ), "Idle_Left", "Idle_Right", SubResource( 50 ), "Run_Right_Stop", "Run_Left", SubResource( 51 ), "Run_Left_Stop", "Run_Right", SubResource( 52 ), "Crouch_R", "Run_Left", SubResource( 53 ), "Crouch_L", "Run_Right", SubResource( 54 ), "Crouch_R", "Run_Right", SubResource( 55 ), "Crouch_L", "Run_Left", SubResource( 56 ), "Jump_L", "Jump_R", SubResource( 57 ), "Jump_R", "Jump_L", SubResource( 58 ), "Crouch_L", "Crouch_R", SubResource( 59 ), "Crouch_R", "Crouch_L", SubResource( 60 ) ]
 start_node = "Idle_Right"
-graph_offset = Vector2( 112, 107.871 )
+graph_offset = Vector2( 92, -2.0732 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
+
+[sub_resource type="RectangleShape2D" id=63]
+extents = Vector2( 128.938, 14.4354 )
+
+[sub_resource type="RectangleShape2D" id=64]
+extents = Vector2( 125.875, 11.6255 )
 
 [node name="Main" type="Node2D"]
 
@@ -384,7 +390,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 20
+frame = 13
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
 space_override = 1
@@ -423,6 +429,36 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 62 )
 
+[node name="WallRaycasts" type="Node2D" parent="Player"]
+
+[node name="LeftRaycasts" type="Node2D" parent="Player/WallRaycasts"]
+
+[node name="LeftRay1" type="RayCast2D" parent="Player/WallRaycasts/LeftRaycasts"]
+position = Vector2( 0, 30 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 40 )
+
+[node name="LeftRay2" type="RayCast2D" parent="Player/WallRaycasts/LeftRaycasts"]
+position = Vector2( 0, -30 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 0, 40 )
+
+[node name="RightRaycasts" type="Node2D" parent="Player/WallRaycasts"]
+
+[node name="RightRay1" type="RayCast2D" parent="Player/WallRaycasts/RightRaycasts"]
+position = Vector2( 0, 30 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 40 )
+
+[node name="RightRay2" type="RayCast2D" parent="Player/WallRaycasts/RightRaycasts"]
+position = Vector2( 0, -30 )
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 40 )
+
 [node name="cointest" parent="." instance=ExtResource( 3 )]
 position = Vector2( 254.776, 258.638 )
 
@@ -432,10 +468,6 @@ position = Vector2( 714.53, 391.263 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
-margin_left = 3.76172
-margin_top = 10.9885
-margin_right = 342.762
-margin_bottom = 98.9885
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -495,3 +527,25 @@ grow_horizontal = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Wall" type="Sprite" parent="."]
+position = Vector2( 833.797, 259.522 )
+rotation = -1.5708
+scale = Vector2( 1.40576, 0.95032 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+shape = SubResource( 63 )
+
+[node name="Wall2" type="Sprite" parent="."]
+position = Vector2( 154.127, 249.734 )
+rotation = -1.5708
+scale = Vector2( 1.43666, 0.96063 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/StaticBody2D"]
+shape = SubResource( 64 )
