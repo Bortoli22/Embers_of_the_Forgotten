@@ -1,6 +1,6 @@
-extends Control
+extends Node2D
 
-
+var damageValue = 10
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -8,14 +8,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
 
-
-func change_health(amount:float):
-	get_node("HealthBar").get_node("HealthGreen").change(amount)
-	
-func died():
-	pass
+func _on_hitbox_body_entered(body):
+	if body.has_method("damageHandler"):
+		body.damageHandler(damageValue, -1)

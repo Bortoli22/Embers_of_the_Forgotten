@@ -10,6 +10,7 @@ export var playerHealthMax = 1000
 
 var playerVelocity = Vector2()
 var playerHealth
+var invulnTimer
 var currency
 var fsm #finite state machine
 var xPositivity = true
@@ -19,6 +20,8 @@ var crouched = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerVelocity.y = playerGravity
+	invulnTimer = 0
+	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
 func initDefault():
@@ -84,6 +87,17 @@ func _inputSequence():
 		else:
 			playerVelocity.x = 0
 
+func damageHandler(dmgamount, kbdirection):
+	if invulnTimer <= 0:
+		invulnTimer = 2 #implement countdown in another delta function
+		knockback(kbdirection)
+		healthChange(dmgamount)
+
+func knockback(kbdirection):
+	#calculate knockback
+	pass
+
+
 func healthChange(amount):
 	playerHealth += amount
-	get_parent().get_node("HUD").change_health(amount)
+	get_parent().get_node("HUD").change_health(float(playerHealth)/float(playerHealthMax))

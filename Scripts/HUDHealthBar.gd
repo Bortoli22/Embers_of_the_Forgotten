@@ -1,6 +1,6 @@
 extends ColorRect
 var maxlength
-var ratio
+var ratio:float
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -17,8 +17,8 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func change(newratio):
-	var chunk = load("res://CHUNK.tscn")
+func change(newratio:float):
+	var chunk = load("res://Scenes/HBChunk.tscn")
 	var chunkinstance = chunk.instance()
 	if (newratio < ratio):
 		chunkinstance.init(0)
