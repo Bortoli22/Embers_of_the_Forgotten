@@ -35,13 +35,6 @@ func _physics_process(delta):
 		else:
 			crouched = false
 	else:
-		#check if springint and change terminal velocity
-		if sprinting:
-			terminalVelocity = 2000
-			printerr("sprinting")
-		else: 
-			terminalVelocity = 1500
-			printerr("not sprinting")
 		if playerVelocity.y < terminalVelocity:
 			playerVelocity.y += delta * playerGravity 
 			if Input.is_action_pressed("ui_down") && playerVelocity.y < terminalVelocity:
@@ -52,7 +45,6 @@ func _physics_process(delta):
 	
 	#obtain new x velocity
 	_inputSequence()
-	
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
 	move_and_slide(playerVelocity, Vector2(0,-1))
@@ -70,21 +62,36 @@ func _inputSequence():
 		#change the rate at which the player moves horizontally 
 		fsm.travel("Run_Right")
 		xPositivity = true
-		if playerVelocity.x < playerSpeed:
-			playerVelocity.x += (playerSpeed / 10)
+		if sprinting:
+			playerSpeed = 600
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed)
+			else:
+				playerVelocity.x = playerSpeed
 		else:
-			playerVelocity.x = playerSpeed
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed / 10)
+			else:
+				playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
 		#check if sprint key hit inside here
 		if Input.is_action_pressed("ui_shift"):
 			printerr("hit shift 2!")
+			sprinting = true
 		#change the rate at which the player moves horizontally 
 		fsm.travel("Run_Left")
 		xPositivity = false
-		if playerVelocity.x > -playerSpeed:
-			playerVelocity.x -= (playerSpeed / 10)
+		if sprinting:
+			playerSpeed = 600
+			if playerVelocity.x > -playerSpeed:
+				playerVelocity.x -= (playerSpeed)
+			else:
+				playerVelocity.x = -playerSpeed
 		else:
-			playerVelocity.x = -playerSpeed
+			if playerVelocity.x > -playerSpeed:
+				playerVelocity.x -= (playerSpeed / 10)
+			else:
+				playerVelocity.x = -playerSpeed
 	#implement sprint to left 
 #	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
 #		fsm.travel("Run_Left")
@@ -94,14 +101,6 @@ func _inputSequence():
 #		else:
 #			playerVelocity.x = -playerSpeed
 	#implement sprint to the right
-	elif Input.is_action_pressed("ui_shift"): # && Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
-		fsm.travel("Run_Left")
-		printerr("hit shift!")
-#		xPositivity = false
-#		if playerVelocity.x > -playerSpeed:
-#			playerVelocity.x -= (playerSpeed / 10)
-#		else:
-#			playerVelocity.x = -playerSpeed		
 	else:
 		if !crouched:
 			if xPositivity:
@@ -112,3 +111,6 @@ func _inputSequence():
 			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
 			playerVelocity.x = 0
+	print(sprinting)
+#	if sprinting:
+#		playerVelocity.x = playerVelocity.x * 1.5
