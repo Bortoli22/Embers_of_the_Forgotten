@@ -17,6 +17,7 @@ const max_JC = 2
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
+var lastShot = OS.get_ticks_msec()
 
 var sprinting = false
 var wallgrabbing = false
@@ -33,9 +34,19 @@ var abilities = ["wall_grab", "wall_jump"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	main = get_tree().get_root().get_node("Main")
 	playerVelocity.y = playerGravity
+	invulnTimer = 0
+	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
+func initDefault():
+	currency = 0
+	playerHealth = playerHealthMax
+	
+func initLoad(stcurrency, stHealth):
+	currency = stcurrency
+	playerHealth = stHealth
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -62,35 +73,18 @@ func _physics_process(delta):
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
 	move_and_slide(playerVelocity, Vector2(0,-1))
-#Use this function for all non-DoT damage sources
-func damageHandler(dmgamount, kbdirection):
-	if invulnTimer <= 0:
-		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
-		knockback(kbdirection)
-		healthChange(dmgamount)
-		if playerHealth == 0:
-			#die i guess
-			pass
-
-func knockback(kbdirection):
-	#calculate knockback
-	pass
-
-
-func healthChange(amount):
-	playerHealth += amount
-	if playerHealth < 0:
-		playerHealth = 0
-	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
 
 # Get x velocity from LR inputs
 func _inputSequence():
 	lr_check()	
 	wall_grab_check()
 	jump_check()
-	
+	shoot_check()
 	dodge_check()
 		
+func shoot_check():
+	if Input.is_mouse_button_pressed(BUTTON_LEFT):
+		shoot()
 		
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
@@ -116,7 +110,12 @@ func lr_check():
 				playerVelocity.x += (playerSpeed)
 			else:
 				playerVelocity.x = playerSpeed
-		else:
+		else:			
+			if wallgrabbing:
+				playerVelocity.y = 0
+			else: 
+				fsm.travel("Run_Right")
+				xPositivity = true
 			if playerVelocity.x < playerSpeed:
 				playerVelocity.x += (playerSpeed / 10)
 			else:
@@ -141,6 +140,11 @@ func lr_check():
 			else:
 				playerVelocity.x = -playerSpeed
 		else:
+			if wallgrabbing:
+				playerVelocity.y = 0
+			else:
+				fsm.travel("Run_Left")
+				xPositivity = false
 			if playerVelocity.x > -playerSpeed:
 				playerVelocity.x -= (playerSpeed / 10)
 			else:
@@ -156,6 +160,28 @@ func lr_check():
 		else:
 			playerVelocity.x = 0
 
+#Use this function for all non-DoT damage sources
+func damageHandler(dmgamount, direction, force):
+	if invulnTimer <= 0:
+		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		knockback(direction, force)
+		healthChange(dmgamount)
+		if playerHealth == 0:
+			#die i guess
+			pass
+
+func knockback(direction, force):
+	playerVelocity.x += direction*force.x
+	playerVelocity.y += force.y
+	pass
+
+
+func healthChange(amount):
+	playerHealth -= amount
+	if playerHealth < 0:
+		playerHealth = 0
+	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
+	
 func jump_check():
 	if Input.is_action_pressed("ui_up"):
 		if jump_count < max_JC: 
@@ -201,4 +227,9 @@ func next_to_left_wall():
 func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
-		
+func shoot():
+	if (OS.get_ticks_msec() - lastShot) > 500:
+		var projectile = load("res://Scenes/projectile.tscn")
+		var p = projectile.instance() #The actual projectile object in the scene.
+		add_child_below_node(get_tree().get_current_scene(), p)
+		lastShot = OS.get_ticks_msec()

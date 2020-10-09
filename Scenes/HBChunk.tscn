@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/HUDHBCHUNK.gd" type="Script" id=1]
+
+[node name="CHUNK" type="RigidBody2D"]
+position = Vector2( 356.406, 7.04089 )
+gravity_scale = 6.27
+linear_velocity = Vector2( 0, -200 )
+angular_velocity = 3.0
+script = ExtResource( 1 )
+
+[node name="chunkrect" type="ColorRect" parent="."]
+margin_left = -62.5072
+margin_top = -7.24573
+margin_right = 61.4928
+margin_bottom = 7.75427
+color = Color( 0.470588, 0.0392157, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
