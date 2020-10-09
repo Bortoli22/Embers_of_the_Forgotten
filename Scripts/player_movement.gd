@@ -158,22 +158,23 @@ func lr_check():
 			playerVelocity.x = 0
 
 #Use this function for all non-DoT damage sources
-func damageHandler(dmgamount, kbdirection):
+func damageHandler(dmgamount, direction, force):
 	if invulnTimer <= 0:
 		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
-		knockback(kbdirection)
+		knockback(direction, force)
 		healthChange(dmgamount)
 		if playerHealth == 0:
 			#die i guess
 			pass
 
-func knockback(kbdirection):
-	#calculate knockback
+func knockback(direction, force):
+	playerVelocity.x += direction*force.x
+	playerVelocity.y += force.y
 	pass
 
 
 func healthChange(amount):
-	playerHealth += amount
+	playerHealth -= amount
 	if playerHealth < 0:
 		playerHealth = 0
 	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))

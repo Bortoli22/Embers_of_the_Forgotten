@@ -11,6 +11,7 @@
 [ext_resource path="res://data/sprite/laser_pistol.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/HealthBar.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/testobject_damage.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1402.43, 5.91837 )
@@ -345,8 +346,6 @@ extents = Vector2( 128.938, 14.4354 )
 [sub_resource type="RectangleShape2D" id=64]
 extents = Vector2( 125.875, 11.6255 )
 
-[sub_resource type="RectangleShape2D" id=65]
-
 [node name="Main" type="Node2D"]
 
 [node name="Lazy Man\'s Background" type="Panel" parent="."]
@@ -469,12 +468,6 @@ rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 40 )
 
-[node name="cointest" parent="." instance=ExtResource( 3 )]
-position = Vector2( 254.776, 258.638 )
-
-[node name="Damagetest" parent="." instance=ExtResource( 11 )]
-position = Vector2( 714.53, 391.263 )
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
@@ -560,10 +553,10 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/StaticBody2D"]
 shape = SubResource( 64 )
 
-[node name="Slime" type="KinematicBody2D" parent="."]
-position = Vector2( 198.452, 376.722 )
+[node name="cointest" parent="." instance=ExtResource( 3 )]
+position = Vector2( 254.776, 258.638 )
 
-[node name="Slime Collision" type="CollisionShape2D" parent="Slime"]
-shape = SubResource( 65 )
+[node name="Damagetest" parent="." instance=ExtResource( 11 )]
+position = Vector2( 714.53, 391.263 )
 
-[node name="SlimeSprite" type="AnimatedSprite" parent="Slime"]
+[node name="Slime" parent="." instance=ExtResource( 12 )]
