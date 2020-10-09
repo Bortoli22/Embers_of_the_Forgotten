@@ -387,7 +387,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 14
+frame = 23
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
 visible = false

@@ -11,7 +11,9 @@ export var floatDenominator = 1.3
 var playerVelocity = Vector2()
 var playerDistance
 var currency = 0
-var jump_power = 400
+var jump_power = 500
+var jump_count = 0
+const max_JC = 2
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -130,12 +132,18 @@ func lr_check():
 
 func jump_check():
 	if Input.is_action_pressed("ui_up"):
-		if is_on_floor(): 
+		if jump_count < max_JC: 
+			#jump_count = 0
 			# this bit should be replaced by who ever does jump code.
 			# i just had it for my testing purposes.
 			# but if it works the way ya like it, then leave it i guess
 			# - vincent
+			#controls height of jump
 			playerVelocity.y = -jump_power
+			jump_count += 1
+			print(jump_count)
+			#controls speed of descent after jump 
+			playerVelocity.y += 200
 			if xPositivity:
 				fsm.travel("Jump_L")
 			else:
@@ -150,12 +158,17 @@ func jump_check():
 					playerVelocity.y = -jump_power
 					playerVelocity.x -= jump_power
 					wallgrabbing = false
+	if is_on_floor():
+		jump_count = 0
+		print(is_on_floor())
 				
 func wall_grab_check():
+	
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
 		if abilities.find("wall_grab") >= 0:
 			wallgrabbing = true
 			playerVelocity.y = 0
+			jump_count = 0
 	if Input.is_action_just_released("wall_grab"):
 		wallgrabbing = false
 			
