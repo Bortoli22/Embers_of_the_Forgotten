@@ -1,5 +1,5 @@
 extends Control
-
+var main
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,9 +8,26 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	main = get_tree().get_root().get_node("Main")
+	var initHealth = main.get_node("Player").playerHealth
+	var initHealthMax = main.get_node("Player").playerHealthMax
+	get_node("HealthBar").get_node("HealthGreen").init(float(initHealth)/float(initHealthMax))
+	get_node("HealthBar").get_node("HealthText").text = str(initHealth) + "/" + str(initHealthMax)
+	get_node("Money").text = str(main.get_node("Player").currency)
 	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	get_node("Money").text = "$$$:" + var2str(get_parent().get_node("Player").currency)
+
+
+func change_health(newHealth, ratio:float):
+	get_node("HealthBar").get_node("HealthGreen").change(ratio)
+	get_node("HealthBar").get_node("HealthText").text = str(newHealth) + "/" + str(main.get_node("Player").playerHealthMax)
+	if (newHealth == 0):
+		died()
+
+func change_money(newMoney):
+	get_node("Money").text = str(newMoney)
+
+func died():
+	pass

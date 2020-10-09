@@ -7,10 +7,15 @@ export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var sprintVelocity = 2500
 export var floatDenominator = 1.3
+export var playerHealthMax = 1000
+export var playerOnHitInvuln = 2
 
 var playerVelocity = Vector2()
 var playerDistance
-var currency = 0
+var playerHealth
+var invulnTimer
+var currency
+var main
 var jump_power = 400
 var fsm #finite state machine
 var xPositivity = true
@@ -25,9 +30,19 @@ var abilities = ["wall_grab", "wall_jump"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	main = get_tree().get_root().get_node("Main")
 	playerVelocity.y = playerGravity
+	invulnTimer = 0
+	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
+func initDefault():
+	currency = 0
+	playerHealth = playerHealthMax
+	
+func initLoad(stcurrency, stHealth):
+	currency = stcurrency
+	playerHealth = stHealth
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -89,10 +104,15 @@ func lr_check():
 			else:
 				playerVelocity.x = playerSpeed
 		else:
-			if playerVelocity.x < playerSpeed:
-				playerVelocity.x += (playerSpeed / 10)
-			else:
-				playerVelocity.x = playerSpeed
+			if wallgrabbing:
+				playerVelocity.y = 0
+			else: 
+				fsm.travel("Run_Right")
+				xPositivity = true
+				if playerVelocity.x < playerSpeed:
+					playerVelocity.x += (playerSpeed / 10)
+				else:
+					playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
 		if wallgrabbing:
 			  playerVelocity.y = 0
@@ -113,6 +133,11 @@ func lr_check():
 			else:
 				playerVelocity.x = -playerSpeed
 		else:
+			if wallgrabbing:
+			  playerVelocity.y = 0
+			else:
+			  fsm.travel("Run_Left")
+			  xPositivity = false
 			if playerVelocity.x > -playerSpeed:
 				playerVelocity.x -= (playerSpeed / 10)
 			else:
@@ -128,6 +153,27 @@ func lr_check():
 		else:
 			playerVelocity.x = 0
 
+#Use this function for all non-DoT damage sources
+func damageHandler(dmgamount, kbdirection):
+	if invulnTimer <= 0:
+		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		knockback(kbdirection)
+		healthChange(dmgamount)
+		if playerHealth == 0:
+			#die i guess
+			pass
+
+func knockback(kbdirection):
+	#calculate knockback
+	pass
+
+
+func healthChange(amount):
+	playerHealth += amount
+	if playerHealth < 0:
+		playerHealth = 0
+	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
+	
 func jump_check():
 	if Input.is_action_pressed("ui_up"):
 		if is_on_floor(): 
