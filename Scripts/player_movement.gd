@@ -7,16 +7,13 @@ export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var sprintVelocity = 2500
 export var floatDenominator = 1.3
-export var playerHealthMax = 1000
-export var playerOnHitInvuln = 2
 
 var playerVelocity = Vector2()
 var playerDistance
-var playerHealth
-var invulnTimer
-var currency
-var main
-var jump_power = 400
+var currency = 0
+var jump_power = 500
+var jump_count = 0
+const max_JC = 2
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -24,6 +21,12 @@ var lastShot = OS.get_ticks_msec()
 
 var sprinting = false
 var wallgrabbing = false
+#healthbar 
+export var playerHealthMax = 1000
+export var playerOnHitInvuln = 2
+var playerHealth
+var invulnTimer
+var main
 #placeholder for ability list
 var abilities = ["wall_grab", "wall_jump"]
 
@@ -70,6 +73,26 @@ func _physics_process(delta):
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
 	move_and_slide(playerVelocity, Vector2(0,-1))
+#Use this function for all non-DoT damage sources
+func damageHandler(dmgamount, kbdirection):
+	if invulnTimer <= 0:
+		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		knockback(kbdirection)
+		healthChange(dmgamount)
+		if playerHealth == 0:
+			#die i guess
+			pass
+
+func knockback(kbdirection):
+	#calculate knockback
+	pass
+
+
+func healthChange(amount):
+	playerHealth += amount
+	if playerHealth < 0:
+		playerHealth = 0
+	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
 
 # Get x velocity from LR inputs
 func _inputSequence():
@@ -107,16 +130,16 @@ func lr_check():
 				playerVelocity.x += (playerSpeed)
 			else:
 				playerVelocity.x = playerSpeed
-		else:
-			if wallgrabbing:
+		else:			
+		if wallgrabbing:
 				playerVelocity.y = 0
 			else: 
 				fsm.travel("Run_Right")
 				xPositivity = true
-				if playerVelocity.x < playerSpeed:
-					playerVelocity.x += (playerSpeed / 10)
-				else:
-					playerVelocity.x = playerSpeed
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed / 10)
+			else:
+				playerVelocity.x = playerSpeed
 	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
 		if wallgrabbing:
 			  playerVelocity.y = 0
@@ -137,7 +160,7 @@ func lr_check():
 			else:
 				playerVelocity.x = -playerSpeed
 		else:
-			if wallgrabbing:
+					if wallgrabbing:
 			  playerVelocity.y = 0
 			else:
 			  fsm.travel("Run_Left")
@@ -181,12 +204,12 @@ func healthChange(amount):
 	
 func jump_check():
 	if Input.is_action_pressed("ui_up"):
-		if is_on_floor(): 
-			# this bit should be replaced by who ever does jump code.
-			# i just had it for my testing purposes.
-			# but if it works the way ya like it, then leave it i guess
-			# - vincent
+		if jump_count < max_JC: 
 			playerVelocity.y = -jump_power
+			jump_count += 1
+			print(jump_count)
+			#controls speed of descent after jump 
+			playerVelocity.y += 200
 			if xPositivity:
 				fsm.travel("Jump_L")
 			else:
@@ -201,12 +224,16 @@ func jump_check():
 					playerVelocity.y = -jump_power
 					playerVelocity.x -= jump_power
 					wallgrabbing = false
+	if is_on_floor():
+		jump_count = 0
 				
 func wall_grab_check():
+	
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
 		if abilities.find("wall_grab") >= 0:
 			wallgrabbing = true
 			playerVelocity.y = 0
+			jump_count = 0
 	if Input.is_action_just_released("wall_grab"):
 		wallgrabbing = false
 			

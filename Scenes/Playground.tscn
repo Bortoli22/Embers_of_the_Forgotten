@@ -402,6 +402,7 @@ scale = Vector2( 0.670588, 0.683333 )
 texture = ExtResource( 9 )
 
 [node name="Item Magnetism" type="Area2D" parent="Player"]
+visible = false
 space_override = 1
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
