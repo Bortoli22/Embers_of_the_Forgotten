@@ -73,26 +73,6 @@ func _physics_process(delta):
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
 	move_and_slide(playerVelocity, Vector2(0,-1))
-#Use this function for all non-DoT damage sources
-func damageHandler(dmgamount, kbdirection):
-	if invulnTimer <= 0:
-		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
-		knockback(kbdirection)
-		healthChange(dmgamount)
-		if playerHealth == 0:
-			#die i guess
-			pass
-
-func knockback(kbdirection):
-	#calculate knockback
-	pass
-
-
-func healthChange(amount):
-	playerHealth += amount
-	if playerHealth < 0:
-		playerHealth = 0
-	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
 
 # Get x velocity from LR inputs
 func _inputSequence():
@@ -131,7 +111,7 @@ func lr_check():
 			else:
 				playerVelocity.x = playerSpeed
 		else:			
-		if wallgrabbing:
+			if wallgrabbing:
 				playerVelocity.y = 0
 			else: 
 				fsm.travel("Run_Right")
@@ -160,11 +140,11 @@ func lr_check():
 			else:
 				playerVelocity.x = -playerSpeed
 		else:
-					if wallgrabbing:
-			  playerVelocity.y = 0
+			if wallgrabbing:
+				playerVelocity.y = 0
 			else:
-			  fsm.travel("Run_Left")
-			  xPositivity = false
+				fsm.travel("Run_Left")
+				xPositivity = false
 			if playerVelocity.x > -playerSpeed:
 				playerVelocity.x -= (playerSpeed / 10)
 			else:
