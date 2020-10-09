@@ -18,15 +18,19 @@ var fsm #finite state machine
 var xPositivity = true
 var crouched = false
 var lastShot = OS.get_ticks_msec()
+var currentUse
+var jumping
 
 var sprinting = false
 var wallgrabbing = false
+
 #healthbar 
 export var playerHealthMax = 1000
 export var playerOnHitInvuln = 2
 var playerHealth
 var invulnTimer
 var main
+
 #placeholder for ability list
 var abilities = ["wall_grab", "wall_jump"]
 
@@ -81,6 +85,7 @@ func _inputSequence():
 	jump_check()
 	shoot_check()
 	dodge_check()
+	use_check()
 		
 func shoot_check():
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
@@ -165,7 +170,7 @@ func damageHandler(dmgamount, direction, force):
 	if invulnTimer <= 0:
 		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(direction, force)
-		healthChange(dmgamount)
+		healthChange(-1*dmgamount)
 		if playerHealth == 0:
 			#die i guess
 			pass
@@ -175,18 +180,28 @@ func knockback(direction, force):
 	playerVelocity.y += force.y
 	pass
 
+func heal(value):
+	if (playerHealth == playerHealthMax):
+		return false
+	elif (value + playerHealth > playerHealthMax):
+		healthChange(playerHealthMax - playerHealth)
+		return true
+	else:
+		healthChange(value)
+		return true
+	
 
 func healthChange(amount):
-	playerHealth -= amount
+	playerHealth += amount
 	if playerHealth < 0:
 		playerHealth = 0
 	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
 	
 func jump_check():
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("ui_up") && jumping != true:
 		if jump_count < max_JC: 
+			jumping = true
 			playerVelocity.y = -jump_power
-			jump_count += 1
 			print(jump_count)
 			#controls speed of descent after jump 
 			playerVelocity.y += 200
@@ -204,8 +219,12 @@ func jump_check():
 					playerVelocity.y = -jump_power
 					playerVelocity.x -= jump_power
 					wallgrabbing = false
+	elif Input.is_action_just_released("ui_up"):
+		jump_count += 1
+		jumping = false
 	if is_on_floor():
 		jump_count = 0
+		jumping = false
 				
 func wall_grab_check():
 	
@@ -220,7 +239,12 @@ func wall_grab_check():
 func dodge_check():
 	if Input.is_action_just_pressed("dodge"):
 		playerVelocity.x = playerVelocity.x * 10
+
+func use_check():
+	if Input.is_action_just_pressed("use") && currentUse != null:
+		use(currentUse)
 		
+
 func next_to_left_wall():
 	return $WallRaycasts/LeftRaycasts/LeftRay1.is_colliding() || $WallRaycasts/LeftRaycasts/LeftRay2.is_colliding()
 
@@ -233,3 +257,33 @@ func shoot():
 		var p = projectile.instance() #The actual projectile object in the scene.
 		add_child_below_node(get_tree().get_current_scene(), p)
 		lastShot = OS.get_ticks_msec()
+		
+
+func use(object):
+	
+	if (object.type == "switch"):
+		pass
+	elif (object.type == "door"):
+		pass
+	elif (object.type == "health"):
+		if (heal(object.value)):
+			object.use()
+		else:
+			#flash_notice(1)
+			pass
+	elif (object.type == "money"):
+		pass
+	elif (object.type == "equippable"):
+		pass
+		
+func clearUse():
+	get_node("UsePrompt/Prompt").visible = false
+	currentUse = null
+
+
+func _on_UsePrompt_body_entered(body):
+	currentUse = body
+	get_node("UsePrompt/Prompt").visible = true
+
+func _on_UsePrompt_body_exited(body):
+	clearUse()

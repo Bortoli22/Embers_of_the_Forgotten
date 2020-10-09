@@ -9,7 +9,7 @@ func _ready():
 	y = self.get_rect().size.y
 	pass # Replace with function body.
 
-func init(initRatio):
+func init(initRatio:float):
 	ratio = initRatio
 
 func change(newratio:float):

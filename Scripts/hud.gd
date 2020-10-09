@@ -24,6 +24,9 @@ func change_health(newHealth, ratio:float):
 func change_money(newMoney):
 	get_node("Money").text = "$" + str(newMoney)
 
+#func flash_notice(num):
+	#get_node("Notice")
+
 func died():
 	get_node("HealthBar/HealthEmpty").color = Color(0,0,0,255)
 	pass
