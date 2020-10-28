@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var cursorIndex = 0
 var itemCount = 0
@@ -6,12 +6,18 @@ var items
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.hide()
 	itemCount = get_node("Items").get_child_count()
 	items = get_node("Items").get_children()
 	items[cursorIndex].toggleHover()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_released("item_menu"):
+		if is_visible_in_tree():
+			hide()
+		else:
+			show()
 	if Input.is_action_just_released("ui_left"):
 		items[cursorIndex].toggleHover()
 		cursorIndex -= 1
