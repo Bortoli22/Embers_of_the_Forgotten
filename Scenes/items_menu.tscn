@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fireball.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/items_menu/item_menu_manager.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Black_BG.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -249,6 +250,12 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Screen Dim" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.8 )
+position = Vector2( 512, 300 )
+scale = Vector2( 4.57143, 4.6875 )
+texture = ExtResource( 12 )
 
 [node name="MenuTitle" type="RichTextLabel" parent="."]
 margin_left = 416.0

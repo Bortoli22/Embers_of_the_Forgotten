@@ -19,6 +19,11 @@ config/name="Embers_of_the_Forgotten"
 run/main_scene="res://Scenes/Playground.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+GameData="*res://Scripts/Singletons/game_data.gd"
+PlayerData="*res://Scripts/Singletons/player_data.gd"
+
 [input]
 
 wall_grab={

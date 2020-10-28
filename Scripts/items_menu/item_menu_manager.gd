@@ -16,7 +16,9 @@ func _process(delta):
 	if Input.is_action_just_released("item_menu"):
 		if is_visible_in_tree():
 			hide()
+			GameData.paused = false
 		else:
+			GameData.paused = true
 			show()
 	if Input.is_action_just_released("ui_left"):
 		items[cursorIndex].toggleHover()
