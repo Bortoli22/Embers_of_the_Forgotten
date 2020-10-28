@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fire.png" type="Texture" id=7]
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Scythe.png" type="Texture" id=8]
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fireball.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -248,10 +249,10 @@ __meta__ = {
 }
 
 [node name="MenuTitle" type="RichTextLabel" parent="."]
-margin_left = 427.728
-margin_top = 108.218
-margin_right = 645.728
-margin_bottom = 168.218
+margin_left = 416.0
+margin_top = 96.0
+margin_right = 634.0
+margin_bottom = 156.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "ITEMS MENU"
 __meta__ = {
@@ -259,89 +260,123 @@ __meta__ = {
 }
 
 [node name="MenuBorder" type="Sprite" parent="."]
-position = Vector2( 515.586, 292.555 )
+position = Vector2( 512, 288 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
 [node name="Sword" type="Node2D" parent="."]
-position = Vector2( 294.453, 168.545 )
+position = Vector2( 312, 192 )
+script = ExtResource( 10 )
 
 [node name="ItemSprite" type="AnimatedSprite" parent="Sword"]
-position = Vector2( 75.9645, 77.8037 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
 animation = "SwordHover"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Border" type="Sprite" parent="Sword"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Scythe" type="Node2D" parent="."]
-position = Vector2( 439.789, 168.545 )
+position = Vector2( 448, 192 )
 
 [node name="ItemSprite" type="AnimatedSprite" parent="Scythe"]
-position = Vector2( 75.9645, 77.8037 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
 animation = "ScytheHover"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Border" type="Sprite" parent="Scythe"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Spear" type="Node2D" parent="."]
-position = Vector2( 579.66, 168.545 )
+position = Vector2( 584, 192 )
 
 [node name="ItemSprite" type="AnimatedSprite" parent="Spear"]
-position = Vector2( 75.9645, 77.8037 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
 animation = "SpearHover"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Border" type="Sprite" parent="Spear"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Fire" type="Node2D" parent="."]
-position = Vector2( 293.682, 312.871 )
+position = Vector2( 312, 328 )
 
 [node name="ItemSprite" type="AnimatedSprite" parent="Fire"]
-position = Vector2( 75.9645, 77.8037 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
 animation = "FireHover"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Border" type="Sprite" parent="Fire"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Fireball" type="Node2D" parent="."]
-position = Vector2( 440.68, 313.761 )
+position = Vector2( 448, 328 )
 
 [node name="ItemSprite" type="AnimatedSprite" parent="Fireball"]
-position = Vector2( 75.9645, 77.8037 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
 animation = "FireballHover"
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Border" type="Sprite" parent="Fireball"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Empty" type="Node2D" parent="."]
-position = Vector2( 582.333, 314.652 )
+position = Vector2( 584, 328 )
 
 [node name="Border" type="Sprite" parent="Empty"]
-position = Vector2( 75, 78 )
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Cursor" type="Sprite" parent="."]
-position = Vector2( 369.924, 246.134 )
+position = Vector2( 648, 392 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
