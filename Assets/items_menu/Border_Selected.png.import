@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_Character_Animations_Run Right.png-cbf72a4fbc08e8cfabcf3cd700f1a460.stex"
+path="res://.import/Border_Selected.png-6a85eb40af34d4e9f0a5d0f1866fd623.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_Character_Animations_Run Right.png"
-dest_files=[ "res://.import/Player_Character_Animations_Run Right.png-cbf72a4fbc08e8cfabcf3cd700f1a460.stex" ]
+source_file="res://Assets/items_menu/Border_Selected.png"
+dest_files=[ "res://.import/Border_Selected.png-6a85eb40af34d4e9f0a5d0f1866fd623.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

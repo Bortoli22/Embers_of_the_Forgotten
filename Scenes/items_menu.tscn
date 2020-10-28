@@ -1,0 +1,429 @@
+[gd_scene load_steps=65 format=2]
+
+[ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Sword.png" type="Texture" id=3]
+[ext_resource path="res://Assets/items_menu/Border_Selected.png" type="Texture" id=4]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Spear.png" type="Texture" id=5]
+[ext_resource path="res://Assets/items_menu/Border.png" type="Texture" id=6]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fire.png" type="Texture" id=7]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Scythe.png" type="Texture" id=8]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fireball.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/items_menu/item_menu_manager.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Black_BG.png" type="Texture" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 5 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 5 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 5 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 5 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 5 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 5 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 5 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 5 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 9 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 9 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 9 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 9 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 9 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 9 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 9 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 9 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 3 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 3 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 3 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 8 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 8 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 8 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 8 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 8 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 8 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 8 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 8 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 7 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 7 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 7 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 7 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 7 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 7 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 7 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 7 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="SpriteFrames" id=52]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
+"name": "SpearHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "FireballHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": false,
+"name": "SwordHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": false,
+"name": "ScytheHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
+"loop": false,
+"name": "FireHover",
+"speed": 30.0
+} ]
+
+[node name="Node2D" type="Control"]
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen Dim" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.8 )
+position = Vector2( 512, 300 )
+scale = Vector2( 4.57143, 4.6875 )
+texture = ExtResource( 12 )
+
+[node name="MenuTitle" type="RichTextLabel" parent="."]
+margin_left = 416.0
+margin_top = 96.0
+margin_right = 634.0
+margin_bottom = 156.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "ITEMS MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuBorder" type="Sprite" parent="."]
+position = Vector2( 512, 288 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 6 )
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Sword" type="Node2D" parent="Items"]
+position = Vector2( 312, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Sword"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 52 )
+animation = "SwordHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items/Sword"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Sword"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Scythe" type="Node2D" parent="Items"]
+position = Vector2( 448, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Scythe"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 52 )
+animation = "ScytheHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items/Scythe"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Scythe"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Spear" type="Node2D" parent="Items"]
+position = Vector2( 584, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Spear"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 52 )
+animation = "SpearHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items/Spear"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Spear"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Fire" type="Node2D" parent="Items"]
+position = Vector2( 312, 328 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Fire"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 52 )
+animation = "FireHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items/Fire"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Fire"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Fireball" type="Node2D" parent="Items"]
+position = Vector2( 448, 328 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Fireball"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 52 )
+animation = "FireballHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items/Fireball"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Fireball"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Empty" type="Node2D" parent="Items"]
+position = Vector2( 584, 328 )
+script = ExtResource( 10 )
+
+[node name="Border" type="Sprite" parent="Items/Empty"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items/Empty"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )

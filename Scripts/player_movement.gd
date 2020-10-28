@@ -55,6 +55,10 @@ func initLoad(stcurrency, stHealth):
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
+	#disable actions if game is paused
+	if GameData.paused:
+		return
+
 	# obtain new y velocity and check crouch
 	if is_on_floor():
 		playerVelocity.y = playerGravity
