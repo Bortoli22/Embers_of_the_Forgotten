@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Scythe.png" type="Texture" id=8]
 [ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fireball.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/items_menu/item_menu_manager.gd" type="Script" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -218,32 +219,33 @@ region = Rect2( 1024, 256, 256, 256 )
 [sub_resource type="SpriteFrames" id=52]
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": true,
+"loop": false,
 "name": "SpearHover",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
-"loop": true,
+"loop": false,
 "name": "FireballHover",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
-"loop": true,
+"loop": false,
 "name": "SwordHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
-"loop": true,
+"loop": false,
 "name": "ScytheHover",
-"speed": 5.0
+"speed": 30.0
 }, {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
-"loop": true,
+"loop": false,
 "name": "FireHover",
-"speed": 5.0
+"speed": 30.0
 } ]
 
 [node name="Node2D" type="Control"]
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -264,11 +266,13 @@ position = Vector2( 512, 288 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
-[node name="Sword" type="Node2D" parent="."]
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Sword" type="Node2D" parent="Items"]
 position = Vector2( 312, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Sword"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -277,7 +281,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Sword"]
+[node name="Border" type="Sprite" parent="Items/Sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -285,10 +289,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Scythe" type="Node2D" parent="."]
-position = Vector2( 448, 192 )
+[node name="Cursor" type="Sprite" parent="Items/Sword"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Scythe"]
+[node name="Scythe" type="Node2D" parent="Items"]
+position = Vector2( 448, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -297,7 +308,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Scythe"]
+[node name="Border" type="Sprite" parent="Items/Scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -305,10 +316,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Spear" type="Node2D" parent="."]
-position = Vector2( 584, 192 )
+[node name="Cursor" type="Sprite" parent="Items/Scythe"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Spear"]
+[node name="Spear" type="Node2D" parent="Items"]
+position = Vector2( 584, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -317,7 +335,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Spear"]
+[node name="Border" type="Sprite" parent="Items/Spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -325,10 +343,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Fire" type="Node2D" parent="."]
-position = Vector2( 312, 328 )
+[node name="Cursor" type="Sprite" parent="Items/Spear"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Fire"]
+[node name="Fire" type="Node2D" parent="Items"]
+position = Vector2( 312, 328 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Fire"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -337,7 +362,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Fire"]
+[node name="Border" type="Sprite" parent="Items/Fire"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -345,10 +370,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Fireball" type="Node2D" parent="."]
-position = Vector2( 448, 328 )
+[node name="Cursor" type="Sprite" parent="Items/Fire"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Fireball"]
+[node name="Fireball" type="Node2D" parent="Items"]
+position = Vector2( 448, 328 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items/Fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -357,7 +389,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Fireball"]
+[node name="Border" type="Sprite" parent="Items/Fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -365,10 +397,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Empty" type="Node2D" parent="."]
+[node name="Cursor" type="Sprite" parent="Items/Fireball"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="Empty" type="Node2D" parent="Items"]
 position = Vector2( 584, 328 )
+script = ExtResource( 10 )
 
-[node name="Border" type="Sprite" parent="Empty"]
+[node name="Border" type="Sprite" parent="Items/Empty"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -376,7 +415,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="."]
-position = Vector2( 648, 392 )
+[node name="Cursor" type="Sprite" parent="Items/Empty"]
+visible = false
+position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
