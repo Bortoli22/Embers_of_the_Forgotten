@@ -2,21 +2,21 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 100
+var grid_size_x = 85
 var grid_size_y = 25
 
 # Verticle Slice Variables
-var halfHeightBase = 3
-var halfHeightMin = 2
-var halfHeightMax = 4
-var halfHeight = 3
-var halfHeightAdjust = 0
+var heightBase = 6
+var heightMin = 4
+var heightMax = 12
+var height = 6
+var heightAdjust = 0
 
-var midpointYBase = 12
-var midpointYMin = 3
-var midpointYMax = 20
-var midpointY = 12
-var midpointYAdjust = 0
+var basePointBase = 12
+var basePointMin = 3
+var basePointMax = 40
+var basePoint = 12
+var basePointAdjust = 0
 
 var VSlice1
 var VSlice2
@@ -43,7 +43,7 @@ func _ready():
 	_V_setup()
 	for xInt in range(0, grid_size_x):
 		_v_slice_generate()
-		_v_slice_evaluate_test(xInt)
+		_v_slice_evaluate(xInt)
 
 # Initialize with the first three Vertical Slices
 func _V_setup():
@@ -58,67 +58,92 @@ func _v_slice_generate():
 	_set_random_vars()
 
 func _v_slice_evaluate_test(xInt): 
-	for val in range(0, 2*halfHeight):
-		set_cell(xInt, midpointY - halfHeight + val, 6)
+	for val in range(0, height):
+		set_cell(xInt, basePoint + val, 6)
 
 # Obtain tile data for VSlice2
-func _v_slice_evaluate(xInt): 
-	var yIntTop = 1
-	var yIntBottom = VSlice2.y
+func _v_slice_evaluate(xInt): 	
+	var parseTemp
+	var parseGoal
 	
-	# top tile
-	if VSlice2.x < VSlice1.x && VSlice2.x > VSlice3.x:
-		set_cell(xInt, midpointY - halfHeight, Tiles.C_TL)
-	elif VSlice2.x > VSlice1.x && VSlice2.x < VSlice3.x:
-		set_cell(xInt, midpointY - halfHeight, Tiles.C_TR)
-	elif VSlice2.x == VSlice1.x && VSlice2.x == VSlice3.x:
-		set_cell(xInt, midpointY - halfHeight, Tiles.C_M)
+	# top tiles
+	if (VSlice2.x + VSlice2.y) > (VSlice1.x + VSlice1.y):
+		set_cell(xInt, basePointBase - VSlice2.y - VSlice2.x, Tiles.C_TL)
+		parseGoal = basePointBase - VSlice1.y - VSlice1.x
+		parseTemp = basePointBase - VSlice2.y - VSlice2.x + 1
+		while parseTemp <= parseGoal:
+			if parseTemp == parseGoal:
+				set_cell(xInt, parseTemp, Tiles.C_BR)
+			else:
+				set_cell(xInt, parseTemp, Tiles.S_R)
+			parseTemp += 1
+	elif (VSlice2.x + VSlice2.y) > (VSlice3.x + VSlice3.y):
+		set_cell(xInt, basePointBase - VSlice2.y - VSlice2.x, Tiles.C_TR)
+		parseGoal = basePointBase - VSlice3.y - VSlice3.x
+		parseTemp = basePointBase - VSlice2.y - VSlice2.x + 1
+		while parseTemp <= parseGoal:
+			if parseTemp == parseGoal:
+				set_cell(xInt, parseTemp, Tiles.C_BL)
+			else:
+				set_cell(xInt, parseTemp, Tiles.S_L)
+			parseTemp += 1
+	else:
+		set_cell(xInt, basePointBase - VSlice2.y - VSlice2.x, Tiles.C_M)
 	
 	# bottom tile
-	if (VSlice2.x + VSlice2.y) > (VSlice1.x + VSlice1.y):
-		set_cell(xInt, midpointY - halfHeight + yIntBottom, Tiles.G_BR)
-		yIntBottom -= 1
-	elif (VSlice2.x + VSlice2.y) > (VSlice3.x + VSlice3.y):
-		set_cell(xInt, midpointY - halfHeight + yIntBottom, Tiles.G_BL)
-		yIntBottom -= 1
-	elif (VSlice2.x + VSlice2.y) == (VSlice1.x + VSlice1.y) && (VSlice2.x + VSlice2.y) == (VSlice3.x + VSlice3.y):
-		set_cell(xInt, midpointY - halfHeight + yIntBottom, Tiles.G_M)
-		yIntBottom -= 1
+	if VSlice2.x < VSlice3.x:
+		set_cell(xInt, basePointBase - VSlice2.x, Tiles.G_BR)
+		parseGoal = basePointBase - VSlice3.x
+		parseTemp = basePointBase - VSlice2.x - 1
+		while parseTemp >= parseGoal:
+			if parseTemp == parseGoal:
+				set_cell(xInt, parseTemp, Tiles.G_TL)
+			else:
+				set_cell(xInt, parseTemp, Tiles.S_R)
+			parseTemp -= 1
+	elif VSlice2.x < VSlice1.x:
+		set_cell(xInt, basePointBase - VSlice2.x, Tiles.G_BL)
+		parseGoal = basePointBase - VSlice1.x
+		parseTemp = basePointBase - VSlice2.x - 1
+		while parseTemp >= parseGoal:
+			if parseTemp == parseGoal:
+				set_cell(xInt, parseTemp, Tiles.G_TR)
+			else:
+				set_cell(xInt, parseTemp, Tiles.S_L)
+			parseTemp -= 1
+	else:
+		set_cell(xInt, basePointBase - VSlice2.x, Tiles.G_M)
 	
 	# middle tiles
-	while yIntTop < yIntBottom:
-		set_cell(xInt, midpointY - halfHeight + yIntTop, 6)
-		yIntTop += 1
-	
-	print(VSlice1, VSlice2, VSlice3)
+	#set_cell(xInt, basePoint - yIntTop, 6)
 
 # Compute random vals to determine VSlice behavior
 func _set_random_vars():
-	# get new halfHeight
-	var x = randi() % 8
-	# random var leading to a smaller halfheight
-	if x == 0 && halfHeight > halfHeightMin && halfHeightAdjust != 1:
-		halfHeight -= 1
-		halfHeightAdjust = -1
-	# random var leading to a larger halfheight
-	elif x == 1 && halfHeight < halfHeightMax && halfHeightAdjust != -1:
-		halfHeight += 1
-		halfHeightAdjust = 1
+	# get new height
+	var x = randi() % 5
+	# random var leading to a smaller height
+	if x == 0 && height > heightMin && heightAdjust != 1 && basePointAdjust == 0:
+		height -= 1
+		heightAdjust = -1
+	# random var leading to a larger height
+	elif x == 1 && height < heightMax && heightAdjust != -1 && basePointAdjust == 0:
+		height += 1
+		heightAdjust = 1
 	elif x > 1:
-		halfHeightAdjust = 0
+		heightAdjust = 0
 	
 	# get new midpoint
-	x = randi() % 8
+	x = randi() % 5
 	# random var leading to a lower midpoint
-	if x == 0 && midpointY > midpointYMin && midpointYAdjust != 1 && halfHeightAdjust != 0:
-		midpointY -= 1
-		midpointYAdjust = -1
+	if x == 0 && basePoint > basePointMin && basePointAdjust != 1:
+		basePoint -= 1
+		basePointAdjust = -1
 	# random var leading to a higher midpoint
-	if x == 1 && midpointY < midpointYMax && midpointYAdjust != -1 && halfHeightAdjust != 0:
-		midpointY += 1
-		midpointYAdjust = 1
+	if x == 1 && basePoint < basePointMax && basePointAdjust != -1:
+		basePoint += 1
+		basePointAdjust = 1
 	elif x > 1:
-		midpointYAdjust = 0
+		basePointAdjust = 0
 	
 	# commit data to evaluatedSlice
-	VSlice3 = Vector2(midpointYBase - midpointY - halfHeight, halfHeight * 2)
+	VSlice3 = Vector2(basePointBase - basePoint, height)

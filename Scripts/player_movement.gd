@@ -104,7 +104,6 @@ func lr_check():
 			xPositivity = true
 		#check if sprint key hit inside here
 		if Input.is_action_pressed("ui_shift"):
-			printerr("hit shift 1!")
 			sprinting = true
 		else:
 			sprinting = false
@@ -137,7 +136,6 @@ func lr_check():
 			xPositivity = false
 		#check if sprint key hit inside here
 		if Input.is_action_pressed("ui_shift"):
-			printerr("hit shift 2!")
 			sprinting = true
 		#change the rate at which the player moves horizontally 
 		fsm.travel("Run_Left")
@@ -206,7 +204,6 @@ func jump_check():
 		if jump_count < max_JC: 
 			jumping = true
 			playerVelocity.y = -jump_power
-			print(jump_count)
 			#controls speed of descent after jump 
 			playerVelocity.y += 200
 			if xPositivity:
