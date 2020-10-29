@@ -367,7 +367,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 21
+frame = 13
 
 [node name="Node2D" type="Node2D" parent="Player/Player Sprite"]
 
