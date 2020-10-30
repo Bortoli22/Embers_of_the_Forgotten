@@ -349,7 +349,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 23
+frame = 18
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -358,6 +358,7 @@ __meta__ = {
 [node name="Node2D" type="Node2D" parent="Player Sprite"]
 
 [node name="laser_pistol" type="Sprite" parent="Player Sprite/Node2D"]
+visible = false
 position = Vector2( 55.535, 0.987202 )
 scale = Vector2( 0.670588, 0.683333 )
 texture = ExtResource( 2 )
