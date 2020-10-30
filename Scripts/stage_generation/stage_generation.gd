@@ -2,21 +2,23 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 100
+var grid_size_x = 300
 var grid_size_y = 25
 
 # Verticle Slice Variables
 var heightBase = 6
-var heightMin = 4
+var heightMin = 6
 var heightMax = 12
-var height = 6
+var height = 8
 var heightAdjust = 0
+var heightAdjustCounter = 3
 
 var basePointBase = 12
 var basePointMin = 3
 var basePointMax = 40
 var basePoint = 12
 var basePointAdjust = 0
+var basePointAdjustCounter = 3
 
 var VSlice1
 var VSlice2
@@ -158,12 +160,16 @@ func _set_random_vars():
 	if x == 0 && height > heightMin && heightAdjust != 1 && basePointAdjust == 0:
 		height -= 1
 		heightAdjust = -1
+		heightAdjustCounter = 3
 	# random var leading to a larger height
 	elif x == 1 && height < heightMax && heightAdjust != -1 && basePointAdjust == 0:
 		height += 1
 		heightAdjust = 1
-	elif x > 1:
-		heightAdjust = 0
+		heightAdjustCounter = 3
+	else:
+		heightAdjustCounter -= 1
+		if heightAdjustCounter <= 0:
+			heightAdjust = 0
 	
 	# get new midpoint
 	x = randi() % 5
@@ -171,12 +177,16 @@ func _set_random_vars():
 	if x == 0 && basePoint > basePointMin && basePointAdjust != 1 && heightAdjust == 0:
 		basePoint -= 1
 		basePointAdjust = -1
+		basePointAdjustCounter = 3
 	# random var leading to a higher midpoint
 	if x == 1 && basePoint < basePointMax && basePointAdjust != -1 && heightAdjust == 0:
 		basePoint += 1
 		basePointAdjust = 1
-	elif x > 1:
-		basePointAdjust = 0
+		basePointAdjustCounter = 3
+	else:
+		basePointAdjustCounter -= 1
+		if basePointAdjustCounter <= 0:
+			basePointAdjust = 0
 	
 	# random var leading to a room being generated
 	x = randi() % 100
