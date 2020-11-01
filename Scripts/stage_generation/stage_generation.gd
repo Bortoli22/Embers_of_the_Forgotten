@@ -68,7 +68,7 @@ func _ready():
 			VSlice1 = VSlice2
 			for val in range(roomLength):
 				_v_slice_evaluate(iterator + val + 2)
-			print("found room on iteration: " + str(iterator))
+			#print("found room on iteration: " + str(iterator))
 			iterator += roomLength + 1
 		iterator += 1
 
