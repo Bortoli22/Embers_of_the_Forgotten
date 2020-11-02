@@ -10,7 +10,6 @@ export var floatDenominator = 1.3
 
 var playerVelocity = Vector2()
 var playerDistance
-var currency = 0
 var jump_power = 500
 var jump_count = 0
 const max_JC = 2
@@ -25,20 +24,14 @@ var sprinting = false
 var wallgrabbing = false
 
 #healthbar 
-export var playerHealthMax = 1000
 export var playerOnHitInvuln = 2
-var playerHealth
 var invulnTimer
 var main
 
-#placeholder for ability list
-var abilities = ["wall_grab", "wall_jump"]
-
-
+var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#main = get_tree().get_root().get_node("Main")
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
@@ -46,20 +39,25 @@ func _ready():
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
 func initDefault():
-	currency = 0
-	playerHealth = playerHealthMax
+	PlayerData.playerHealth = PlayerData.playerHealthMax
 	
 func initLoad(stcurrency, stHealth):
-	currency = stcurrency
-	playerHealth = stHealth
+	PlayerData.playerHealth = stHealth
+	PlayerData.currency = stcurrency
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	
 	#disable actions if game is paused
-	if GameData.paused:
+	if GameData.paused || GameData.player_dead:
 		return
-
+	
+	if PlayerData.playerHealth == 0: 
+		GameData.player_dead = true
+		respawn()
+		GameData.player_dead = false
+		return
+	
 	# obtain new y velocity and check crouch
 	if is_on_floor():
 		playerVelocity.y = playerGravity
@@ -75,7 +73,7 @@ func _physics_process(delta):
 				playerVelocity.y += 50
 		else: 
 			playerVelocity.y = terminalVelocity
-	#print(playerVelocity.y)
+	
 	
 	#obtain new x velocity
 	_inputSequence()
@@ -85,13 +83,25 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
+	pause_check()
 	lr_check()	
 	wall_grab_check()
 	jump_check()
 	shoot_check()
 	dodge_check()
 	use_check()
+	
+	if Input.is_action_just_pressed("kill_self"):
+		healthChange(-PlayerData.playerHealthMax)
 		
+func pause_check():
+	if Input.is_action_pressed("pause"):
+		
+		GameData.paused = true
+		var pause_menu = load("res://Scenes/PauseMenu.tscn")
+		self.add_child(pause_menu.instance())
+	return
+	
 func shoot_check():
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		shoot()
@@ -174,7 +184,7 @@ func damageHandler(dmgamount, direction, force):
 		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
-		if playerHealth == 0:
+		if PlayerData.playerHealth == 0:
 			#die i guess
 			pass
 
@@ -184,10 +194,10 @@ func knockback(direction, force):
 	pass
 
 func heal(value):
-	if (playerHealth == playerHealthMax):
+	if (PlayerData.playerHealth == PlayerData.playerHealthMax):
 		return false
-	elif (value + playerHealth > playerHealthMax):
-		healthChange(playerHealthMax - playerHealth)
+	elif (value + PlayerData.playerHealth > PlayerData.playerHealthMax):
+		healthChange(PlayerData.playerHealthMax - PlayerData.playerHealth)
 		return true
 	else:
 		healthChange(value)
@@ -195,10 +205,10 @@ func heal(value):
 	
 
 func healthChange(amount):
-	playerHealth += amount
-	if playerHealth < 0:
-		playerHealth = 0
-	main.get_node("CanvasLayer").get_node("HUD").change_health(playerHealth, float(playerHealth)/float(playerHealthMax))
+	PlayerData.playerHealth += amount
+	if PlayerData.playerHealth < 0:
+		PlayerData.playerHealth = 0
+	main.get_node("CanvasLayer").get_node("HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
 	
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:
@@ -212,7 +222,7 @@ func jump_check():
 			else:
 				fsm.travel("Jump_R")
 		else:
-			if abilities.find("wall_jump") >= 0:
+			if PlayerData.check_abilities("walljump"):
 				if next_to_left_wall():
 					playerVelocity.y = -jump_power
 					playerVelocity.y += 250
@@ -235,7 +245,7 @@ func jump_check():
 func wall_grab_check():
 	
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
-		if abilities.find("wall_grab") >= 0:
+		if PlayerData.check_abilities("wallgrab"):
 			wallgrabbing = true
 			playerVelocity.y = 0
 			jump_count = 0
@@ -293,3 +303,8 @@ func _on_UsePrompt_body_entered(body):
 
 func _on_UsePrompt_body_exited(body):
 	clearUse()
+
+func respawn():
+	var tree = get_tree()
+	var root = tree.get_root()
+	self.add_child(respawn_menu.instance())
