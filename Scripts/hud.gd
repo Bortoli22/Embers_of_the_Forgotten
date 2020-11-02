@@ -11,7 +11,7 @@ func _ready():
 	print(get_node("HealthBar/HealthEmpty").color)
 	get_node("HealthBar/HealthGreen").init(float(initHealth)/float(initHealthMax))
 	get_node("HealthBar/HealthText").text = str(initHealth) + "/" + str(initHealthMax)
-	get_node("Money").text = "$" + str(main.get_node("Player").currency)
+	get_node("Money").text = "$" + str(PlayerData.currency)
 	pass
 
 #updating HUD values

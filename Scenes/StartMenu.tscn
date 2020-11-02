@@ -130,8 +130,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="Weapons/Sword" to="Weapons/Sword" method="_on_pressed"]
-[connection signal="pressed" from="Weapons/Scythe" to="Weapons/Scythe" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Scythe" to="." method="_on_pressed"]
+[connection signal="pressed" from="Weapons/Scythe" to="Weapons/Scythe" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Spear" to="Weapons/Spear" method="_on_pressed"]
 [connection signal="pressed" from="Abilities/Dash" to="Abilities/Dash" method="_on_pressed"]
 [connection signal="pressed" from="Abilities/WallJump" to="Abilities/WallJump" method="_on_pressed"]

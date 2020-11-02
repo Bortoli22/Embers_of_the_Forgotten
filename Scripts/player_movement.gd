@@ -10,7 +10,6 @@ export var floatDenominator = 1.3
 
 var playerVelocity = Vector2()
 var playerDistance
-var currency = 0
 var jump_power = 500
 var jump_count = 0
 const max_JC = 2
@@ -20,7 +19,6 @@ var crouched = false
 var lastShot = OS.get_ticks_msec()
 var currentUse
 var jumping
-var respawning = false
 
 var sprinting = false
 var wallgrabbing = false
@@ -35,7 +33,7 @@ var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	main = get_tree().get_root().get_node("Main")
+	main = get_parent()
 	print("main")
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
@@ -43,12 +41,11 @@ func _ready():
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
 func initDefault():
-	currency = 0
 	PlayerData.playerHealth = PlayerData.playerHealthMax
 	
 func initLoad(stcurrency, stHealth):
-	currency = stcurrency
 	PlayerData.playerHealth = stHealth
+	PlayerData.currency = stcurrency
 
 # Called every phys frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -59,7 +56,6 @@ func _physics_process(delta):
 	
 	if PlayerData.playerHealth == 0: 
 		GameData.player_dead = true
-#		if !respawning:
 		respawn()
 		return
 	
@@ -88,13 +84,24 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
+	pause_check()
 	lr_check()	
 	wall_grab_check()
 	jump_check()
 	shoot_check()
 	dodge_check()
 	use_check()
+	
+	if Input.is_action_pressed("kill_self"):
+		healthChange(-PlayerData.playerHealthMax)
 		
+func pause_check():
+	if Input.is_action_pressed("pause"):
+		GameData.paused = true
+		var pause_menu = load("res://Scenes/PauseMenu.tscn")
+		get_tree().get_root().add_child(pause_menu.instance())
+	return
+	
 func shoot_check():
 	if Input.is_mouse_button_pressed(BUTTON_LEFT):
 		shoot()
@@ -298,18 +305,9 @@ func _on_UsePrompt_body_exited(body):
 	clearUse()
 
 func respawn():
-#	respawning = true
 	var tree = get_tree()
-	
 	var root = tree.get_root()
-	
 	root.add_child(respawn_menu.instance())
 	var current = tree.get_current_scene()
 	tree.current_scene = main
-	var err = tree.reload_current_scene()
-	if err != OK:
-		print(err)
-	print(tree.current_scene)
-	
-	
-	
+	tree.reload_current_scene()

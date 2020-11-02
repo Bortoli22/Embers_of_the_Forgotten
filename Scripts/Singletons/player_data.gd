@@ -3,6 +3,7 @@ extends Node
 #I haven't used these anywhere, just giving you an idea of what to add
 var playerHealth
 var playerHealthMax = 1000
+var currency = 0
 var itemsfound = null
 var abilities = []
 var weapons = []

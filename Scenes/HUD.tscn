@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/hud.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/HUDHealthBar.gd" type="Script" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="HUD" type="Control" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Money" type="Label" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "BIG BOY TEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="Node2D" parent="HUD"]
+position = Vector2( 3.77977, 565.075 )
+
+[node name="HealthFrame" type="ColorRect" parent="HUD/HealthBar"]
+margin_left = -1.29962
+margin_top = -8.9248
+margin_right = 424.7
+margin_bottom = 15.0752
+color = Color( 0.756863, 0.756863, 0.756863, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthEmpty" type="ColorRect" parent="HUD/HealthBar"]
+margin_left = 2.43872
+margin_top = -4.04419
+margin_right = 420.439
+margin_bottom = 10.9558
+rect_pivot_offset = Vector2( 105.02, 7.5 )
+color = Color( 0.0117647, 0.282353, 0.0352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthGreen" type="ColorRect" parent="HUD/HealthBar"]
+margin_left = 2.43872
+margin_top = -4.04419
+margin_right = 422.439
+margin_bottom = 10.9558
+rect_pivot_offset = Vector2( 105.02, 7.5 )
+color = Color( 0.0588235, 0.733333, 0.14902, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthText" type="Label" parent="HUD/HealthBar"]
+margin_left = 192.828
+margin_top = -3.29291
+margin_right = 232.828
+margin_bottom = 11.7071
+grow_horizontal = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Notice" type="Popup" parent="HUD"]
+visible = true
+margin_left = 324.938
+margin_top = 68.3611
+margin_right = 710.938
+margin_bottom = 155.361
