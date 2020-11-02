@@ -32,9 +32,7 @@ var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	main = get_parent()
-	print("main")
+	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
 	initDefault() #TEMP
@@ -57,6 +55,7 @@ func _physics_process(delta):
 	if PlayerData.playerHealth == 0: 
 		GameData.player_dead = true
 		respawn()
+		GameData.player_dead = false
 		return
 	
 	# obtain new y velocity and check crouch
@@ -92,14 +91,15 @@ func _inputSequence():
 	dodge_check()
 	use_check()
 	
-	if Input.is_action_pressed("kill_self"):
+	if Input.is_action_just_pressed("kill_self"):
 		healthChange(-PlayerData.playerHealthMax)
 		
 func pause_check():
 	if Input.is_action_pressed("pause"):
+		
 		GameData.paused = true
 		var pause_menu = load("res://Scenes/PauseMenu.tscn")
-		get_tree().get_root().add_child(pause_menu.instance())
+		self.add_child(pause_menu.instance())
 	return
 	
 func shoot_check():
@@ -307,7 +307,4 @@ func _on_UsePrompt_body_exited(body):
 func respawn():
 	var tree = get_tree()
 	var root = tree.get_root()
-	root.add_child(respawn_menu.instance())
-	var current = tree.get_current_scene()
-	tree.current_scene = main
-	tree.reload_current_scene()
+	self.add_child(respawn_menu.instance())

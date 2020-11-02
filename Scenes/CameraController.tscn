@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/stage_generation/stage_generation_test_camera.gd" type="Script" id=1]
+
+[node name="CameraController" type="Node2D"]
+position = Vector2( 512, 304 )
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 1.12238, -2.2449 )
+current = true
+smoothing_enabled = true

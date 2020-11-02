@@ -10,6 +10,8 @@ func _on_restart_pressed():
 	var tree = get_tree()
 	var root = tree.get_root()
 	var stage = root.get_node("Root")
+	if stage == null:
+		stage = root.get_node("Main")
 	
 	root.remove_child(pause_menu)
 	pause_menu.queue_free()

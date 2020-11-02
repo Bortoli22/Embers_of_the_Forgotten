@@ -8,7 +8,16 @@ func _ready():
 
 func respawn():
 	GameData.player_dead = false
-	var root = get_tree().get_root()
-	root.remove_child(self)
+	var tree = get_tree() 
+	var root = tree.get_root()
+	get_parent().remove_child(self)
 	self.queue_free()
+	
+	var stage = root.get_node("Root") 
+	if stage == null:
+		stage = root.get_node("Main")
+		
+	tree.current_scene = stage
+	tree.reload_current_scene()
+	print(GameData.player_dead)
 	
