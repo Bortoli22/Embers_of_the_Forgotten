@@ -7,6 +7,7 @@ var items
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.hide()
+	pause_mode = Node.PAUSE_MODE_PROCESS
 	itemCount = get_node("Items").get_child_count()
 	items = get_node("Items").get_children()
 	items[cursorIndex].toggleHover()
@@ -16,9 +17,11 @@ func _process(delta):
 	if Input.is_action_just_released("item_menu"):
 		if is_visible_in_tree():
 			hide()
-			GameData.paused = false
+			get_tree().paused = true
+			#GameData.paused = false
 		else:
-			GameData.paused = true
+			get_tree().paused = true
+			#GameData.paused = true
 			show()
 	if Input.is_action_just_released("ui_left"):
 		items[cursorIndex].toggleHover()
