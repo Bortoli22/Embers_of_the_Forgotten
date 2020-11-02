@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Assets/Test Ground.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/player_movement.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/hud.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/player_triggers.gd" type="Script" id=5]
 [ext_resource path="res://Assets/Player_Character_Animations.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/HUDHealthBar.gd" type="Script" id=8]
 [ext_resource path="res://data/sprite/laser_pistol.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/pickup_health.tscn" type="PackedScene" id=10]
@@ -367,7 +368,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 6 )
 vframes = 6
 hframes = 12
-frame = 14
+frame = 17
 
 [node name="Node2D" type="Node2D" parent="Player/Player Sprite"]
 
@@ -578,5 +579,8 @@ margin_bottom = 155.361
 
 [node name="Items Menu" parent="." instance=ExtResource( 12 )]
 visible = false
+
+[node name="Slime" parent="." instance=ExtResource( 7 )]
+position = Vector2( 633.181, 205.204 )
 [connection signal="body_entered" from="Player/UsePrompt" to="Player" method="_on_UsePrompt_body_entered"]
 [connection signal="body_exited" from="Player/UsePrompt" to="Player" method="_on_UsePrompt_body_exited"]
