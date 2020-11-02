@@ -38,7 +38,8 @@ var abilities = ["wall_grab", "wall_jump"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	main = get_tree().get_root().get_node("Main")
+	#main = get_tree().get_root().get_node("Main")
+	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
 	initDefault() #TEMP

@@ -50,7 +50,9 @@ func generate(scene, lowerCount, upperCount, lowerValue, upperValue):
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
 		cinstance.transform = self.get_transform()
 		get_owner().add_child(cinstance)
-	
+		#causes rendering stutter right now, probably need to load this stuff beforehand 
+		#and then "spawn" it at the appropriate time with a signal linked here
+		#I think some games use multipurpose all-in-one entities
 
 func _on_hitbox_body_entered(body):
 	if body.has_method("damageHandler"):
