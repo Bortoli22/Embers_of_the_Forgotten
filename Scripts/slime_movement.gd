@@ -46,7 +46,7 @@ func _physics_process(delta):
 	#obtain new x velocity
 	if(currentHealth > 0 and (damageTimer < 0 or OS.get_ticks_msec()-damageTimer>=250)):
 		damageTimer = -OS.get_ticks_msec()
-		if abs($"../Player".position.x-position.x) < aggroRange:
+		if abs($"../Player".position.x-position.x) < aggroRange and abs($"../Player".position.y-position.y) < aggroRange:
 			slimeVelocity.x = 0
 			$SlimeSprite.play("attack")
 			if(!attackSwitch):
