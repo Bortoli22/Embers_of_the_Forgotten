@@ -3,6 +3,8 @@ var healthValue = 400
 var damageValue = 200
 var orientation
 var rng = RandomNumberGenerator.new()
+var coin = preload("res://Scenes/Coin.tscn")
+var health = preload("res://Scenes/pickup_health.tscn")
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,6 +13,7 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	orientation = 1
+	#generateDrops()
 	pass # Replace with function body.
 
 #func behaviorCore():
@@ -36,19 +39,28 @@ func knockback(direction, force):
 
 func died():
 	drops()
+	#signalDrops()
 	queue_free()
 
 func drops():
-	generate("res://Scenes/Coin.tscn", 1, 5, 10, 75)
-	generate("res://Scenes/pickup_health.tscn", 1, 2, 50, 75)
+	generateCoin("res://Scenes/Coin.tscn", 1, 5, 10, 75)
+	generateHealth("res://Scenes/pickup_health.tscn", 1, 2, 50, 75)
 	
-func generate(scene, lowerCount, upperCount, lowerValue, upperValue):
+func generateCoin(scene, lowerCount, upperCount, lowerValue, upperValue):
 	rng.randomize()
 	for i in range (rng.randi_range(lowerCount, upperCount)):
-		var c = load(scene)
-		var cinstance = c.instance()
+		var cinstance = coin.instance()
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
-		cinstance.transform = self.get_transform()
+		cinstance.transform = get_transform()
+		get_owner().add_child(cinstance)
+	
+
+func generateHealth(scene, lowerCount, upperCount, lowerValue, upperValue):
+	rng.randomize()
+	for i in range (rng.randi_range(lowerCount, upperCount)):
+		var cinstance = health.instance()
+		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
+		cinstance.transform = get_transform()
 		get_owner().add_child(cinstance)
 		#causes rendering stutter right now, probably need to load this stuff beforehand 
 		#and then "spawn" it at the appropriate time with a signal linked here

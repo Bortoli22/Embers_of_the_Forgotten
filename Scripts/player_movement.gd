@@ -16,9 +16,10 @@ const max_JC = 2
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
-var lastShot = OS.get_ticks_msec()
 var currentUse
 var jumping
+var holdingm1
+var holdingm2
 
 var sprinting = false
 var wallgrabbing = false
@@ -32,14 +33,19 @@ var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	PlayerData.playerNode = self
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
+	holdingm1 = false
+	holdingm2 = false
 	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
+	PlayerData.wpnslot1 = $PlayerCenter/Sword # TEMP UNTIL PROPER EQUIPPING
+	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TEMP UNTIL PROPER EQUIPPING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
@@ -84,10 +90,10 @@ func _physics_process(delta):
 # Get x velocity from LR inputs
 func _inputSequence():
 	pause_check()
-	lr_check()	
+	attack_check()
+	lr_check()
 	wall_grab_check()
 	jump_check()
-	shoot_check()
 	dodge_check()
 	use_check()
 	
@@ -102,10 +108,22 @@ func pause_check():
 		self.add_child(pause_menu.instance())
 	return
 	
-func shoot_check():
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		shoot()
-		
+func attack_check():
+	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
+		#yield(PlayerData.wpnslot1.animation, "animation_finished")
+	if (PlayerData.wpnactionable):
+		if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.holdable):
+			PlayerData.wpnactionable = false
+			holdingm1 = true
+			wslot1()
+		elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.holdable):
+			PlayerData.wpnactionable = false
+			holdingm2 = true
+			wslot2()
+	if (Input.is_action_just_released("alt_fire") && holdingm2):
+		holdingm2 = false
+	if (Input.is_action_just_released("pr_fire") && holdingm1):
+		holdingm1 = false
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
@@ -181,12 +199,13 @@ func lr_check():
 #Use this function for all non-DoT damage sources
 func damageHandler(dmgamount, direction, force):
 	if invulnTimer <= 0:
-		#invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
 		if PlayerData.playerHealth == 0:
-			#die i guess
 			pass
+		yield(get_tree().create_timer(playerOnHitInvuln), "timeout")
+		invulnTimer = 0
 
 func knockback(direction, force):
 	playerVelocity.x += direction*force.x
@@ -213,6 +232,7 @@ func healthChange(amount):
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:
 		if jump_count < max_JC: 
+			if playerSpeed != 600: capSpeed(600)
 			jumping = true
 			playerVelocity.y = -jump_power
 			#controls speed of descent after jump 
@@ -267,13 +287,16 @@ func next_to_left_wall():
 func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
-func shoot():
-	if (OS.get_ticks_msec() - lastShot) > 500:
-		var projectile = load("res://Scenes/projectile.tscn")
-		var p = projectile.instance() #The actual projectile object in the scene.
-		add_child_below_node(get_tree().get_current_scene(), p)
-		lastShot = OS.get_ticks_msec()
-		
+func wslot1():
+	print(xPositivity)
+	if (PlayerData.wpnslot1 != null && !PlayerData.wpnactionable):
+		PlayerData.wpnslot1.attack(xPositivity)
+
+func wslot2():
+	if (PlayerData.wpnslot2 != null && !PlayerData.wpnactionable):
+		PlayerData.wpnslot2.attack(xPositivity)
+
+
 
 func use(object):
 	
@@ -296,6 +319,10 @@ func clearUse():
 	get_node("UsePrompt/Prompt").visible = false
 	currentUse = null
 
+func capSpeed(speed):
+	playerSpeed = speed
+	if (abs(playerVelocity.x) > playerSpeed && playerVelocity.x != 0):
+		playerVelocity.x /= (abs(playerVelocity.x)/playerSpeed)
 
 func _on_UsePrompt_body_entered(body):
 	currentUse = body

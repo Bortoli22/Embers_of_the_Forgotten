@@ -7,13 +7,13 @@ export var slimeSpeed = 150
 export var damageSpeed = 50
 export var terminalVelocity = 1200
 export var floatDenominator = 1.3
-export var slimeJumpImpulse = 400
+export var slimeJumpImpulse = 900
 var slimeVelocity = Vector2()
 var slimeDistance
 var damageTimer = -OS.get_ticks_msec()
 var damageDirection = 0
 var attackTimer = -OS.get_ticks_msec()
-var maxHealth = 2*50
+var maxHealth = 2*900
 var currentHealth
 var attackSwitch = false
 var attackDamage = 20
@@ -33,7 +33,8 @@ func _physics_process(delta):
 	# obtain new y velocity and check crouch
 	if is_on_floor():
 		if get_parent().get_node("Player").position.y - position.y > 5:
-			slimeVelocity.y = slimeJumpImpulse
+			print("i fukin tried")
+			slimeVelocity.y += slimeJumpImpulse
 		else:
 			slimeVelocity.y = slimeGravity
 	else:
@@ -87,7 +88,7 @@ func damageHandler(dmg, dir, force):
 		$HealthBar.update_healthbar(currentHealth)
 		damageTimer = OS.get_ticks_msec()
 		damageDirection = dir#-(collision_info.collider.position.x - position.x) / abs(collision_info.collider.position.x - position.x)
-		slimeVelocity.x = damageSpeed * damageDirection
+		slimeVelocity += force * damageDirection
 		if(currentHealth > 0):
 			$SlimeSprite.play("damaged")
 		else:
