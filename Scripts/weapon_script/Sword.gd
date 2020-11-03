@@ -1,11 +1,13 @@
 extends Node2D
-var moveSequence
+var holdable = true
 var moveCount = 3
+var moveSequence
 var currentPosition
 var currentMove
 var hit
 var active
 var wepOrientation
+var wpnslot
 onready var sprite = $Visual
 onready var animation = $AnimationPlayer
 
@@ -56,8 +58,8 @@ func attack(orientation):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		
-		if (moveSequence[tempMove].cancelOffset != 0):
-			yield(get_tree().create_timer(moveSequence[tempMove].cancelOffset), "timeout")
+		#if (moveSequence[tempMove].cancelOffset != 0):
+			#playerData.buffer = 
 			
 		if (!moveSequence[tempMove].noCancel):
 			PlayerData.wpnactionable = true

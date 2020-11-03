@@ -3,10 +3,10 @@ extends KinematicBody2D
 var velocity = Vector2()
 var movement = 400
 var damageValue = 200
-
+var orientation = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	velocity.x = 3*movement # Replace with function body.
+	velocity.x = 3*movement*orientation # Replace with function body.
 
 func _physics_process(delta):
 	move_and_slide(velocity)

@@ -107,12 +107,14 @@ func pause_check():
 	return
 	
 func attack_check():
-	if (PlayerData.wpnactionable && !holding):
-		if Input.is_action_just_pressed("pr_fire"):
+	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
+		#yield(PlayerData.wpnslot1.animation, "animation_finished")
+	if (PlayerData.wpnactionable):
+		if Input.is_action_pressed("pr_fire") && !(holding && !PlayerData.wpnslot1.holdable):
 			PlayerData.wpnactionable = false
 			holding = true
 			wslot1()
-		elif Input.is_action_just_pressed("alt_fire"):
+		elif Input.is_action_pressed("alt_fire") && !(holding && !PlayerData.wpnslot2.holdable):
 			PlayerData.wpnactionable = false
 			holding = true
 			wslot2()
