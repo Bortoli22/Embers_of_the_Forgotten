@@ -21,10 +21,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 22 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 34.7544, 26.0988 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
@@ -62,15 +62,15 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="hitbox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 4
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="SlimeSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -2, -7 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "attack"
 frame = 2
 playing = true

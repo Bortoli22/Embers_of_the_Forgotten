@@ -32,6 +32,7 @@ var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	PlayerData.playerNode = self
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
@@ -87,7 +88,7 @@ func _inputSequence():
 	lr_check()	
 	wall_grab_check()
 	jump_check()
-	shoot_check()
+	attack_check()
 	dodge_check()
 	use_check()
 	
@@ -102,10 +103,15 @@ func pause_check():
 		self.add_child(pause_menu.instance())
 	return
 	
-func shoot_check():
-	if Input.is_mouse_button_pressed(BUTTON_LEFT):
-		shoot()
-		
+func attack_check():
+	if (PlayerData.wpnactionable):
+		if Input.is_mouse_button_pressed(BUTTON_LEFT):
+			PlayerData.wpnactionable = false
+			wslot1()
+		elif Input.is_mouse_button_pressed(BUTTON_RIGHT):
+			PlayerData.wpnactionable = false
+			wslot2()
+	
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
@@ -267,13 +273,17 @@ func next_to_left_wall():
 func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
-func shoot():
-	if (OS.get_ticks_msec() - lastShot) > 500:
-		var projectile = load("res://Scenes/projectile.tscn")
-		var p = projectile.instance() #The actual projectile object in the scene.
-		add_child_below_node(get_tree().get_current_scene(), p)
-		lastShot = OS.get_ticks_msec()
-		
+func wslot1():
+	PlayerData.wpnslot1 = $PlayerCenter/Pistol
+	if (PlayerData.wpnslot1 != null):
+		PlayerData.wpnslot1.attack()
+
+func wslot2():
+	PlayerData.wpnslot2 = $PlayerCenter/Sword
+	if (PlayerData.wpnslot2 != null):
+		PlayerData.wpnslot2.attack()
+
+
 
 func use(object):
 	
