@@ -114,77 +114,76 @@ func attack_check():
 			wslot2()
 	
 func lr_check():
-	if (PlayerData.wpnactionable):
-		if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
+		if wallgrabbing:
+				playerVelocity.y = 0
+		else: 
+			fsm.travel("Run_Right")
+			xPositivity = true
+		#check if sprint key hit inside here
+		if Input.is_action_pressed("ui_shift"):
+			sprinting = true
+		else:
+			sprinting = false
+		#change the rate at which the player moves horizontally 
+		fsm.travel("Run_Right")
+		xPositivity = true
+		if sprinting && is_on_floor():
+			#increase player speed to 1.5x normal when sprinting
+			#change this value in both if statements to make sprinting >1.5x
+			playerSpeed = 600
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed)
+			else:
+				playerVelocity.x = playerSpeed
+		else:			
 			if wallgrabbing:
-					playerVelocity.y = 0
+				playerVelocity.y = 0
 			else: 
 				fsm.travel("Run_Right")
 				xPositivity = true
-			#check if sprint key hit inside here
-			if Input.is_action_pressed("ui_shift"):
-				sprinting = true
+			if playerVelocity.x < playerSpeed:
+				playerVelocity.x += (playerSpeed / 10)
 			else:
-				sprinting = false
-			#change the rate at which the player moves horizontally 
-			fsm.travel("Run_Right")
-			xPositivity = true
-			if sprinting && is_on_floor():
-				#increase player speed to 1.5x normal when sprinting
-				#change this value in both if statements to make sprinting >1.5x
-				playerSpeed = 600
-				if playerVelocity.x < playerSpeed:
-					playerVelocity.x += (playerSpeed)
-				else:
-					playerVelocity.x = playerSpeed
-			else:			
-				if wallgrabbing:
-					playerVelocity.y = 0
-				else: 
-					fsm.travel("Run_Right")
-					xPositivity = true
-				if playerVelocity.x < playerSpeed:
-					playerVelocity.x += (playerSpeed / 10)
-				else:
-					playerVelocity.x = playerSpeed
-		elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
+				playerVelocity.x = playerSpeed
+	elif Input.is_action_pressed("ui_left") && !Input.is_action_pressed("ui_right"):
+		if wallgrabbing:
+			  playerVelocity.y = 0
+		else:
+			fsm.travel("Run_Left")
+			xPositivity = false
+		#check if sprint key hit inside here
+		if Input.is_action_pressed("ui_shift"):
+			sprinting = true
+		#change the rate at which the player moves horizontally 
+		fsm.travel("Run_Left")
+		xPositivity = false
+		if sprinting && is_on_floor():
+			playerSpeed = 600
+			if playerVelocity.x > -playerSpeed:
+				playerVelocity.x -= (playerSpeed)
+			else:
+				playerVelocity.x = -playerSpeed
+		else:
 			if wallgrabbing:
-				  playerVelocity.y = 0
+				playerVelocity.y = 0
 			else:
 				fsm.travel("Run_Left")
 				xPositivity = false
-			#check if sprint key hit inside here
-			if Input.is_action_pressed("ui_shift"):
-				sprinting = true
-			#change the rate at which the player moves horizontally 
-			fsm.travel("Run_Left")
-			xPositivity = false
-			if sprinting && is_on_floor():
-				playerSpeed = 600
-				if playerVelocity.x > -playerSpeed:
-					playerVelocity.x -= (playerSpeed)
-				else:
-					playerVelocity.x = -playerSpeed
+			if playerVelocity.x > -playerSpeed:
+				playerVelocity.x -= (playerSpeed / 10)
 			else:
-				if wallgrabbing:
-					playerVelocity.y = 0
-				else:
-					fsm.travel("Run_Left")
-					xPositivity = false
-				if playerVelocity.x > -playerSpeed:
-					playerVelocity.x -= (playerSpeed / 10)
-				else:
-					playerVelocity.x = -playerSpeed	
+				playerVelocity.x = -playerSpeed	
+	else:
+		if !crouched && is_on_floor():
+			if xPositivity:
+				fsm.travel("Idle_Right")
+			else:
+				fsm.travel("Idle_Left")
+		if playerVelocity.x > 1 || playerVelocity.x < -1:
+			playerVelocity.x = playerVelocity.x / floatDenominator
 		else:
-			if !crouched && is_on_floor():
-				if xPositivity:
-					fsm.travel("Idle_Right")
-				else:
-					fsm.travel("Idle_Left")
-			if playerVelocity.x > 1 || playerVelocity.x < -1:
-				playerVelocity.x = playerVelocity.x / floatDenominator
-			else:
-				playerVelocity.x = 0
+			playerVelocity.x = 0
 
 #Use this function for all non-DoT damage sources
 func damageHandler(dmgamount, direction, force):
@@ -222,6 +221,7 @@ func healthChange(amount):
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:
 		if jump_count < max_JC: 
+			if playerSpeed != 600: capSpeed(600)
 			jumping = true
 			playerVelocity.y = -jump_power
 			#controls speed of descent after jump 
@@ -308,6 +308,10 @@ func clearUse():
 	get_node("UsePrompt/Prompt").visible = false
 	currentUse = null
 
+func capSpeed(speed):
+	playerSpeed = speed
+	if (abs(playerVelocity.x) < playerSpeed && playerVelocity.x != 0):
+		playerVelocity.x /= (abs(playerVelocity.x)/playerSpeed)
 
 func _on_UsePrompt_body_entered(body):
 	currentUse = body
