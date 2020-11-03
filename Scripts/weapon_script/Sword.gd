@@ -40,21 +40,21 @@ func attack(orientation):
 	hit = false
 	if (currentPosition < moveCount):
 		orient(orientation)
-		currentMove = moveSequence[currentPosition]
 		currentPosition += 1
+		currentMove = moveSequence[currentPosition]
 		print(currentPosition)
 		var tempMove = currentPosition
-		animation.play("5A startup")
+		animation.play(currentMove.animations[0])
 		yield(animation, "animation_finished")
 		
 		active = true
-		animation.play("5A active")
+		animation.play(currentMove.animations[1])
 		add_child(moveSequence[tempMove])
 		yield(animation, "animation_finished")
 		if (!hit):
 			remove_child(moveSequence[tempMove])
 		
-		animation.play("5A recovery")
+		animation.play(currentMove.animations[2])
 		PlayerData.wpnactionable = true
 		yield(get_tree().create_timer(moveSequence[tempMove].staggerWindow), "timeout") #uneasy
 		if (tempMove == currentPosition):
@@ -63,7 +63,7 @@ func attack(orientation):
 
 func hit(body):
 	print("hit")
-	if (body.has_function("damageHandler")):
+	if (body.has_method("damageHandler")):
 		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
 	remove_child(moveSequence[0])
 

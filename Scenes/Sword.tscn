@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Sword.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/weapon_script/Sword5A.gd" type="Script" id=2]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full3.png" type="Texture" id=3]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full2.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/weapon_script/Sword5AA.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=3]
 resource_name = "5A active"
@@ -56,6 +57,57 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "5AA active"
+length = 0.0666667
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "5AA recovery"
+length = 0.102
+step = 0.017
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0169999, 0.0509996 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 10, 17 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "5AA startup"
+length = 0.117
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Visual:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.068, 0.085 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8 ]
+}
+
 [sub_resource type="Animation" id=5]
 resource_name = "5Af"
 step = 0.017
@@ -87,12 +139,15 @@ position = Vector2( 28.3483, 0 )
 texture = ExtResource( 4 )
 vframes = 2
 hframes = 9
-frame = 3
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/5A active" = SubResource( 3 )
 "anims/5A recovery" = SubResource( 4 )
 "anims/5A startup" = SubResource( 2 )
+"anims/5AA active" = SubResource( 7 )
+"anims/5AA recovery" = SubResource( 8 )
+"anims/5AA startup" = SubResource( 9 )
 anims/5Af = SubResource( 5 )
 anims/neutral = SubResource( 6 )
 
@@ -110,7 +165,7 @@ shape = SubResource( 1 )
 position = Vector2( 28.9782, -0.629944 )
 collision_layer = 128
 collision_mask = 4
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AA"]
 position = Vector2( 39.643, 5.31612 )
