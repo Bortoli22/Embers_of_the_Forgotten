@@ -26,9 +26,12 @@ var VSlice2
 var VSlice3
 
 var isRoom = false
-var roomLength = 12
-var roomLengthMin = 10
-var roomLengthMax = 22
+var roomLength = 18
+var roomLengthMin = 15
+var roomLengthMax = 30
+var roomHeightBoost = 5
+var roomHeightBoostMin = 3 
+var roomHeightBoostMax = 8
 
 var Tiles = {
 	"C": 0,			#Center Tile
@@ -197,6 +200,8 @@ func _set_random_vars():
 		isRoom = true
 		x = randi() % (roomLengthMax - roomLengthMin)
 		roomLength = x + roomLengthMin
+		x = randi() % (roomHeightBoostMax - roomHeightBoostMin)
+		roomHeightBoost = x + roomHeightBoostMin
 	
 	# commit data to evaluatedSlice
 	VSlice3 = Vector2(basePointBase - basePoint, height)
