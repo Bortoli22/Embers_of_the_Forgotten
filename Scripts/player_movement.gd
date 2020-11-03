@@ -120,10 +120,10 @@ func attack_check():
 			PlayerData.wpnactionable = false
 			holdingm2 = true
 			wslot2()
-	if (Input.is_action_just_released("alt_fire") && holdingm1):
-		holdingm1 = false
-	if (Input.is_action_just_released("pr_fire") && holdingm2):
+	if (Input.is_action_just_released("alt_fire") && holdingm2):
 		holdingm2 = false
+	if (Input.is_action_just_released("pr_fire") && holdingm1):
+		holdingm1 = false
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
