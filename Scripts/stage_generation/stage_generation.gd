@@ -221,3 +221,4 @@ func _V_finalize(iterator):
 	set_cell(iterator + 2, basePointBase - VSlice2.x - VSlice2.y, Tiles.C_TR)
 	
 	final_grid_x_size = iterator + 2
+	GameData.final_grid_size_x = final_grid_x_size
