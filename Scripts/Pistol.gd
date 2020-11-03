@@ -11,7 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func attack():
+func attack(orientation):
 	var p = projectile.instance() #The actual projectile object in the scene.
 	p.transform = PlayerData.playerNode.get_transform()
 	get_tree().get_root().add_child(p)

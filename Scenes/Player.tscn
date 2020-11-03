@@ -342,6 +342,7 @@ playerGravity = 588.0
 playerSpeed = 600
 
 [node name="Player Collision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 1.68369, 10.9435 )
 shape = SubResource( 1 )
 
@@ -351,7 +352,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 21
+frame = 20
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -404,19 +405,17 @@ collision_layer = 32
 collision_mask = 2147548160
 script = ExtResource( 4 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="CenterShape" type="CollisionShape2D" parent="PlayerCenter"]
 shape = SubResource( 4 )
 __meta__ = {
-"_edit_group_": true,
 "_edit_lock_": true
 }
 
 [node name="Sword" parent="PlayerCenter" instance=ExtResource( 6 )]
-position = Vector2( 24.6546, 0.611923 )
+position = Vector2( -1.30197, -0.803894 )
 
 [node name="Pistol" parent="PlayerCenter" instance=ExtResource( 2 )]
 

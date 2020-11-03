@@ -41,6 +41,8 @@ func _ready():
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
+	PlayerData.wpnslot1 = $PlayerCenter/Sword # TEMP UNTIL PROPER EQUIPPING
+	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TEMP UNTIL PROPER EQUIPPING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
@@ -274,14 +276,13 @@ func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
 func wslot1():
-	PlayerData.wpnslot1 = $PlayerCenter/Pistol
+	print(xPositivity)
 	if (PlayerData.wpnslot1 != null):
-		PlayerData.wpnslot1.attack()
+		PlayerData.wpnslot1.attack(xPositivity)
 
 func wslot2():
-	PlayerData.wpnslot2 = $PlayerCenter/Sword
 	if (PlayerData.wpnslot2 != null):
-		PlayerData.wpnslot2.attack()
+		PlayerData.wpnslot2.attack(xPositivity)
 
 
 

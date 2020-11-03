@@ -1,10 +1,7 @@
 extends Area2D
-var damage
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
+var dmgValue = 100
+var staggerWindow = 0.2 #x seconds
+var animations = ["5A startup", "5A active", "5A recovery"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
