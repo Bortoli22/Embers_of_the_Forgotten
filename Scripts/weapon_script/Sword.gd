@@ -12,7 +12,7 @@ onready var animation = $AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	currentPosition = -1
-	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5A"),get_node("5A")]
+	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5A"),get_node("5AAAA")]
 	remove_child(moveSequence[0])
 	sprite.frame = 16
 	hit = false
@@ -39,6 +39,8 @@ func _process(delta):
 func attack(orientation):
 	hit = false
 	if (currentPosition < moveCount):
+		if (!PlayerData.playerNode.jump_count > 0 && !PlayerData.playerNode.jumping):
+			PlayerData.playerNode.playerVelocity.x *= 0.5
 		orient(orientation)
 		currentPosition += 1
 		currentMove = moveSequence[currentPosition]
