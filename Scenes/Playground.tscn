@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Test Ground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/hud.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/HUDHealthBar.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/pickup_health.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/testobject_damage.tscn" type="PackedScene" id=11]
@@ -140,3 +141,6 @@ __meta__ = {
 
 [node name="Items Menu" parent="." instance=ExtResource( 12 )]
 visible = false
+
+[node name="Slime" parent="." instance=ExtResource( 7 )]
+position = Vector2( 774.35, 254.271 )

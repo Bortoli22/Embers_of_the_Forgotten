@@ -18,6 +18,7 @@ var xPositivity = true
 var crouched = false
 var currentUse
 var jumping
+var holding
 
 var sprinting = false
 var wallgrabbing = false
@@ -35,6 +36,7 @@ func _ready():
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
+	holding = false
 	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
@@ -105,14 +107,19 @@ func pause_check():
 	return
 	
 func attack_check():
-	if (PlayerData.wpnactionable):
-		if Input.is_mouse_button_pressed(BUTTON_LEFT):
+	if (PlayerData.wpnactionable && !holding):
+		if Input.is_action_just_pressed("pr_fire"):
 			PlayerData.wpnactionable = false
+			holding = true
 			wslot1()
-		elif Input.is_mouse_button_pressed(BUTTON_RIGHT):
+		elif Input.is_action_just_pressed("alt_fire"):
 			PlayerData.wpnactionable = false
+			holding = true
 			wslot2()
-	
+	elif (Input.is_action_just_released("alt_fire") && holding):
+		holding = false
+	elif (Input.is_action_just_released("pr_fire") && holding):
+		holding = false
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
@@ -278,11 +285,11 @@ func next_to_right_wall():
 		
 func wslot1():
 	print(xPositivity)
-	if (PlayerData.wpnslot1 != null):
+	if (PlayerData.wpnslot1 != null && !PlayerData.wpnactionable):
 		PlayerData.wpnslot1.attack(xPositivity)
 
 func wslot2():
-	if (PlayerData.wpnslot2 != null):
+	if (PlayerData.wpnslot2 != null && !PlayerData.wpnactionable):
 		PlayerData.wpnslot2.attack(xPositivity)
 
 
@@ -310,7 +317,7 @@ func clearUse():
 
 func capSpeed(speed):
 	playerSpeed = speed
-	if (abs(playerVelocity.x) < playerSpeed && playerVelocity.x != 0):
+	if (abs(playerVelocity.x) > playerSpeed && playerVelocity.x != 0):
 		playerVelocity.x /= (abs(playerVelocity.x)/playerSpeed)
 
 func _on_UsePrompt_body_entered(body):

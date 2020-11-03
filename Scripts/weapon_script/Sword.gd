@@ -13,7 +13,7 @@ onready var animation = $AnimationPlayer
 func _ready():
 	currentPosition = -1
 	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
-	remove_child(moveSequence[0])
+	
 	sprite.frame = 16
 	hit = false
 	active = false
@@ -31,7 +31,6 @@ func _process(delta):
 			hit = true
 			for y in x:
 				hit(y)
-				print(y)
 	if (animation.get_current_animation() == "neutral"):
 		PlayerData.playerNode.capSpeed(600)
 		currentPosition = -1
@@ -45,14 +44,13 @@ func attack(orientation):
 		orient(orientation)
 		currentPosition += 1
 		currentMove = moveSequence[currentPosition]
-		print(currentPosition)
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
 		yield(animation, "animation_finished")
 		
 		active = true
 		animation.play(currentMove.animations[1])
-		add_child(moveSequence[tempMove])
+		add_child(currentMove)
 		yield(animation, "animation_finished")
 		if (!hit):
 			remove_child(moveSequence[tempMove])
@@ -78,7 +76,7 @@ func attack(orientation):
 func hit(body):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
-	remove_child(moveSequence[0])
+	remove_child(currentMove)
 
 func orient(orientation):
 	var flip 
@@ -86,12 +84,10 @@ func orient(orientation):
 		flip = wepOrientation*1
 	else:
 		flip = wepOrientation*-1
-	print(flip)
 	if (flip != 1):
 		transform *= Transform2D.FLIP_X
 		#$Visual.set_flip_h(!orientation)
 		wepOrientation *= -1
-	print(wepOrientation)
 
 func _on_5A_body_entered(body):
 	pass

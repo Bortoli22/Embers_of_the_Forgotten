@@ -104,7 +104,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.068, 0.085 ),
+"times": PoolRealArray( 0, 0.0833333, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 6, 7, 8 ]
@@ -112,7 +112,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "5AAA active"
-length = 0.119
+length = 0.085
 step = 0.017
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual:frame")
@@ -129,7 +129,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "5AAA recovery"
-length = 0.153
+length = 0.136
 step = 0.017
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual:frame")
@@ -146,7 +146,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=15]
 resource_name = "5AAA startup"
-length = 0.166667
+length = 0.183333
 step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual:frame")
@@ -155,7 +155,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.15 ),
+"times": PoolRealArray( 0, 0.133333, 0.166667 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -232,7 +232,7 @@ tracks/0/keys = {
 resource_name = "neutral"
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 47.3332, 25.8888 )
+extents = Vector2( 63.4973, 25.8888 )
 
 [node name="Sword" type="Node2D"]
 position = Vector2( 68.6658, -0.629959 )
@@ -243,7 +243,7 @@ position = Vector2( 28.3483, 0 )
 texture = ExtResource( 4 )
 vframes = 2
 hframes = 9
-frame = 16
+frame = 14
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/5A active" = SubResource( 13 )
@@ -268,6 +268,7 @@ collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5A"]
+visible = false
 position = Vector2( 39.643, 5.31612 )
 shape = SubResource( 1 )
 
@@ -278,6 +279,7 @@ collision_mask = 4
 script = ExtResource( 5 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AA"]
+visible = false
 position = Vector2( 39.643, 5.31612 )
 shape = SubResource( 1 )
 
@@ -288,17 +290,18 @@ collision_mask = 4
 script = ExtResource( 7 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AAA"]
-position = Vector2( 39.643, 5.31612 )
+position = Vector2( 44.6486, 5.98354 )
 shape = SubResource( 1 )
 
 [node name="5AAAA" type="Area2D" parent="."]
+visible = false
 position = Vector2( 28.9782, -0.629944 )
 collision_layer = 128
 collision_mask = 4
 script = ExtResource( 6 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AAAA"]
-position = Vector2( 39.643, 5.31612 )
+position = Vector2( 57.3206, 6.02323 )
 shape = SubResource( 1 )
 [connection signal="body_entered" from="5A" to="." method="_on_5A_body_entered"]
 [connection signal="body_entered" from="5AA" to="." method="_on_5A_body_entered"]

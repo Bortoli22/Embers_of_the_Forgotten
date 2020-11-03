@@ -1,6 +1,6 @@
 extends Node2D
 var projectile = preload("res://Scenes/projectile.tscn")
-
+var lastprojectile
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -12,8 +12,10 @@ func _ready():
 
 
 func attack(orientation):
-	var p = projectile.instance() #The actual projectile object in the scene.
-	p.transform = PlayerData.playerNode.get_transform()
-	get_tree().get_root().add_child(p)
-	yield(get_tree().create_timer(0.5), "timeout")
-	PlayerData.wpnactionable = true
+	if (!is_instance_valid(lastprojectile)):
+		var p = projectile.instance() #The actual projectile object in the scene.
+		p.transform = PlayerData.playerNode.get_transform()
+		get_tree().get_root().add_child(p)
+		lastprojectile = p
+		yield(get_tree().create_timer(0.5), "timeout")
+		PlayerData.wpnactionable = true
