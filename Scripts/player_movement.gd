@@ -18,7 +18,8 @@ var xPositivity = true
 var crouched = false
 var currentUse
 var jumping
-var holding
+var holdingm1
+var holdingm2
 
 var sprinting = false
 var wallgrabbing = false
@@ -36,7 +37,8 @@ func _ready():
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
 	invulnTimer = 0
-	holding = false
+	holdingm1 = false
+	holdingm2 = false
 	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
 
@@ -110,18 +112,18 @@ func attack_check():
 	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
 		#yield(PlayerData.wpnslot1.animation, "animation_finished")
 	if (PlayerData.wpnactionable):
-		if Input.is_action_pressed("pr_fire") && !(holding && !PlayerData.wpnslot1.holdable):
+		if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.holdable):
 			PlayerData.wpnactionable = false
-			holding = true
+			holdingm1 = true
 			wslot1()
-		elif Input.is_action_pressed("alt_fire") && !(holding && !PlayerData.wpnslot2.holdable):
+		elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.holdable):
 			PlayerData.wpnactionable = false
-			holding = true
+			holdingm2 = true
 			wslot2()
-	elif (Input.is_action_just_released("alt_fire") && holding):
-		holding = false
-	elif (Input.is_action_just_released("pr_fire") && holding):
-		holding = false
+	if (Input.is_action_just_released("alt_fire") && holdingm1):
+		holdingm1 = false
+	if (Input.is_action_just_released("pr_fire") && holdingm2):
+		holdingm2 = false
 func lr_check():
 	if Input.is_action_pressed("ui_right") && !Input.is_action_pressed("ui_left"):
 		if wallgrabbing:
