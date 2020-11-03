@@ -2,8 +2,9 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 200
+var grid_size_x = 300
 var grid_size_y = 25
+var final_grid_x_size = grid_size_x
 
 # Verticle Slice Variables
 var heightBase = 6
@@ -64,13 +65,14 @@ func _ready():
 			_v_slice_evaluate(iterator + 1)
 			VSlice1 = VSlice2
 			VSlice2 = VSlice3
-			_v_slice_evaluate(iterator + 1)
+			_v_slice_evaluate(iterator + 2)
 			VSlice1 = VSlice2
 			for val in range(roomLength):
-				_v_slice_evaluate(iterator + val + 2)
+				_v_slice_evaluate(iterator + val + 3)
 			#print("found room on iteration: " + str(iterator))
 			iterator += roomLength + 1
 		iterator += 1
+	
 	_V_finalize(iterator)
 
 # Initialize with the first three Vertical Slices
@@ -200,14 +202,17 @@ func _set_random_vars():
 	VSlice3 = Vector2(basePointBase - basePoint, height)
 
 func _V_finalize(iterator):
-	#get data of first three slices
+	#finalize data for last three slices
 	VSlice1 = VSlice2
 	VSlice2 = VSlice3
 	_v_slice_evaluate(iterator)
-	
+	VSlice1 = VSlice2
+	_v_slice_evaluate(iterator + 1)
 
-	#set left corner
-	set_cell(iterator + 1, basePointBase - VSlice2.x, Tiles.G_BR)
+	#set right corner
+	set_cell(iterator + 2, basePointBase - VSlice2.x, Tiles.G_BR)
 	for x in VSlice1.y - 1:
-		set_cell(iterator + 1, basePointBase - VSlice2.x - x - 1, Tiles.S_L)
-	set_cell(iterator + 1, basePointBase - VSlice2.x - VSlice2.y, Tiles.C_TR)
+		set_cell(iterator + 2, basePointBase - VSlice2.x - x - 1, Tiles.S_L)
+	set_cell(iterator + 2, basePointBase - VSlice2.x - VSlice2.y, Tiles.C_TR)
+	
+	final_grid_x_size = iterator + 2
