@@ -22,6 +22,10 @@ onready var sprite = $Visual
 onready var animation = $AnimationPlayer
 onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
 
+#easy to use 4-hit combo
+#shortish range
+#can be held down to just auto the whole string
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.frame = 16

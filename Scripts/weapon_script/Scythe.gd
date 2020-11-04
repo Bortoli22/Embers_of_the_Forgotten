@@ -20,7 +20,12 @@ var negEdge = false
 #node references
 onready var sprite = [$Visual, $Visual2]
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
+onready var moveSequence = [get_node("5A"),get_node("5AA")]
+
+# two swings that can be repeated endlessly with the right timing
+# fair range
+# might add some kind of bonus for hitting with the tip
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

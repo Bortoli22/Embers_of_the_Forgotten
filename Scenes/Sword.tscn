@@ -248,7 +248,7 @@ position = Vector2( 28.3483, 0 )
 texture = ExtResource( 4 )
 vframes = 2
 hframes = 9
-frame = 11
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/5A active" = SubResource( 1 )
