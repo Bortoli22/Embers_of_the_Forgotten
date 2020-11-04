@@ -2,8 +2,10 @@ extends VBoxContainer
 
 
 # Declare member variables here. Examples:
-var isSelected = false
+var hasSelection = false
 var options = []
+var unlockables = []
+onready var errorLog = get_node("../Submit/Error_Log")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,12 +16,13 @@ func _ready():
 	options.append({"id": 2, "NodeVal": get_node("Option3"), "isSelected": false})
 	
 	for val in options:
+		val.NodeVal.text = unlockables[val.id].to_upper()
 		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
 		val.NodeVal.connect("pressed", self, "_selectionUpdate", [val.id])
 	
 
 func _selectionUpdate(id):
-	print("entered with" + str(id))
+	hasSelection = true
 	for val in options:
 		val.isSelected = false
 		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
@@ -28,9 +31,31 @@ func _selectionUpdate(id):
 	options[id].NodeVal.set("custom_colors/font_color", Color("#FFFFFF"))
 
 func _get_valid_options():
-	var totalPoolSize = GameData.abilityMerchantPool.size() + GameData.weaponMerchantPool.size()
-	
+	var totalPoolSize = GameData.merchantPool.size()
+	for x in range(3):
+		if totalPoolSize > 0:
+			var itemIndex = randi() % totalPoolSize - 1
+			unlockables.append(GameData.merchantPool[itemIndex])
+			GameData.merchantPool.remove(itemIndex)
+			totalPoolSize -= 1
+		else:
+			unlockables.push("---")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func _on_Submit_pressed():
+	if !hasSelection:
+		errorLog.text = "CHOOSE AN UNLOCK FIRST!"
+		return
+	#add unchosen upgrades back into mix
+	for val in options:
+		if val.isSelected == false:
+			GameData.merchantPool.append(unlockables[val.id])
+		else:
+			if unlockables[val.id] != "---":
+				PlayerData.abilities.append(unlockables[val.id])
+	
+	GameData.current_level += 1
+	get_tree().change_scene("res://Scenes/Stage.tscn")

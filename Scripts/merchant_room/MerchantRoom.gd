@@ -9,5 +9,4 @@ func _ready():
 #	pass
 
 func _on_Submit_pressed():
-	GameData.current_level += 1
-	get_tree().change_scene("res://Scenes/Stage.tscn")
+	pass

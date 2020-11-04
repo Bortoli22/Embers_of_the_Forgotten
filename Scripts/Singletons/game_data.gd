@@ -12,14 +12,12 @@ const WPN_SWORD = ""
 const WPN_SCYTHE = ""
 
 #the possible unlocks, aka what the player doesn't have yet
-var abilityMerchantPool = [
+var merchantPool = [
 	"double jump",
 	"dash",
 	"triple jump",
 	"walljump",
-	"dodge"
-]
-var weaponMerchantPool = [
+	"dodge",
 	"sword",
 	"spear",
 	"scythe"
