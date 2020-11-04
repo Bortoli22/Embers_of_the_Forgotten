@@ -9,6 +9,9 @@ onready var errorLog = get_node("../Submit/Error_Log")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("Loaded Merchant Menu. Items:")
+	print(GameData.merchantPool)
+	
 	_get_valid_options()
 	
 	options.append({"id": 0, "NodeVal": get_node("Option1"), "isSelected": false})
@@ -31,13 +34,13 @@ func _selectionUpdate(id):
 	options[id].NodeVal.set("custom_colors/font_color", Color("#FFFFFF"))
 
 func _get_valid_options():
-	var totalPoolSize = GameData.merchantPool.size()
-	for x in range(3):
+	var totalPoolSize = GameData.merchantPool.size() - 1
+	for _x in range(3):
 		if totalPoolSize > 0:
-			var itemIndex = randi() % totalPoolSize - 1
+			var itemIndex = randi() % totalPoolSize
 			unlockables.append(GameData.merchantPool[itemIndex])
 			GameData.merchantPool.remove(itemIndex)
-			totalPoolSize -= 1
+			totalPoolSize = totalPoolSize - 1
 		else:
 			unlockables.push("---")
 

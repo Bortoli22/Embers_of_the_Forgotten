@@ -14,7 +14,6 @@ const WPN_SCYTHE = ""
 #the possible unlocks, aka what the player doesn't have yet
 var merchantPool = [
 	"double jump",
-	#"dash", to be implemented?
 	"triple jump",
 	"wall jump",
 	"dodge",

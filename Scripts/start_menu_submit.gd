@@ -14,6 +14,7 @@ func _ready():
 
 
 func _submit():
+
 	get_tree().change_scene("res://Scenes/Stage.tscn")
 	#var parent = get_parent()
 	#var root = get_tree().get_root()
