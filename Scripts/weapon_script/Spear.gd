@@ -3,7 +3,7 @@ var wpnslot = -1
 var action = ""
 
 #moveset control
-var moveCount = 3
+var moveCount = 1
 var currentPosition = -1
 var currentMove
 
@@ -20,7 +20,7 @@ var negEdge = false
 #node references
 onready var sprite = $Visual
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
+onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +32,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if charging && Input.is_action_just_released(get_action()):
+		negEdge = true
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
@@ -84,6 +86,10 @@ func hit(body):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
 	remove_child(currentMove)
+	
+
+func ICRoutine():
+	pass
 
 func orient(orientation):
 	var flip 
@@ -95,7 +101,6 @@ func orient(orientation):
 		transform *= Transform2D.FLIP_X
 		#$Visual.set_flip_h(!orientation)
 		wepOrientation *= -1
-	
 
 func get_action():
 	if (action == ""):

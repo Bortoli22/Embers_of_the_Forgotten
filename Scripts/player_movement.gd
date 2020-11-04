@@ -44,7 +44,9 @@ func _ready():
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
-	PlayerData.wpnslot1 = $PlayerCenter/Sword # TEMP UNTIL PROPER EQUIPPING
+
+func equip(slot, weapon)
+	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TEMP UNTIL PROPER EQUIPPING
 	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TEMP UNTIL PROPER EQUIPPING
 	
 func initLoad(stcurrency, stHealth):

@@ -6,6 +6,5 @@ var noCancel = false
 var cancelOffset = 0 #would've liked this to function more like a buffer but oh well
 var animations = ["5AAA startup", "5AAA active", "5AAA recovery"]
 
-
 func _ready():
 	get_parent().remove_child(self)
