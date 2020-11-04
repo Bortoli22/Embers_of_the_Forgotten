@@ -19,7 +19,7 @@ var crouched = false
 var currentUse
 var jumping
 var holdingm1
-var holdingm2
+var holdingm2 = false
 
 var sprinting = false
 var wallgrabbing = false

@@ -7,7 +7,8 @@ var playerHealthMax = 1000
 var currency = 0
 var itemsfound = null
 var abilities = []
-var weapons = []
+var ranged = ["pistol", "smg", "sniper"]
+var rangedUnlocks = [false, false, false]
 var orientation #rightness
 var baseATK
 var wpnslot1
@@ -17,6 +18,9 @@ var wpnactionable
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerHealth = playerHealthMax
+	rangedUnlocks[0] = true
+	rangedUnlocks[1] = true
+	rangedUnlocks[2] = true
 	wpnactionable = true
 	orientation = 1
 	

@@ -7,6 +7,9 @@ var orientation = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity.x = 3*movement*orientation # Replace with function body.
+	
+func set_damage(dmg):
+	damageValue = dmg
 
 func _physics_process(_delta):
 	var _MASret = move_and_slide(velocity)

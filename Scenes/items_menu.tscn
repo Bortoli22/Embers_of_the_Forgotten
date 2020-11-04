@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -12,7 +12,10 @@
 [ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/items_menu/item_menu_manager.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Black_BG.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/PistolSelect.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/PopupMenu.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/SniperSelect.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/SMGSelect.gd" type="Script" id=16]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -275,6 +278,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
 [node name="MeleeItems" type="Node2D" parent="."]
+visible = false
 
 [node name="Sword" type="Node2D" parent="MeleeItems"]
 position = Vector2( 312, 192 )
@@ -428,6 +432,62 @@ visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="RangeItems" type="Node2D" parent="."]
+
+[node name="Pistol" type="Control" parent="RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolSelect" type="Button" parent="RangeItems/Pistol"]
+margin_left = 292.573
+margin_top = 223.231
+margin_right = 393.573
+margin_bottom = 286.231
+text = "PISTOL"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMG" type="Control" parent="RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMGSelect" type="Button" parent="RangeItems/SMG"]
+margin_left = 460.383
+margin_top = 223.231
+margin_right = 561.383
+margin_bottom = 286.231
+text = "SMG"
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sniper" type="Control" parent="RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperSelect" type="Button" parent="RangeItems/Sniper"]
+margin_left = 629.692
+margin_top = 223.98
+margin_right = 730.692
+margin_bottom = 286.98
+text = "SNIPER"
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_left = 216.0
