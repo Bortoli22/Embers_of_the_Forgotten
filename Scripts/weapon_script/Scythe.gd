@@ -3,7 +3,7 @@ var wpnslot = -1
 var action = ""
 
 #moveset control
-var moveCount = 3
+var moveCount = 1
 var currentPosition = -1
 var currentMove
 
@@ -13,29 +13,31 @@ var active = false
 var wepOrientation
 
 #for charge moves
-var chargeable = true
+var chargeable = false
 var charging = false
 var negEdge = false
 
 #node references
-onready var sprite = $Visual
+onready var sprite = [$Visual, $Visual2]
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
+onready var moveSequence = [get_node("5A"),get_node("5AA")]
 
-#easy to use 4-hit combo
-#shortish range
-#can be held down to just auto the whole string
+# two swings that can be repeated endlessly with the right timing
+# fair range
+# might add some kind of bonus for hitting with the tip
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.frame = 16
+	sprite[0].frame = 7
+	sprite[1].frame = 7
 	wepOrientation = 1
 	PlayerData.wpnactionable = true
 
-#sequence of cancel windows
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if charging && Input.is_action_just_released(get_action()):
+		negEdge = true
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
@@ -54,6 +56,7 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(200)
 		orient(orientation)
 		currentPosition += 1
+		print(currentPosition)
 		currentMove = moveSequence[currentPosition]
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
@@ -67,9 +70,10 @@ func attack(orientation):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		
-		#if (moveSequence[tempMove].cancelOffset != 0):
-			#playerData.buffer = 
 			
+		if (moveSequence[tempMove].staggerWindow != 0):
+			yield(get_tree().create_timer(moveSequence[tempMove].cancelOffset), "timeout") #uneasy
+		currentPosition *= -1
 		if (!moveSequence[tempMove].noCancel):
 			PlayerData.wpnactionable = true
 			PlayerData.playerNode.capSpeed(600)
@@ -88,6 +92,10 @@ func hit(body):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
 	remove_child(currentMove)
+	
+
+func ICRoutine():
+	pass
 
 func orient(orientation):
 	var flip 
@@ -99,7 +107,6 @@ func orient(orientation):
 		transform *= Transform2D.FLIP_X
 		#$Visual.set_flip_h(!orientation)
 		wepOrientation *= -1
-	
 
 func get_action():
 	if (action == ""):
