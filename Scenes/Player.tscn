@@ -353,7 +353,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 23
+frame = 16
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -421,7 +421,7 @@ position = Vector2( -1.30197, -0.803894 )
 [node name="Pistol" parent="PlayerCenter" instance=ExtResource( 2 )]
 
 [node name="Scythe" parent="PlayerCenter" instance=ExtResource( 7 )]
-position = Vector2( 38.1082, -9.36065 )
+position = Vector2( 0.804321, 0.163754 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Crouch = SubResource( 5 )

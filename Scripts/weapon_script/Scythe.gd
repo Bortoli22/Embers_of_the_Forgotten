@@ -18,13 +18,14 @@ var charging = false
 var negEdge = false
 
 #node references
-onready var sprite = $Visual
+onready var sprite = [$Visual, $Visual2]
 onready var animation = $AnimationPlayer
 onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.frame = 14
+	sprite[0].frame = 7
+	sprite[1].frame = 7
 	wepOrientation = 1
 	PlayerData.wpnactionable = true
 
@@ -50,6 +51,7 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(200)
 		orient(orientation)
 		currentPosition += 1
+		print(currentPosition)
 		currentMove = moveSequence[currentPosition]
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
@@ -63,9 +65,10 @@ func attack(orientation):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		
-		#if (moveSequence[tempMove].cancelOffset != 0):
-			#playerData.buffer = 
 			
+		if (moveSequence[tempMove].staggerWindow != 0):
+			yield(get_tree().create_timer(moveSequence[tempMove].cancelOffset), "timeout") #uneasy
+		currentPosition *= -1
 		if (!moveSequence[tempMove].noCancel):
 			PlayerData.wpnactionable = true
 			PlayerData.playerNode.capSpeed(600)

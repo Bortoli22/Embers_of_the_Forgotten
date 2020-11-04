@@ -48,6 +48,10 @@ func _process(delta):
 func attack(orientation):
 	hit = false
 	if (currentPosition < moveCount):
+		if (charging && !negEdge):
+			pass
+		else:
+			charging = true
 		if (!PlayerData.playerNode.jump_count > 0 && !PlayerData.playerNode.jumping):
 			PlayerData.playerNode.capSpeed(200)
 		orient(orientation)

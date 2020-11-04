@@ -53,7 +53,7 @@ func equip(slot, weapon):
 	#switch(weapon)
 	#"Scythe":
 	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TESTING
-	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TESTING
+	PlayerData.wpnslot2 = $PlayerCenter/Sword # TESTING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
@@ -120,11 +120,11 @@ func attack_check():
 	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
 		#yield(PlayerData.wpnslot1.animation, "animation_finished")
 	if (PlayerData.wpnactionable):
-		if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.holdable):
+		if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.chargeable):
 			PlayerData.wpnactionable = false
 			holdingm1 = true
 			wslot1()
-		elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.holdable):
+		elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.chargeable):
 			PlayerData.wpnactionable = false
 			holdingm2 = true
 			wslot2()
@@ -296,7 +296,8 @@ func next_to_right_wall():
 	return $WallRaycasts/RightRaycasts/RightRay1.is_colliding() || $WallRaycasts/RightRaycasts/RightRay2.is_colliding()
 		
 func wslot1():
-	print(xPositivity)
+	#should probably base attack orientation on cursor relative to player given mouse controls
+	#oh god we have to support multiple control schemes
 	if (PlayerData.wpnslot1 != null && !PlayerData.wpnactionable):
 		PlayerData.wpnslot1.attack(xPositivity)
 

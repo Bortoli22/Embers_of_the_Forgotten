@@ -2,7 +2,7 @@ extends Node2D
 var projectile = preload("res://Scenes/projectile.tscn")
 var lastprojectile
 var wepOrientation
-var holdable = false
+var chargeable = false
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

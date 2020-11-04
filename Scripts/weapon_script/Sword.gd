@@ -13,7 +13,7 @@ var active = false
 var wepOrientation
 
 #for charge moves
-var chargeable = false
+var chargeable = true
 var charging = false
 var negEdge = false
 
