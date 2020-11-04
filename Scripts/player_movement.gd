@@ -273,7 +273,7 @@ func jump_check():
 func wall_grab_check():
 	
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
-		if PlayerData.check_abilities("wallgrab"):
+		if PlayerData.check_abilities("wall grab"):
 			wallgrabbing = true
 			playerVelocity.y = 0
 			jump_count = 0

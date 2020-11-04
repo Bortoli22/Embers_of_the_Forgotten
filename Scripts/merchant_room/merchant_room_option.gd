@@ -54,8 +54,12 @@ func _on_Submit_pressed():
 		if val.isSelected == false:
 			GameData.merchantPool.append(unlockables[val.id])
 		else:
-			if unlockables[val.id] != "---":
-				PlayerData.abilities.append(unlockables[val.id])
+			var name = unlockables[val.id]
+			if name != "---":
+				if name == "sword" || name == "spear" || name == "scythe":
+					PlayerData.weapons.append(name)
+				else:
+					PlayerData.abilities.append(name)
 	
 	GameData.current_level += 1
 	get_tree().change_scene("res://Scenes/Stage.tscn")
