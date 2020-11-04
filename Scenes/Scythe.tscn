@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Scythe.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/weapon_script/Scythe5A.gd" type="Script" id=2]
-[ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full3.png" type="Texture" id=3]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Scythe_Full3.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/weapon_script/Scythe5AA.gd" type="Script" id=5]
 
@@ -40,7 +39,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=3]
 resource_name = "5A startup"
 length = 0.166667
 step = 0.0166667
@@ -108,112 +107,12 @@ tracks/0/keys = {
 "values": [ 9, 10 ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "5AAA recovery"
-length = 0.136
-step = 0.017
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0169999, 0.0509996 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 16 ]
-}
+[sub_resource type="Animation" id=7]
 
-[sub_resource type="Animation" id=9]
-resource_name = "5AAA startup"
-length = 0.183333
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.133333, 0.166667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2 ]
-}
-
-[sub_resource type="Animation" id=10]
-resource_name = "5AAAA active"
-length = 0.1
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 13 ]
-}
-
-[sub_resource type="Animation" id=11]
-resource_name = "5AAAA recovery"
-length = 0.204
-step = 0.017
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.101999, 0.186999 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 14, 15, 16 ]
-}
-
-[sub_resource type="Animation" id=12]
-resource_name = "5AAAA startup"
-length = 0.25
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 11, 12 ]
-}
-
-[sub_resource type="Animation" id=13]
-step = 0.017
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visual:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.017, 0.085, 0.102, 0.136, 0.221, 0.238, 0.272 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ ExtResource( 3 ), 1, 2, 3, 4, 5, 16 ]
-}
-
-[sub_resource type="Animation" id=14]
-
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 89.1494, 27.1529 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 78.8336, 29.6222 )
 
 [node name="Scythe" type="Node2D"]
@@ -226,7 +125,7 @@ position = Vector2( 62.6441, 0.21875 )
 texture = ExtResource( 4 )
 vframes = 2
 hframes = 8
-frame = 2
+frame = 4
 
 [node name="Visual2" type="Sprite" parent="."]
 position = Vector2( 50.1661, 4.21875 )
@@ -238,17 +137,11 @@ frame = 12
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 "anims/5A active" = SubResource( 1 )
 "anims/5A recovery" = SubResource( 2 )
-"anims/5A startup" = SubResource( 16 )
+"anims/5A startup" = SubResource( 3 )
 "anims/5AA active" = SubResource( 4 )
 "anims/5AA recovery" = SubResource( 5 )
 "anims/5AA startup" = SubResource( 6 )
-"anims/5AAA recovery" = SubResource( 8 )
-"anims/5AAA startup" = SubResource( 9 )
-"anims/5AAAA active" = SubResource( 10 )
-"anims/5AAAA recovery" = SubResource( 11 )
-"anims/5AAAA startup" = SubResource( 12 )
-anims/5Af = SubResource( 13 )
-anims/neutral = SubResource( 14 )
+anims/neutral = SubResource( 7 )
 
 [node name="5A" type="Area2D" parent="."]
 position = Vector2( 63.274, -0.411194 )
@@ -258,7 +151,7 @@ script = ExtResource( 2 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5A"]
 position = Vector2( 23.7066, 19.8146 )
-shape = SubResource( 15 )
+shape = SubResource( 8 )
 
 [node name="5AA" type="Area2D" parent="."]
 position = Vector2( 63.274, -0.411194 )
@@ -268,4 +161,4 @@ script = ExtResource( 5 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AA"]
 position = Vector2( 29.8989, 12.3043 )
-shape = SubResource( 17 )
+shape = SubResource( 9 )

@@ -28,7 +28,7 @@ onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.frame = 16
+	sprite.frame = 11
 	wepOrientation = 1
 	PlayerData.wpnactionable = true
 
