@@ -34,15 +34,19 @@ func _selectionUpdate(id):
 	options[id].NodeVal.set("custom_colors/font_color", Color("#FFFFFF"))
 
 func _get_valid_options():
-	var totalPoolSize = GameData.merchantPool.size() - 1
+	var totalPoolSize = GameData.merchantPool.size()
 	for _x in range(3):
-		if totalPoolSize > 0:
-			var itemIndex = randi() % totalPoolSize
+		if totalPoolSize == 1:
+			unlockables.append(GameData.merchantPool[0])
+			GameData.merchantPool.remove(0)
+			totalPoolSize = totalPoolSize - 1
+		elif totalPoolSize > 1:
+			var itemIndex = randi() % totalPoolSize - 1
 			unlockables.append(GameData.merchantPool[itemIndex])
 			GameData.merchantPool.remove(itemIndex)
 			totalPoolSize = totalPoolSize - 1
 		else:
-			unlockables.push("---")
+			unlockables.append("---")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -55,10 +59,11 @@ func _on_Submit_pressed():
 	#add unchosen upgrades back into mix
 	for val in options:
 		if val.isSelected == false:
-			GameData.merchantPool.append(unlockables[val.id])
+			if !(name == "---"):
+				GameData.merchantPool.append(unlockables[val.id])
 		else:
 			var name = unlockables[val.id]
-			if name != "---":
+			if !(name == "---"):
 				if name == "sword" || name == "spear" || name == "scythe":
 					PlayerData.weapons.append(name)
 				else:
