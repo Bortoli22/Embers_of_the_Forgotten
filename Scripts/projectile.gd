@@ -8,7 +8,7 @@ var orientation = 1
 func _ready():
 	velocity.x = 3*movement*orientation # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_slide(velocity)
 	#print(position.y)
 	if position.x < -1000:

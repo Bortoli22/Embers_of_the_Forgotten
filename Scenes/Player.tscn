@@ -376,7 +376,6 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="UsePrompt" type="Area2D" parent="."]
-visible = false
 gravity_vec = Vector2( 0, 0 )
 gravity = 728.413
 collision_layer = 0

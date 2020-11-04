@@ -33,7 +33,7 @@ func _ready():
 	PlayerData.wpnactionable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if charging && Input.is_action_just_released(get_action()):
 		negEdge = true
 	if active:

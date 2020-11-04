@@ -8,7 +8,6 @@ func _ready():
 	var initHealth = PlayerData.playerHealth
 	var initHealthMax = PlayerData.playerHealthMax
 	get_node("HealthBar/HealthEmpty").color = Color8(3, 72, 9, 255)
-	print(get_node("HealthBar/HealthEmpty").color)
 	get_node("HealthBar/HealthGreen").init(float(initHealth)/float(initHealthMax))
 	get_node("HealthBar/HealthText").text = str(initHealth) + "/" + str(initHealthMax)
 	get_node("Money").text = "$" + str(PlayerData.currency)

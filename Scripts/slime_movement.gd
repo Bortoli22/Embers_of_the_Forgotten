@@ -33,7 +33,6 @@ func _physics_process(delta):
 	# obtain new y velocity and check crouch
 	if is_on_floor():
 		if get_parent().get_node("Player").position.y - position.y > 5:
-			print("i fukin tried")
 			slimeVelocity.y += slimeJumpImpulse
 		else:
 			slimeVelocity.y = slimeGravity
