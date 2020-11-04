@@ -3,7 +3,7 @@ var wpnslot = -1
 var action = ""
 
 #moveset control
-var moveCount = 3
+var moveCount = 1
 var currentPosition = -1
 var currentMove
 
@@ -13,18 +13,18 @@ var active = false
 var wepOrientation
 
 #for charge moves
-var chargeable = true
+var chargeable = false
 var charging = false
 var negEdge = false
 
 #node references
 onready var sprite = $Visual
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
+onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
 
-#easy to use 4-hit combo
-#shortish range
-#can be held down to just auto the whole string
+# not started yet
+# heavy commital stabs
+# can throw the spear as a charge attack 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,10 +32,10 @@ func _ready():
 	wepOrientation = 1
 	PlayerData.wpnactionable = true
 
-#sequence of cancel windows
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if charging && Input.is_action_just_released(get_action()):
+		negEdge = true
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
@@ -50,6 +50,10 @@ func _process(delta):
 func attack(orientation):
 	hit = false
 	if (currentPosition < moveCount):
+		if (charging && !negEdge):
+			pass
+		else:
+			charging = true
 		if (!PlayerData.playerNode.jump_count > 0 && !PlayerData.playerNode.jumping):
 			PlayerData.playerNode.capSpeed(200)
 		orient(orientation)
@@ -88,6 +92,10 @@ func hit(body):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
 	remove_child(currentMove)
+	
+
+func ICRoutine():
+	pass
 
 func orient(orientation):
 	var flip 
@@ -99,7 +107,6 @@ func orient(orientation):
 		transform *= Transform2D.FLIP_X
 		#$Visual.set_flip_h(!orientation)
 		wepOrientation *= -1
-	
 
 func get_action():
 	if (action == ""):
