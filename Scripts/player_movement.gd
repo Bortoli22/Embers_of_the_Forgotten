@@ -97,7 +97,6 @@ func _physics_process(delta):
 
 # Get x velocity from LR inputs
 func _inputSequence():
-	pause_check()
 	attack_check()
 	lr_check()
 	wall_grab_check()
@@ -108,14 +107,6 @@ func _inputSequence():
 	if Input.is_action_just_pressed("kill_self"):
 		healthChange(-PlayerData.playerHealthMax)
 		
-func pause_check():
-	if Input.is_action_pressed("pause"):
-		
-		GameData.paused = true
-		var pause_menu = load("res://Scenes/PauseMenu.tscn")
-		self.add_child(pause_menu.instance())
-	return
-	
 func attack_check():
 	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
 		#yield(PlayerData.wpnslot1.animation, "animation_finished")
