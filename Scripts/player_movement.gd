@@ -29,7 +29,8 @@ export var playerOnHitInvuln = 2
 var invulnTimer
 var main
 
-var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
+#var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
+signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +42,7 @@ func _ready():
 	holdingm2 = false
 	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
+	connect("respawn", get_node("../Menus/RespawnMenu/Control"), "respawn")
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
@@ -69,7 +71,6 @@ func _physics_process(delta):
 	if PlayerData.playerHealth == 0: 
 		GameData.player_dead = true
 		respawn()
-		GameData.player_dead = false
 		return
 	
 	# obtain new y velocity and check crouch
@@ -333,6 +334,7 @@ func _on_UsePrompt_body_exited(_body):
 	clearUse()
 
 func respawn():
-	var tree = get_tree()
-	var root = tree.get_root()
-	self.add_child(respawn_menu.instance())
+	#var tree = get_tree()
+	#var root = tree.get_root()
+	#self.add_child(respawn_menu.instance())
+	emit_signal("respawn")

@@ -353,7 +353,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 16
+frame = 21
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

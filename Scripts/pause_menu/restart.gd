@@ -21,7 +21,7 @@ func _on_restart_pressed():
 	PlayerData.abilities = []
 	PlayerData.weapons = []
 	GameData.current_level = 1
-	
+	PlayerData.playerHealth = PlayerData.playerHealthMax
 	get_tree().change_scene("res://Scenes/StartMenu.tscn")
 	#var start_menu = load("res://Scenes/StartMenu.tscn")
 	#root.add_child(start_menu.instance())
