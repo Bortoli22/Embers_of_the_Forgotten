@@ -282,7 +282,8 @@ func wall_grab_check():
 			
 func dodge_check():
 	if Input.is_action_just_pressed("dodge"):
-		playerVelocity.x = playerVelocity.x * 10
+		if PlayerData.check_abilities("dodge"):
+			playerVelocity.x = playerVelocity.x * 10
 
 func use_check():
 	if Input.is_action_just_pressed("use") && currentUse != null:

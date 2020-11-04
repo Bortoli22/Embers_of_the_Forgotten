@@ -20,6 +20,7 @@ func _on_restart_pressed():
 	
 	PlayerData.abilities = []
 	PlayerData.weapons = []
+	GameData.current_level = 1
 	var start_menu = load("res://Scenes/StartMenu.tscn")
 	root.add_child(start_menu.instance())
 	

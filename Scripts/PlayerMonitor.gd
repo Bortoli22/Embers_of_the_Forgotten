@@ -16,3 +16,4 @@ func _ready():
 func _process(delta):
 	if playerNode.position.x >= end_goal_x:
 		get_tree().change_scene("res://Scenes/MerchantRoom.tscn")
+		#get_tree().reload_current_scene()
