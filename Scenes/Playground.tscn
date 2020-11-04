@@ -67,6 +67,9 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/StaticBody2D"]
 shape = SubResource( 3 )
 
+[node name="Slime" parent="." instance=ExtResource( 7 )]
+position = Vector2( 633.181, 205.204 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="CanvasLayer"]
@@ -141,6 +144,3 @@ __meta__ = {
 
 [node name="Items Menu" parent="." instance=ExtResource( 12 )]
 visible = false
-
-[node name="Slime" parent="." instance=ExtResource( 7 )]
-position = Vector2( 774.35, 254.271 )
