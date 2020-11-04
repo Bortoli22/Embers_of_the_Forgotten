@@ -29,7 +29,8 @@ export var playerOnHitInvuln = 2
 var invulnTimer
 var main
 
-var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
+#var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
+signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,6 +42,7 @@ func _ready():
 	holdingm2 = false
 	initDefault() #TEMP
 	fsm = $AnimationStateMachine.get("parameters/playback")
+	connect("respawn", get_node("../Menus/RespawnMenu/Control"), "respawn")
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
@@ -69,7 +71,6 @@ func _physics_process(delta):
 	if PlayerData.playerHealth == 0: 
 		GameData.player_dead = true
 		respawn()
-		GameData.player_dead = false
 		return
 	
 	# obtain new y velocity and check crouch
@@ -93,11 +94,10 @@ func _physics_process(delta):
 	_inputSequence()
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
-	move_and_slide(playerVelocity, Vector2(0,-1))
+	var masRET = move_and_slide(playerVelocity, Vector2(0,-1))
 
 # Get x velocity from LR inputs
 func _inputSequence():
-	pause_check()
 	attack_check()
 	lr_check()
 	wall_grab_check()
@@ -108,14 +108,6 @@ func _inputSequence():
 	if Input.is_action_just_pressed("kill_self"):
 		healthChange(-PlayerData.playerHealthMax)
 		
-func pause_check():
-	if Input.is_action_pressed("pause"):
-		
-		GameData.paused = true
-		var pause_menu = load("res://Scenes/PauseMenu.tscn")
-		self.add_child(pause_menu.instance())
-	return
-	
 func attack_check():
 	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
 		#yield(PlayerData.wpnslot1.animation, "animation_finished")
@@ -251,7 +243,7 @@ func jump_check():
 			else:
 				fsm.travel("Jump_R")
 		else:
-			if PlayerData.check_abilities("walljump"):
+			if PlayerData.check_abilities("wall jump"):
 				if next_to_left_wall():
 					playerVelocity.y = -jump_power
 					playerVelocity.y += 250
@@ -274,7 +266,7 @@ func jump_check():
 func wall_grab_check():
 	
 	if Input.is_action_pressed("wall_grab") && is_on_wall():
-		if PlayerData.check_abilities("wallgrab"):
+		if PlayerData.check_abilities("wall grab"):
 			wallgrabbing = true
 			playerVelocity.y = 0
 			jump_count = 0
@@ -283,7 +275,8 @@ func wall_grab_check():
 			
 func dodge_check():
 	if Input.is_action_just_pressed("dodge"):
-		playerVelocity.x = playerVelocity.x * 10
+		if PlayerData.check_abilities("dodge"):
+			playerVelocity.x = playerVelocity.x * 10
 
 func use_check():
 	if Input.is_action_just_pressed("use") && currentUse != null:
@@ -338,10 +331,11 @@ func _on_UsePrompt_body_entered(body):
 	currentUse = body
 	get_node("UsePrompt/Prompt").visible = true
 
-func _on_UsePrompt_body_exited(body):
+func _on_UsePrompt_body_exited(_body):
 	clearUse()
 
 func respawn():
-	var tree = get_tree()
-	var root = tree.get_root()
-	self.add_child(respawn_menu.instance())
+	#var tree = get_tree()
+	#var root = tree.get_root()
+	#self.add_child(respawn_menu.instance())
+	emit_signal("respawn")

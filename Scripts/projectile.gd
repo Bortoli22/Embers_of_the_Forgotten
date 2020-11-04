@@ -9,7 +9,7 @@ func _ready():
 	velocity.x = 3*movement*orientation # Replace with function body.
 
 func _physics_process(_delta):
-	move_and_slide(velocity)
+	var _MASret = move_and_slide(velocity)
 	#print(position.y)
 	if position.x < -1000:
 		queue_free()
@@ -24,7 +24,7 @@ func _on_Hitbox_body_entered(body):
 		queue_free()
 
 
-func _on_Collision_body_entered(body):
+func _on_Collision_body_entered(_body):
 	#contacted with the environment
 	###play hit effect
 	queue_free()

@@ -1,36 +1,27 @@
-extends Control
-
+extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	hide()
 	pass # Replace with function body.
 
-
-func respawn():
-	print("gothere")
-	show()
-	
-
-func _on_Button_pressed():
-	GameData.player_dead = false
+func _on_restart_pressed():
 	GameData.paused = false
-	#var tree = get_tree() 
+	#var pause_menu = get_parent().get_parent()
+	#var tree = get_tree()
 	#var root = tree.get_root()
-	#get_parent().remove_child(self)
-	#self.queue_free()
-	
-	#var stage = root.get_node("Root") 
+	#var stage = root.get_node("Root")
 	#if stage == null:
 	#	stage = root.get_node("Main")
-		
-	#tree.current_scene = stage
-	#tree.reload_current_scene()
+	
+	#root.remove_child(pause_menu)
+	#pause_menu.queue_free()
+	#root.remove_child(stage)
+	#stage.queue_free()
 	
 	PlayerData.abilities = []
 	PlayerData.weapons = []
 	GameData.current_level = 1
 	PlayerData.playerHealth = PlayerData.playerHealthMax
-	hide()
-	
 	get_tree().change_scene("res://Scenes/StartMenu.tscn")
+	#var start_menu = load("res://Scenes/StartMenu.tscn")
+	#root.add_child(start_menu.instance())

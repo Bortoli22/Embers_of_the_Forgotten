@@ -31,6 +31,8 @@ font_data = ExtResource( 1 )
 [node name="StartItemMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -1.18921
+margin_bottom = -1.18921
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -94,15 +96,15 @@ text = "ABILITIES
 "
 align = 1
 
-[node name="Dash" type="Button" parent="Abilities"]
+[node name="Dodge" type="Button" parent="Abilities"]
 margin_top = 99.0
 margin_right = 300.0
 margin_bottom = 151.0
 custom_fonts/font = SubResource( 5 )
-text = "DASH"
+text = "DODGE"
 script = ExtResource( 2 )
 
-[node name="WallJump" type="Button" parent="Abilities"]
+[node name="Wall Jump" type="Button" parent="Abilities"]
 margin_top = 155.0
 margin_right = 300.0
 margin_bottom = 207.0
@@ -110,7 +112,7 @@ custom_fonts/font = SubResource( 6 )
 text = "WALL JUMP"
 script = ExtResource( 2 )
 
-[node name="WallGrab" type="Button" parent="Abilities"]
+[node name="Wall Grab" type="Button" parent="Abilities"]
 margin_top = 211.0
 margin_right = 300.0
 margin_bottom = 263.0
@@ -133,7 +135,7 @@ __meta__ = {
 [connection signal="pressed" from="Weapons/Scythe" to="Weapons/Scythe" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Scythe" to="." method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Spear" to="Weapons/Spear" method="_on_pressed"]
-[connection signal="pressed" from="Abilities/Dash" to="Abilities/Dash" method="_on_pressed"]
-[connection signal="pressed" from="Abilities/WallJump" to="Abilities/WallJump" method="_on_pressed"]
-[connection signal="pressed" from="Abilities/WallGrab" to="Abilities/WallGrab" method="_on_pressed"]
+[connection signal="pressed" from="Abilities/Dodge" to="Abilities/Dodge" method="_on_pressed"]
+[connection signal="pressed" from="Abilities/Wall Jump" to="Abilities/Wall Jump" method="_on_pressed"]
+[connection signal="pressed" from="Abilities/Wall Grab" to="Abilities/Wall Grab" method="_on_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_submit"]

@@ -1,7 +1,6 @@
 extends Node
 const DIRECTION_RIGHT = 1
 const DIRECTION_LEFT = -1
-#I haven't used these anywhere, just giving you an idea of what to add
 var playerNode #thank god
 var playerHealth
 var playerHealthMax = 1000
