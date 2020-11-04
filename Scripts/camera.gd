@@ -6,7 +6,7 @@ func _ready():
 	hold = 0
 	player = self.get_parent()
 
-func _process(delta):
+func _process(_delta):
 	if hold:
 		pass
 	else:
@@ -26,7 +26,7 @@ func shift(x,y):
 	position = Vector2(x,y)
 	pass
 
-func center(speed):
+func center(_speed):
 	hold = 0
 	pass
  
@@ -34,7 +34,7 @@ func center(speed):
 #could define behavior for left/right extremes of map
 
 
-func shake(force, duration):
+func shake(_force, _duration):
 	#could determine a set of directions, 
 	#randomize it on call and then execute movements based on force + slight randomization
 	#repeat for (duration) cycles

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_Weapon_Animations_Sword_Full3.png-513bd5c75ab2e3311869a7e91142ebda.stex"
+path="res://.import/Player_Weapon_Animations_Scythe_Full2.png-d1a2bf0e398026fe18cc9e18d1febd22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full3.png"
-dest_files=[ "res://.import/Player_Weapon_Animations_Sword_Full3.png-513bd5c75ab2e3311869a7e91142ebda.stex" ]
+source_file="res://Assets/weapon_animations/Player_Weapon_Animations_Scythe_Full2.png"
+dest_files=[ "res://.import/Player_Weapon_Animations_Scythe_Full2.png-d1a2bf0e398026fe18cc9e18d1febd22.stex" ]
 
 [params]
 

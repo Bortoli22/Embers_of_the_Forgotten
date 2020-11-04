@@ -9,25 +9,27 @@ font_data = ExtResource( 2 )
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 2 )
 
-[node name="RespawnMenu" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="RespawnMenu" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = -100.0
-margin_top = -75.0
-margin_right = 100.0
-margin_bottom = 76.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+margin_left = -21.918
+margin_top = 184.325
+margin_right = 1049.08
+margin_bottom = 611.325
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 200.0
+[node name="Label" type="Label" parent="Control/VBoxContainer"]
+margin_right = 1071.0
 margin_bottom = 95.0
 rect_min_size = Vector2( 0, 50 )
 custom_fonts/font = SubResource( 1 )
@@ -35,10 +37,10 @@ text = "YOU DIED
 "
 align = 1
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="Control/VBoxContainer"]
 margin_top = 99.0
-margin_right = 200.0
+margin_right = 1071.0
 margin_bottom = 151.0
 custom_fonts/font = SubResource( 2 )
 text = "RESPAWN"
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="respawn"]
+[connection signal="pressed" from="Control/VBoxContainer/Button" to="Control" method="_on_Button_pressed"]
