@@ -93,7 +93,7 @@ func _physics_process(delta):
 	_inputSequence()
 	# distance = velocity * time (right?)
 	# playerDistance = playerVelocity * delta
-	move_and_slide(playerVelocity, Vector2(0,-1))
+	var masRET = move_and_slide(playerVelocity, Vector2(0,-1))
 
 # Get x velocity from LR inputs
 func _inputSequence():
@@ -250,7 +250,7 @@ func jump_check():
 			else:
 				fsm.travel("Jump_R")
 		else:
-			if PlayerData.check_abilities("walljump"):
+			if PlayerData.check_abilities("wall jump"):
 				if next_to_left_wall():
 					playerVelocity.y = -jump_power
 					playerVelocity.y += 250
@@ -338,7 +338,7 @@ func _on_UsePrompt_body_entered(body):
 	currentUse = body
 	get_node("UsePrompt/Prompt").visible = true
 
-func _on_UsePrompt_body_exited(body):
+func _on_UsePrompt_body_exited(_body):
 	clearUse()
 
 func respawn():

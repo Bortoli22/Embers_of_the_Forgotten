@@ -14,8 +14,11 @@ func _ready():
 
 
 func _submit():
-
-	get_tree().change_scene("res://Scenes/Stage.tscn")
+	var exec = get_tree().change_scene("res://Scenes/Stage.tscn")
+	if exec != OK:
+		print("ERROR SWITCHING FROM MAIN MENU TO STAGE")
+	return 
+	
 	#var parent = get_parent()
 	#var root = get_tree().get_root()
 	#var level_node = load("res://Scenes/Stage.tscn")
