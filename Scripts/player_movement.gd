@@ -44,10 +44,16 @@ func _ready():
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
+	equip(1,"")
+	equip(2,"")
 
-func equip(slot, weapon)
-	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TEMP UNTIL PROPER EQUIPPING
-	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TEMP UNTIL PROPER EQUIPPING
+func equip(slot, weapon): 
+	#called to switch between weapons in the ol' inventory, 
+	#once they've been loaded and populated by that array in PlayerData presumably
+	#switch(weapon)
+	#"Scythe":
+	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TESTING
+	PlayerData.wpnslot2 = $PlayerCenter/Pistol # TESTING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
