@@ -29,6 +29,15 @@ export var playerOnHitInvuln = 2
 var invulnTimer
 var main
 
+#moveset instanced scene dictionary
+onready var movesetDict = {
+	"sword": $PlayerCenter/Sword,
+	"scythe": $PlayerCenter/Scythe,
+	"spear": $PlayerCenter/Spear,
+	"fireball": $PlayerCenter/Fireball,
+	"firewave": $PlayerCenter/Firewave
+}
+
 #var respawn_menu = preload("res://Scenes/RespawnMenu.tscn")
 signal respawn
 
@@ -53,17 +62,22 @@ func _ready():
 
 func initDefault():
 	PlayerData.playerHealth = PlayerData.playerHealthMax
-	equip(1,"")
-	equip(2,"")
+	equip()
 
-func equip(slot, weapon): 
-	#called to switch between weapons in the ol' inventory, 
-	#once they've been loaded and populated by that array in PlayerData presumably
-	#switch(weapon)
-	#"Scythe":
-	PlayerData.wpnslot1 = $PlayerCenter/Firewave # TESTING
-	PlayerData.wpnslot2 = $PlayerCenter/Fireball # TESTING
-	
+func equip(): 
+	match PlayerData.equipped.size():
+		0:
+			PlayerData.wpnslot1 = null
+			PlayerData.wpnslot2 = null
+		1:
+			PlayerData.wpnslot1 = movesetDict[PlayerData.equipped[0]]
+			PlayerData.wpnslot2 = null
+		2:
+			PlayerData.wpnslot1 = movesetDict[PlayerData.equipped[0]]
+			PlayerData.wpnslot2 = movesetDict[PlayerData.equipped[1]]
+		_:
+			return
+
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
 	PlayerData.currency = stcurrency
@@ -116,8 +130,10 @@ func _inputSequence():
 		healthChange(-PlayerData.playerHealthMax)
 		
 func attack_check():
-	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
-		#yield(PlayerData.wpnslot1.animation, "animation_finished")
+	if (Input.is_action_pressed("pr_fire") && PlayerData.wpnslot1 == null):
+		return
+	if (Input.is_action_pressed("alt_fire") && PlayerData.wpnslot2 == null):
+		return
 	if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.chargeable):
 		if (PlayerData.wpnactionable):
 			PlayerData.wpnactionable = false

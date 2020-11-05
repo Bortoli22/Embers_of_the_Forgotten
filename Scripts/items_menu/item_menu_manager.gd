@@ -16,6 +16,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_released("item_menu"):
 		if is_visible_in_tree():
+			get_node("../../../Player").equip()
 			hide()
 			get_tree().paused = false
 			$"PopupMenu".hide()
