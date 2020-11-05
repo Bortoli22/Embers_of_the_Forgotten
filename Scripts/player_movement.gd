@@ -12,7 +12,7 @@ var playerVelocity = Vector2()
 var playerDistance
 var jump_power = 500
 var jump_count = 0
-const max_JC = 2
+var max_JC = 1
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -34,6 +34,13 @@ signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(PlayerData.abilities)
+	if "double jump" in PlayerData.abilities:
+		max_JC = 2
+	if "triple jump" in PlayerData.abilities:
+		max_JC = 3
+	if "dash" in PlayerData.abilities:
+		sprintVelocity = 3500
 	PlayerData.playerNode = self
 	main = self.get_parent()
 	playerVelocity.y = playerGravity

@@ -15,6 +15,7 @@ const WPN_SCYTHE = ""
 var merchantPool = [
 	"double jump",
 	"triple jump",
+	"dash",
 	"wall jump",
 	"dodge",
 	"sword",
