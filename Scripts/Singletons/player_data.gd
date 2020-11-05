@@ -7,6 +7,7 @@ var playerHealthMax = 1000
 var currency = 0
 var itemsfound = null
 var abilities = []
+var weapons = []
 var ranged = ["pistol", "smg", "sniper"]
 var rangedUnlocks = [false, false, false]
 var orientation #rightness

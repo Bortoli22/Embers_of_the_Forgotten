@@ -7,8 +7,6 @@
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Sword.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Scythe.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/Spear.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/FireballTome.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/EruptionTome.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/SMG.tscn" type="PackedScene" id=12]
@@ -358,7 +356,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 20
+frame = 16
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

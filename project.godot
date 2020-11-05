@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Embers_of_the_Forgotten"
-run/main_scene="res://Scenes/Playground.tscn"
+run/main_scene="res://Scenes/StartMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
