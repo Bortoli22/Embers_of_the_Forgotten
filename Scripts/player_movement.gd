@@ -55,7 +55,7 @@ func equip(slot, weapon):
 	#switch(weapon)
 	#"Scythe":
 	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TESTING
-	PlayerData.wpnslot2 = $PlayerCenter/Spear # TESTING
+	PlayerData.wpnslot2 = $PlayerCenter/FireballTome # TESTING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
