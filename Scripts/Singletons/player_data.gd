@@ -12,6 +12,7 @@ var ranged = ["pistol", "smg", "sniper"]
 var rangedUnlocks = [false, false, false]
 var orientation #rightness
 var baseATK
+var equipped = []
 var wpnslot1
 var wpnslot2
 var wpnactionable

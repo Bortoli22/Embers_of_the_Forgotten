@@ -38,4 +38,15 @@ func _process(delta):
 			cursorIndex = 0
 		items[cursorIndex].toggleHover()
 	if Input.is_action_just_released("ui_accept"):
+		if !items[cursorIndex].selectable:
+			return
+		if items[cursorIndex].selected:
+			PlayerData.equipped.remove(PlayerData.equipped.find(items[cursorIndex].name.to_lower()))
+		else:
+			PlayerData.equipped.push_front(items[cursorIndex].name.to_lower())
+			if PlayerData.equipped.size() > 2:
+				var toToggle = PlayerData.equipped.pop_back()
+				get_node("MeleeItems").get_node(toToggle).toggleSelected()
+				print("removed item: " + str(items.find(toToggle)))
 		items[cursorIndex].toggleSelected()
+		print(PlayerData.equipped)

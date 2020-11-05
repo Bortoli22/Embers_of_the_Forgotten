@@ -287,11 +287,11 @@ texture = ExtResource( 6 )
 
 [node name="MeleeItems" type="Node2D" parent="Control"]
 
-[node name="Sword" type="Node2D" parent="Control/MeleeItems"]
+[node name="sword" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 312, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/Sword"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -300,7 +300,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Control/MeleeItems/Sword"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -308,17 +308,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Sword"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/sword"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Scythe" type="Node2D" parent="Control/MeleeItems"]
+[node name="scythe" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 448, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/Scythe"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -327,7 +327,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Control/MeleeItems/Scythe"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -335,17 +335,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Scythe"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/scythe"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Spear" type="Node2D" parent="Control/MeleeItems"]
+[node name="spear" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 584, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/Spear"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -354,7 +354,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Control/MeleeItems/Spear"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -362,17 +362,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Spear"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/spear"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Firewave" type="Node2D" parent="Control/MeleeItems"]
+[node name="firewave" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 312, 328 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/Firewave"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/firewave"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -381,7 +381,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Control/MeleeItems/Firewave"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/firewave"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -389,17 +389,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Firewave"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/firewave"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Fireball" type="Node2D" parent="Control/MeleeItems"]
+[node name="fireball" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 448, 328 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/Fireball"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -408,7 +408,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="Control/MeleeItems/Fireball"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -416,7 +416,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Fireball"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/fireball"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
