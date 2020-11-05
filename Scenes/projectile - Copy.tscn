@@ -7,8 +7,6 @@
 extents = Vector2( 10, 6.98743 )
 
 [node name="KinematicBody2D" type="KinematicBody2D"]
-collision_layer = 128
-collision_mask = 0
 script = ExtResource( 2 )
 
 [node name="Hitbox" type="Area2D" parent="."]

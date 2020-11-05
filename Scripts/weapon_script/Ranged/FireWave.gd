@@ -30,10 +30,10 @@ onready var animation = $AnimationPlayer
 func _ready():
 	sprite.frame = 16
 	wepOrientation = 1
+	PlayerData.wpnactionable = true
 	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
 	for node in moveSequence:
 		remove_child(node)
-	PlayerData.wpnactionable = true
 
 #sequence of cancel windows
 
@@ -89,7 +89,7 @@ func attack(orientation):
 
 func hit(body):
 	if (body.has_method("damageHandler")):
-		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
+		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
 	remove_child(currentMove)
 
 func orient(orientation):

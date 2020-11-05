@@ -28,6 +28,4 @@ func _on_Hitbox_body_entered(body):
 
 
 func _on_Collision_body_entered(_body):
-	#contacted with the environment
-	###play hit effect
 	queue_free()

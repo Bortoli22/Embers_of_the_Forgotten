@@ -12,7 +12,7 @@ var playerVelocity = Vector2()
 var playerDistance
 var jump_power = 500
 var jump_count = 0
-const max_JC = 2
+var max_JC = 1
 var fsm #finite state machine
 var xPositivity = true
 var crouched = false
@@ -34,6 +34,13 @@ signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(PlayerData.abilities)
+	if "double jump" in PlayerData.abilities:
+		max_JC = 2
+	if "triple jump" in PlayerData.abilities:
+		max_JC = 3
+	if "dash" in PlayerData.abilities:
+		sprintVelocity = 3500
 	PlayerData.playerNode = self
 	main = self.get_parent()
 	playerVelocity.y = playerGravity
@@ -54,8 +61,8 @@ func equip(slot, weapon):
 	#once they've been loaded and populated by that array in PlayerData presumably
 	#switch(weapon)
 	#"Scythe":
-	PlayerData.wpnslot1 = $PlayerCenter/Scythe # TESTING
-	PlayerData.wpnslot2 = $PlayerCenter/Sword # TESTING
+	PlayerData.wpnslot1 = $PlayerCenter/Spear # TESTING
+	PlayerData.wpnslot2 = $PlayerCenter/FireballTome # TESTING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth
@@ -111,12 +118,13 @@ func _inputSequence():
 func attack_check():
 	#if Input.is_action_just_pressed("pr_fire" && PlayerData.buffer):
 		#yield(PlayerData.wpnslot1.animation, "animation_finished")
-	if (PlayerData.wpnactionable):
-		if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.chargeable):
+	if Input.is_action_pressed("pr_fire") && !(holdingm1 && !PlayerData.wpnslot1.chargeable):
+		if (PlayerData.wpnactionable):
 			PlayerData.wpnactionable = false
 			holdingm1 = true
 			wslot1()
-		elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.chargeable):
+	elif Input.is_action_pressed("alt_fire") && !(holdingm2 && !PlayerData.wpnslot2.chargeable):
+		if (PlayerData.wpnactionable):
 			PlayerData.wpnactionable = false
 			holdingm2 = true
 			wslot2()
@@ -203,7 +211,10 @@ func damageHandler(dmgamount, direction, force):
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
 		if PlayerData.playerHealth == 0:
+			GameData.camera_node.shake(GameData.HEAVYSHAKE, 0.2)
 			pass
+		else:
+			GameData.camera_node.shake(GameData.MEDIUMSHAKE, 0.2)
 		yield(get_tree().create_timer(playerOnHitInvuln), "timeout")
 		invulnTimer = 0
 

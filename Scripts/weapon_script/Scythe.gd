@@ -3,6 +3,7 @@ var wpnslot = -1
 var action = ""
 
 #moveset control
+var moveSequence
 var moveCount = 1
 var currentPosition = -1
 var currentMove
@@ -20,7 +21,6 @@ var negEdge = false
 #node references
 onready var sprite = [$Visual, $Visual2]
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA")]
 
 # two swings that can be repeated endlessly with the right timing
 # fair range
@@ -32,10 +32,13 @@ func _ready():
 	sprite[0].frame = 7
 	sprite[1].frame = 7
 	wepOrientation = 1
+	moveSequence = [get_node("5A"),get_node("5AA")]
+	for node in moveSequence:
+		remove_child(node)
 	PlayerData.wpnactionable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if charging && Input.is_action_just_released(get_action()):
 		negEdge = true
 	if active:
@@ -56,7 +59,6 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(200)
 		orient(orientation)
 		currentPosition += 1
-		print(currentPosition)
 		currentMove = moveSequence[currentPosition]
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
@@ -90,7 +92,7 @@ func attack(orientation):
 
 func hit(body):
 	if (body.has_method("damageHandler")):
-		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
+		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
 	remove_child(currentMove)
 	
 

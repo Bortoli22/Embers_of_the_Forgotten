@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/weapon_script/Ranged/FireballLaunch.gd" type="Script" id=1]
+
+[node name="FireballTome" type="Node2D"]
+position = Vector2( 2.18268, 2.97639 )
+script = ExtResource( 1 )
+
+[node name="Visual" type="Sprite" parent="."]
+visible = false
+position = Vector2( 55.535, 0.987202 )
+scale = Vector2( 0.670588, 0.683333 )

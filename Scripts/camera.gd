@@ -1,10 +1,15 @@
 extends Camera2D
 var hold
 var player
+var shaking
+var force
 
 func _ready():
 	hold = 0
+	shaking = false
+	force = 1
 	player = self.get_parent()
+	GameData.camera_node = self
 
 func _process(_delta):
 	if hold:
@@ -20,6 +25,9 @@ func _process(_delta):
 				position.x -= 1
 		else:
 			position = Vector2(0,0)
+	if (shaking):
+		set_offset(Vector2(rand_range(-1.0,1.0) * force, rand_range(-1.0,1.0) * force))
+	
 
 func shift(x,y):
 	hold = 1
@@ -31,11 +39,9 @@ func center(_speed):
 	pass
  
 
-#could define behavior for left/right extremes of map
-
-
-func shake(_force, _duration):
-	#could determine a set of directions, 
-	#randomize it on call and then execute movements based on force + slight randomization
-	#repeat for (duration) cycles
-	pass
+func shake(strength, duration):
+	if (!shaking):
+		shaking = true
+		force = strength
+		yield(get_tree().create_timer(duration), "timeout")
+		shaking = false
