@@ -6,5 +6,3 @@ var noCancel = true
 var cancelOffset = 0
 var animations = ["5A startup", "5A active", "5A recovery"]
 
-func _ready():
-	get_parent().remove_child(self)

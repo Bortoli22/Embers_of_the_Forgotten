@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Spear.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/weapon_script/Spear5A.gd" type="Script" id=2]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full3.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Spear2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/weapon_script/Spear5AA.gd" type="Script" id=5]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Spear_Full.png" type="Texture" id=6]
 
@@ -290,6 +289,3 @@ script = ExtResource( 5 )
 visible = false
 position = Vector2( 39.643, 5.31612 )
 shape = SubResource( 15 )
-
-[node name="5[A]" parent="." instance=ExtResource( 4 )]
-visible = false
