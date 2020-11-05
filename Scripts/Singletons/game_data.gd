@@ -19,6 +19,7 @@ const LIGHTSHAKE = 5
 var merchantPool = [
 	"double jump",
 	"triple jump",
+	"dash",
 	"wall jump",
 	"dodge",
 	"sword",
