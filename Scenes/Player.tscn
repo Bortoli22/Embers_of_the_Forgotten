@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/Player_Character_Animations.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/camera.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Sword.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Scythe.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/FireballTome.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/EruptionTome.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/SMG.tscn" type="PackedScene" id=12]
@@ -356,7 +357,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 16
+frame = 14
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -432,6 +433,8 @@ position = Vector2( 0, 0 )
 [node name="SMG" parent="PlayerCenter" instance=ExtResource( 12 )]
 
 [node name="EruptionTome" parent="PlayerCenter" instance=ExtResource( 10 )]
+
+[node name="FireballTome" parent="PlayerCenter" instance=ExtResource( 8 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Crouch = SubResource( 5 )
