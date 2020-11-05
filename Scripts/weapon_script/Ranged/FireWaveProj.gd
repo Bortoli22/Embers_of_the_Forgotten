@@ -8,6 +8,7 @@ var velocity
 var active
 var hit
 var fall
+var det = false
 var currentMove
 onready var sprite = $Sprite
 onready var moveSequence = [get_node("Hitbox"),get_node("Hitbox2"),get_node("Hitbox3")]
@@ -21,8 +22,9 @@ func _ready():
 	yield(get_tree().create_timer(0.18), "timeout")
 	velocity = Vector2(0,4000)
 	fall = true
-	yield(get_tree().create_timer(1), "timeout")
-	velocity.x -= orientation*100
+	yield(get_tree().create_timer(0.3), "timeout")
+	if !det:
+		velocity.x -= orientation*100
 
 func _process(_delta):
 	#if (position.x < 10*orientation):
@@ -34,12 +36,12 @@ func hit(body):
 	if (body.has_method("damageHandler")):
 		print(body)
 		body.damageHandler(currentMove.damageValue, orientation, currentMove.force)
-	remove_child(currentMove)
 
 func _physics_process(_delta):
 	var _MASret = move_and_slide(velocity)
 
 func burst():
+	det = true
 	currentMove = moveSequence[0]
 	var x
 	$AnimationPlayer.play("burst")
@@ -51,8 +53,7 @@ func burst():
 		hit = true
 		for y in x:
 			hit(y)
-	else:
-		remove_child(currentMove)
+	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
 	hit = false
 	
@@ -64,8 +65,7 @@ func burst():
 		hit = true
 		for y in x:
 			hit(y)
-	else:
-		remove_child(currentMove)
+	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
 	hit = false
 	
@@ -77,8 +77,7 @@ func burst():
 		hit = true
 		for y in x:
 			hit(y)
-	else:
-		remove_child(currentMove)
+	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
 	hit = false
 	yield(get_tree().create_timer(0.08), "timeout")
