@@ -30,10 +30,10 @@ onready var animation = $AnimationPlayer
 func _ready():
 	sprite.frame = 16
 	wepOrientation = 1
-	PlayerData.wpnactionable = true
 	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
 	for node in moveSequence:
 		remove_child(node)
+	PlayerData.wpnactionable = true
 
 #sequence of cancel windows
 

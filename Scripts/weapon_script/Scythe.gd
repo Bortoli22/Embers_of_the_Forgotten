@@ -32,10 +32,10 @@ func _ready():
 	sprite[0].frame = 7
 	sprite[1].frame = 7
 	wepOrientation = 1
-	PlayerData.wpnactionable = true
 	moveSequence = [get_node("5A"),get_node("5AA")]
 	for node in moveSequence:
 		remove_child(node)
+	PlayerData.wpnactionable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -26,7 +26,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 resource_name = "5A recovery"
 length = 0.153
-step = 0.017
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual:frame")
 tracks/0/interp = 1
@@ -34,7 +34,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0169999, 0.0339997, 0.0509996, 0.0679995 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.116667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10, 11 ]
@@ -237,7 +237,7 @@ position = Vector2( 63.2716, -0.471939 )
 texture = ExtResource( 6 )
 vframes = 2
 hframes = 8
-frame = 11
+frame = 7
 
 [node name="Visual2" type="Sprite" parent="."]
 position = Vector2( 63.2716, -0.471939 )
