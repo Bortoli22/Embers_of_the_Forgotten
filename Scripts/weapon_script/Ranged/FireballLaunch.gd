@@ -3,8 +3,8 @@ var wpnslot = -1
 var action = ""
 
 #moveset control
-const STARTUP = 0.1 #interval in seconds\
-const FIRERATE = 0.5 #interval in seconds\
+const STARTUP = 0.3 #interval in seconds\
+const FIRERATE = 1.2 #interval in seconds\
 const MAX_PROJECTILES = 30
 var projectile = preload("res://Scenes/FireballProj.tscn")
 
@@ -30,12 +30,13 @@ func attack(orientation):
 		PlayerData.playerNode.capSpeed(200)
 	orient(orientation)
 	var p = projectile.instance()
-	p.transform = PlayerData.playerNode.get_transform()
-	p.orientation = wepOrientation
 	yield(get_tree().create_timer(STARTUP), "timeout")
+	p.transform = PlayerData.playerNode.get_transform()
+	p.transform.origin.x += 35*wepOrientation
+	p.orientation = wepOrientation
 	get_tree().get_root().add_child(p)
-	yield(get_tree().create_timer(FIRERATE), "timeout")
 	PlayerData.playerNode.capSpeed(600)
+	yield(get_tree().create_timer(FIRERATE), "timeout")
 	PlayerData.wpnactionable = true
 
 #func generateProjectiles():
