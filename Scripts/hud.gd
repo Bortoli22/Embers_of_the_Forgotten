@@ -1,10 +1,10 @@
 extends Control
-var main
+#var main
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	main = get_tree().get_root().get_node("Main")
+	#main = get_tree().get_root().get_node("Main")
 	var initHealth = PlayerData.playerHealth
 	var initHealthMax = PlayerData.playerHealthMax
 	get_node("HealthBar/HealthEmpty").color = Color8(3, 72, 9, 255)
