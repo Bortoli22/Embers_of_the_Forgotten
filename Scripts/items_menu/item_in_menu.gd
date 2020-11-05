@@ -12,11 +12,12 @@ func _ready():
 		selectable = false
 		if has_node("ItemSprite"):
 			get_node("ItemSprite").hide()
+	if PlayerData.equipped.has(self.name.to_lower()):
+		selected = true
 	if selected && selectable:
 		get_node("Border").texture = texture_selected
 	else:
 		get_node("Border").texture = texture_unselected
-	pass # Replace with function body.
 
 func toggleHover():
 	hovered = !hovered
@@ -42,7 +43,3 @@ func toggleSelected():
 		get_node("Border").texture = texture_selected
 	else:
 		get_node("Border").texture = texture_unselected
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
- pass

@@ -13,8 +13,8 @@ var rangedUnlocks = [false, false, false]
 var orientation #rightness
 var baseATK
 var equipped = []
-var wpnslot1
-var wpnslot2
+var wpnslot1 = null
+var wpnslot2 = null
 var wpnactionable
 
 # Called when the node enters the scene tree for the first time.
