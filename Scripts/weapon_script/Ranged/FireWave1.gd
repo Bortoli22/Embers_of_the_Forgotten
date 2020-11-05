@@ -1,4 +1,4 @@
 extends Area2D
-var damageValue = 70
-var force = Vector2(5, -100)
+var damageValue = 140
+var force = Vector2(5, -160)
 
