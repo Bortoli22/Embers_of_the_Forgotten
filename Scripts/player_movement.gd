@@ -204,7 +204,10 @@ func damageHandler(dmgamount, direction, force):
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
 		if PlayerData.playerHealth == 0:
+			GameData.camera_node.shake(GameData.HEAVYSHAKE, 0.2)
 			pass
+		else:
+			GameData.camera_node.shake(GameData.MEDIUMSHAKE, 0.2)
 		yield(get_tree().create_timer(playerOnHitInvuln), "timeout")
 		invulnTimer = 0
 
