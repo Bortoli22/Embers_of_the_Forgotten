@@ -64,7 +64,7 @@ func _on_Submit_pressed():
 		else:
 			var name = unlockables[val.id]
 			if !(name == "---"):
-				if name == "sword" || name == "spear" || name == "scythe":
+				if name == "sword" || name == "spear" || name == "scythe" || name == "fireball" || name == "firewave":
 					PlayerData.weapons.append(name)
 				else:
 					PlayerData.abilities.append(name)

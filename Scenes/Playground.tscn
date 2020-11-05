@@ -144,7 +144,6 @@ __meta__ = {
 }
 
 [node name="Items Menu" parent="." instance=ExtResource( 12 )]
-visible = false
 
 [node name="box" parent="." instance=ExtResource( 5 )]
 position = Vector2( 325.795, 359.188 )
