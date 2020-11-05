@@ -20,7 +20,7 @@ var negEdge = false
 #node references
 onready var sprite = $Visual
 onready var animation = $AnimationPlayer
-onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
+onready var moveSequence = [get_node("5A"),get_node("5AA")]
 
 # not started yet
 # heavy commital stabs
@@ -28,12 +28,14 @@ onready var moveSequence = [get_node("5A"),get_node("5AA"),get_node("5[A]")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.frame = 16
+	sprite.frame = 11
 	wepOrientation = 1
+	for node in moveSequence:
+		remove_child(node)
 	PlayerData.wpnactionable = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if charging && Input.is_action_just_released(get_action()):
 		negEdge = true
 	if active:
@@ -90,7 +92,7 @@ func attack(orientation):
 
 func hit(body):
 	if (body.has_method("damageHandler")):
-		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
+		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
 	remove_child(currentMove)
 	
 
