@@ -4,7 +4,7 @@ var velocity = Vector2()
 var movement = 400
 var damageValue = 200
 var orientation = 1
-var force = Vector2(0,0) #no pushback
+var force = Vector2(500, -100) #
 # Called when the node enters the scene tree for the first time.
 
 func _physics_process(_delta):

@@ -1,32 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Ranged/FireballLaunch.gd" type="Script" id=1]
-[ext_resource path="res://Assets/weapon_animations/Player_Ranged_Animations_Fireball.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/weapon_script/Ranged/FireballProj.gd" type="Script" id=3]
-
-[sub_resource type="Animation" id=1]
-resource_name = "fireball"
-length = 0.333333
-loop = true
-step = 0.0166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 3, 4, 5, 0 ]
-}
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.05462, 4.34069 )
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 33.1252
+[ext_resource path="res://Scenes/FireballProj.tscn" type="PackedScene" id=2]
 
 [node name="FireballTome" type="Node2D"]
 position = Vector2( 2.18268, 2.97639 )
@@ -38,25 +13,4 @@ visible = false
 position = Vector2( 55.535, 0.987202 )
 scale = Vector2( 0.670588, 0.683333 )
 
-[node name="FireballProj" type="KinematicBody2D" parent="."]
-scale = Vector2( 12, 12 )
-collision_layer = 128
-collision_mask = 4
-script = ExtResource( 3 )
-
-[node name="Sprite" type="Sprite" parent="FireballProj"]
-texture = ExtResource( 2 )
-hframes = 8
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FireballProj"]
-anims/fireball = SubResource( 1 )
-
-[node name="Collision" type="CollisionShape2D" parent="FireballProj"]
-position = Vector2( -6.93975, -0.247842 )
-shape = SubResource( 2 )
-
-[node name="Attractor" type="Area2D" parent="FireballProj"]
-
-[node name="Collision" type="CollisionShape2D" parent="FireballProj/Attractor"]
-position = Vector2( 26.8768, -1.1003 )
-shape = SubResource( 3 )
+[node name="FireballProj" parent="." instance=ExtResource( 2 )]

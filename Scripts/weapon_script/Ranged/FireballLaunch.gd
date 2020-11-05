@@ -21,10 +21,6 @@ var negEdge = false
 onready var sprite = $Visual
 #onready var animation = $AnimationPlayer
 
-#easy to use 4-hit combo
-#shortish range
-#can be held down to just auto the whole string
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.frame = 0

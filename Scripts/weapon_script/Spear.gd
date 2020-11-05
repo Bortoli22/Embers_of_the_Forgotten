@@ -90,7 +90,7 @@ func attack(orientation):
 
 func hit(body):
 	if (body.has_method("damageHandler")):
-		body.damageHandler(moveSequence[currentPosition].damageValue, wepOrientation, Vector2(100,-100))
+		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
 	remove_child(currentMove)
 	
 
