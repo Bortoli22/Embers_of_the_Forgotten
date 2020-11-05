@@ -4,7 +4,7 @@ var action = ""
 
 #moveset control
 const STARTUP = 0.3 #interval in seconds\
-const FIRERATE = 1.2 #interval in seconds\
+const FIRERATE = 0.7 #interval in seconds\
 const MAX_PROJECTILES = 30
 var projectile = preload("res://Scenes/FireballProj.tscn")
 
