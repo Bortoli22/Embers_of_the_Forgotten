@@ -8,8 +8,8 @@ var items
 func _ready():
 	self.hide()
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	itemCount = get_node("Items").get_child_count()
-	items = get_node("Items").get_children()
+	itemCount = get_node("MeleeItems").get_child_count()
+	items = get_node("MeleeItems").get_children()
 	items[cursorIndex].toggleHover()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,11 +17,13 @@ func _process(delta):
 	if Input.is_action_just_released("item_menu"):
 		if is_visible_in_tree():
 			hide()
-			get_tree().paused = true
+			get_tree().paused = false
+			$"PopupMenu".hide()
 			#GameData.paused = false
 		else:
 			get_tree().paused = true
 			#GameData.paused = true
+			$"PopupMenu".show()
 			show()
 	if Input.is_action_just_released("ui_left"):
 		items[cursorIndex].toggleHover()

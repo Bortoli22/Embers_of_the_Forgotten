@@ -3,7 +3,7 @@ var projectile = preload("res://Scenes/projectile.tscn")
 var lastprojectile
 var wepOrientation
 var chargeable = false
-var damage = 200
+var damage = 800
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -24,9 +24,9 @@ func attack(orientation):
 		p.orientation = wepOrientation
 		get_tree().get_root().add_child(p)
 		lastprojectile = p
-		$laser_pistol.visible = true
-		yield(get_tree().create_timer(0.5), "timeout")
-		$laser_pistol.visible = false
+		$laser_sniper.visible = true
+		yield(get_tree().create_timer(1.5), "timeout")
+		$laser_sniper.visible = false
 		PlayerData.wpnactionable = true
 
 func orient(orientation):
