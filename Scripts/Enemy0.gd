@@ -31,6 +31,7 @@ func _ready():
 func damageHandler(damage, direction, force):
 	healthValue -= damageValue
 	knockback(direction, force)
+	#damagenumber()
 	if healthValue <= 0: 
 		died()
 

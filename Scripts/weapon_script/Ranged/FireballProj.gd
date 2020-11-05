@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-var movement = 400
-var damageValue = 200
+var movement = 1100
+var damageValue = 350
 var orientation = 1
 var force = Vector2(400, -120) #
 var velocity
@@ -30,5 +30,6 @@ func _physics_process(_delta):
 func _on_Hitbox_body_entered(body):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(damageValue, orientation, force)
+	GameData.camera_node.shake(GameData.LIGHTSHAKE, 0.15)
 	queue_free()
 
