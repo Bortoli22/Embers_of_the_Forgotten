@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -16,6 +16,10 @@
 [ext_resource path="res://Scenes/PopupMenu.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/SniperSelect.gd" type="Script" id=15]
 [ext_resource path="res://Scenes/SMGSelect.gd" type="Script" id=16]
+[ext_resource path="res://data/sprite/Unlocked.png" type="Texture" id=17]
+[ext_resource path="res://Scenes/PistolLock.gd" type="Script" id=18]
+[ext_resource path="res://Scenes/SniperLock.gd" type="Script" id=19]
+[ext_resource path="res://Scenes/SMGLock.gd" type="Script" id=20]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -278,7 +282,6 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
 [node name="MeleeItems" type="Node2D" parent="."]
-visible = false
 
 [node name="Sword" type="Node2D" parent="MeleeItems"]
 position = Vector2( 312, 192 )
@@ -434,6 +437,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="RangeItems" type="Node2D" parent="."]
+visible = false
 
 [node name="Pistol" type="Control" parent="RangeItems"]
 margin_right = 40.0
@@ -449,6 +453,20 @@ margin_right = 393.573
 margin_bottom = 286.231
 text = "PISTOL"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolTooltip" type="Label" parent="RangeItems/Pistol"]
+visible = false
+margin_left = 292.749
+margin_top = 289.4
+margin_right = 395.749
+margin_bottom = 354.4
+text = "Pistol
+Firerate: 2
+Trigger: Semi
+Damage: 200"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -471,6 +489,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="SMGTooltip" type="Label" parent="RangeItems/SMG"]
+visible = false
+margin_left = 461.309
+margin_top = 290.149
+margin_right = 564.309
+margin_bottom = 355.149
+text = "SMG
+Firerate: 6.67
+Trigger: Auto
+Damage: 100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Sniper" type="Control" parent="RangeItems"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -488,6 +520,71 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SniperTooltip" type="Label" parent="RangeItems/Sniper"]
+visible = false
+margin_left = 629.119
+margin_top = 290.898
+margin_right = 732.119
+margin_bottom = 355.898
+text = "Sniper
+Firerate: 0.67
+Trigger: Semi
+Damage: 800"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unlocks" type="Node2D" parent="."]
+visible = false
+
+[node name="Pistol" type="Label" parent="Unlocks"]
+margin_left = 286.98
+margin_top = 187.749
+margin_right = 370.98
+margin_bottom = 206.749
+text = "Pistol"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolLock" type="Sprite" parent="Unlocks"]
+position = Vector2( 271.568, 192.907 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 17 )
+script = ExtResource( 18 )
+
+[node name="SMG" type="Label" parent="Unlocks"]
+margin_left = 286.231
+margin_top = 213.97
+margin_right = 370.231
+margin_bottom = 232.97
+text = "SMG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMGLock" type="Sprite" parent="Unlocks"]
+position = Vector2( 271.568, 219.877 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 17 )
+script = ExtResource( 20 )
+
+[node name="Sniper" type="Label" parent="Unlocks"]
+margin_left = 286.98
+margin_top = 237.942
+margin_right = 370.98
+margin_bottom = 256.942
+text = "Sniper"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperLock" type="Sprite" parent="Unlocks"]
+position = Vector2( 271.568, 245.348 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 17 )
+script = ExtResource( 19 )
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_left = 216.0

@@ -9,7 +9,14 @@ var weaponID = 0
 func _ready():
 	$"../".visible = PlayerData.rangedUnlocks[weaponID]
 	self.connect("pressed", self, "_pressed")
+	self.connect("mouse_entered", self, "_mouse_in")
+	self.connect("mouse_exited", self, "_mouse_out")
 
+func _mouse_in():
+	$"../PistolTooltip".visible = true
+	
+func _mouse_out():
+	$"../PistolTooltip".visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _pressed():

@@ -34,3 +34,4 @@ func _on_id_pressed(ID):
 			$"../MeleeItems".visible = false
 			$"../RangeItems".visible = false
 			$"../Unlocks".visible = true
+	self.popup()

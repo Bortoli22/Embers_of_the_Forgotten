@@ -19,8 +19,8 @@ var wpnactionable
 func _ready():
 	playerHealth = playerHealthMax
 	rangedUnlocks[0] = true
-	rangedUnlocks[1] = true
-	rangedUnlocks[2] = true
+	#rangedUnlocks[1] = true
+	#rangedUnlocks[2] = true
 	wpnactionable = true
 	orientation = 1
 	
