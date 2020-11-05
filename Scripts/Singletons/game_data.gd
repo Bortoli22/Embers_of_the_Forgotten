@@ -24,7 +24,9 @@ var merchantPool = [
 	"dodge",
 	"sword",
 	"spear",
-	"scythe"
+	"scythe",
+	"fireball",
+	"firewave"
 ]
 
 # Called when the node enters the scene tree for the first time.

@@ -61,8 +61,8 @@ func equip(slot, weapon):
 	#once they've been loaded and populated by that array in PlayerData presumably
 	#switch(weapon)
 	#"Scythe":
-	PlayerData.wpnslot1 = $PlayerCenter/EruptionTome # TESTING
-	PlayerData.wpnslot2 = $PlayerCenter/FireballTome # TESTING
+	PlayerData.wpnslot1 = $PlayerCenter/Firewave # TESTING
+	PlayerData.wpnslot2 = $PlayerCenter/Fireball # TESTING
 	
 func initLoad(stcurrency, stHealth):
 	PlayerData.playerHealth = stHealth

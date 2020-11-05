@@ -26,163 +26,163 @@ size = 20
 font_data = ExtResource( 1 )
 
 [sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 5 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 5 )
+atlas = ExtResource( 3 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=22]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 9 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=33]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=34]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=35]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=36]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=37]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=38]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=39]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=42]
@@ -229,22 +229,22 @@ region = Rect2( 1024, 256, 256, 256 )
 animations = [ {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
-"name": "FireHover",
+"name": "SpearHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": false,
-"name": "SpearHover",
+"name": "SwordHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
 "loop": false,
-"name": "SwordHover",
+"name": "FireballHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
 "loop": false,
-"name": "FireballHover",
+"name": "FireHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
@@ -253,19 +253,23 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[node name="Node2D" type="Control"]
+[node name="Items" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Screen Dim" type="Sprite" parent="."]
+[node name="Screen Dim" type="Sprite" parent="Control"]
 modulate = Color( 1, 1, 1, 0.8 )
 position = Vector2( 512, 300 )
 scale = Vector2( 4.57143, 4.6875 )
 texture = ExtResource( 12 )
 
-[node name="MenuTitle" type="RichTextLabel" parent="."]
+[node name="MenuTitle" type="RichTextLabel" parent="Control"]
 margin_left = 416.0
 margin_top = 96.0
 margin_right = 634.0
@@ -276,18 +280,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuBorder" type="Sprite" parent="."]
+[node name="MenuBorder" type="Sprite" parent="Control"]
 position = Vector2( 512, 288 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 6 )
 
-[node name="MeleeItems" type="Node2D" parent="."]
+[node name="MeleeItems" type="Node2D" parent="Control"]
 
-[node name="Sword" type="Node2D" parent="MeleeItems"]
+[node name="sword" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 312, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="MeleeItems/Sword"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -296,7 +300,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="MeleeItems/Sword"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/sword"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -304,17 +308,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Sword"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/sword"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Scythe" type="Node2D" parent="MeleeItems"]
+[node name="scythe" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 448, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="MeleeItems/Scythe"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -323,7 +327,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="MeleeItems/Scythe"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/scythe"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -331,17 +335,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Scythe"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/scythe"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Spear" type="Node2D" parent="MeleeItems"]
+[node name="spear" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 584, 192 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="MeleeItems/Spear"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -350,7 +354,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="MeleeItems/Spear"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/spear"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -358,17 +362,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Spear"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/spear"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Fire" type="Node2D" parent="MeleeItems"]
+[node name="firewave" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 312, 328 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="MeleeItems/Fire"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/firewave"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -377,7 +381,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="MeleeItems/Fire"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/firewave"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -385,17 +389,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Fire"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/firewave"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Fireball" type="Node2D" parent="MeleeItems"]
+[node name="fireball" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 448, 328 )
 script = ExtResource( 10 )
 
-[node name="ItemSprite" type="AnimatedSprite" parent="MeleeItems/Fireball"]
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/MeleeItems/fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 52 )
@@ -404,7 +408,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Border" type="Sprite" parent="MeleeItems/Fireball"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/fireball"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -412,17 +416,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Fireball"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/fireball"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="Empty" type="Node2D" parent="MeleeItems"]
+[node name="Empty" type="Node2D" parent="Control/MeleeItems"]
 position = Vector2( 584, 328 )
 script = ExtResource( 10 )
 
-[node name="Border" type="Sprite" parent="MeleeItems/Empty"]
+[node name="Border" type="Sprite" parent="Control/MeleeItems/Empty"]
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
@@ -430,23 +434,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Cursor" type="Sprite" parent="MeleeItems/Empty"]
+[node name="Cursor" type="Sprite" parent="Control/MeleeItems/Empty"]
 visible = false
 position = Vector2( 64, 64 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[node name="RangeItems" type="Node2D" parent="."]
+[node name="RangeItems" type="Node2D" parent="Control"]
 visible = false
 
-[node name="Pistol" type="Control" parent="RangeItems"]
+[node name="Pistol" type="Control" parent="Control/RangeItems"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PistolSelect" type="Button" parent="RangeItems/Pistol"]
+[node name="PistolSelect" type="Button" parent="Control/RangeItems/Pistol"]
 margin_left = 292.573
 margin_top = 223.231
 margin_right = 393.573
@@ -457,7 +461,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PistolTooltip" type="Label" parent="RangeItems/Pistol"]
+[node name="PistolTooltip" type="Label" parent="Control/RangeItems/Pistol"]
 visible = false
 margin_left = 292.749
 margin_top = 289.4
@@ -471,14 +475,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SMG" type="Control" parent="RangeItems"]
+[node name="SMG" type="Control" parent="Control/RangeItems"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SMGSelect" type="Button" parent="RangeItems/SMG"]
+[node name="SMGSelect" type="Button" parent="Control/RangeItems/SMG"]
 margin_left = 460.383
 margin_top = 223.231
 margin_right = 561.383
@@ -489,7 +493,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SMGTooltip" type="Label" parent="RangeItems/SMG"]
+[node name="SMGTooltip" type="Label" parent="Control/RangeItems/SMG"]
 visible = false
 margin_left = 461.309
 margin_top = 290.149
@@ -503,14 +507,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sniper" type="Control" parent="RangeItems"]
+[node name="Sniper" type="Control" parent="Control/RangeItems"]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SniperSelect" type="Button" parent="RangeItems/Sniper"]
+[node name="SniperSelect" type="Button" parent="Control/RangeItems/Sniper"]
 margin_left = 629.692
 margin_top = 223.98
 margin_right = 730.692
@@ -521,7 +525,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SniperTooltip" type="Label" parent="RangeItems/Sniper"]
+[node name="SniperTooltip" type="Label" parent="Control/RangeItems/Sniper"]
 visible = false
 margin_left = 629.119
 margin_top = 290.898
@@ -535,10 +539,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Unlocks" type="Node2D" parent="."]
+[node name="Unlocks" type="Node2D" parent="Control"]
 visible = false
 
-[node name="Pistol" type="Label" parent="Unlocks"]
+[node name="Pistol" type="Label" parent="Control/Unlocks"]
 margin_left = 286.98
 margin_top = 187.749
 margin_right = 370.98
@@ -548,13 +552,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PistolLock" type="Sprite" parent="Unlocks"]
+[node name="PistolLock" type="Sprite" parent="Control/Unlocks"]
 position = Vector2( 271.568, 192.907 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 17 )
 script = ExtResource( 18 )
 
-[node name="SMG" type="Label" parent="Unlocks"]
+[node name="SMG" type="Label" parent="Control/Unlocks"]
 margin_left = 286.231
 margin_top = 213.97
 margin_right = 370.231
@@ -564,13 +568,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SMGLock" type="Sprite" parent="Unlocks"]
+[node name="SMGLock" type="Sprite" parent="Control/Unlocks"]
 position = Vector2( 271.568, 219.877 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 17 )
 script = ExtResource( 20 )
 
-[node name="Sniper" type="Label" parent="Unlocks"]
+[node name="Sniper" type="Label" parent="Control/Unlocks"]
 margin_left = 286.98
 margin_top = 237.942
 margin_right = 370.98
@@ -580,13 +584,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SniperLock" type="Sprite" parent="Unlocks"]
+[node name="SniperLock" type="Sprite" parent="Control/Unlocks"]
 position = Vector2( 271.568, 245.348 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 17 )
 script = ExtResource( 19 )
 
-[node name="PopupMenu" type="PopupMenu" parent="."]
+[node name="PopupMenu" type="PopupMenu" parent="Control"]
 margin_left = 216.0
 margin_top = 104.0
 margin_right = 316.0
