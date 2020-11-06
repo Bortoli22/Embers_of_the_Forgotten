@@ -29,6 +29,7 @@ func _on_Button_pressed():
 	
 	PlayerData.abilities = []
 	PlayerData.weapons = []
+	PlayerData.equipped = []
 	GameData.current_level = 1
 	PlayerData.playerHealth = PlayerData.playerHealthMax
 	hide()
