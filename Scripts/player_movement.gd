@@ -254,7 +254,7 @@ func healthChange(amount):
 	PlayerData.playerHealth += amount
 	if PlayerData.playerHealth < 0:
 		PlayerData.playerHealth = 0
-	get_parent().get_node("HUD").get_node("HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
+	get_node("../CanvasLayer/HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
 	
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:

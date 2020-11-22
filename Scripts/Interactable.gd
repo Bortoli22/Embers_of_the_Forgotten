@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 
 # Declare member variables here.
@@ -32,15 +32,11 @@ func _ready():
 			sprite.texture = load("res://Assets/interactables/interactables_3.png")
 	
 
-func damageHandler(_direction, force):
-	knockback(_direction, force)
+func damageHandler():
 	if !indestructible:
-		destructHealth -= 200
+		destructHealth -= 20
 		if (destructHealth <= 0):
 			destroyInteractable()
-
-func knockback(direction, force):
-	get_node("RigidBody2D").apply_central_impulse(Vector2(force.x*direction, force.y))
 
 func destroyInteractable():
 	drops()
@@ -58,7 +54,7 @@ func generateCoin(lowerCount, upperCount, lowerValue, upperValue):
 		var cinstance = coin.instance()
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
 		cinstance.transform = get_transform()
-		get_owner().add_child(cinstance)
+		add_child(cinstance)
 	
 
 func generateHealth(lowerCount, upperCount, lowerValue, upperValue):
@@ -67,4 +63,12 @@ func generateHealth(lowerCount, upperCount, lowerValue, upperValue):
 		var cinstance = health.instance()
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
 		cinstance.transform = get_transform()
-		get_owner().add_child(cinstance)
+		add_child(cinstance)
+
+func _on_Break_area_exited(body):
+	print("Exited")
+	damageHandler()
+
+func _on_Break_area_entered(body):
+	print("Entered")
+	damageHandler()

@@ -36,8 +36,6 @@ var roomHeightBoostMax = 8
 var platforms = []
 var platformYIndexing = []
 
-var interactable = preload("res://Scenes/Interactable.tscn")
-
 var Tiles = {
 	"C": 0,			#Center Tile
 	"C_TL": 12,		#Ceiling Top Left
@@ -59,6 +57,8 @@ func _ready():
 	#for a consistent, testable seed, comment the below line
 	randomize()
 	
+	GameData.interactablePos = []
+	
 	_V_setup()
 	var iterator = 1
 	while iterator < grid_size_x:
@@ -75,7 +75,7 @@ func _ready():
 			VSlice2 = VSlice3
 			_v_slice_evaluate(iterator + 2)
 			VSlice1 = VSlice2
-			_place_interactable()
+			_add_interactable(iterator + 2)
 			for val in range(roomLength):
 				_v_slice_evaluate(iterator + val + 3)
 				_platform_evaluate(iterator + val + 3, val)
@@ -104,11 +104,8 @@ func _v_slice_generate():
 	VSlice2 = VSlice3
 	_set_random_vars()
 	
-func _place_interactable():
-	var addInter = interactable.instance()
-	addInter.position.x = 100
-	addInter.position.y = 32 * (basePointBase - VSlice2.x - 1)
-	add_child(addInter)
+func _add_interactable(iterator):
+	GameData.interactablePos.append(Vector2(32*iterator,32*(basePointBase - VSlice2.x - 2)))
 
 func _platform_evaluate(xVal, roomLengthIteration):
 	#stop evaluations
@@ -276,3 +273,7 @@ func _V_finalize(iterator):
 	
 	final_grid_x_size = iterator + 2
 	GameData.final_grid_size_x = final_grid_x_size
+	
+	var items = get_node_or_null("../../Item_Generation")
+	if items != null:
+		items._place_interactables()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/stage_generation.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/RespawnMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/ControlRebindMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/items_menu.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/item_generation.gd" type="Script" id=9]
 
 [node name="Root" type="Node2D"]
 
@@ -26,6 +27,9 @@ layer = 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 320 )
+
+[node name="Item_Generation" type="Node2D" parent="."]
+script = ExtResource( 9 )
 
 [node name="Stage_Generation" parent="." instance=ExtResource( 1 )]
 
