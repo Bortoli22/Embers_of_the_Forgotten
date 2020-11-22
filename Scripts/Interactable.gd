@@ -32,9 +32,9 @@ func _ready():
 			sprite.texture = load("res://Assets/interactables/interactables_3.png")
 	
 
-func damageHandler():
+func damageHandler(_damageValue, _orientation, _force):
 	if !indestructible:
-		destructHealth -= 20
+		destructHealth -= 40
 		if (destructHealth <= 0):
 			destroyInteractable()
 
@@ -44,7 +44,9 @@ func destroyInteractable():
 
 func drops():
 	if type == "crate":
-		generateCoin(1, 5, 10, 75)
+		generateCoin(2, 5, 10, 75)
+	if type == "money":
+		generateCoin(5, 10, 10, 75)
 	if type == "health":
 		generateHealth(1, 2, 50, 75)
 
@@ -54,7 +56,7 @@ func generateCoin(lowerCount, upperCount, lowerValue, upperValue):
 		var cinstance = coin.instance()
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
 		cinstance.transform = get_transform()
-		add_child(cinstance)
+		get_parent().add_child(cinstance)
 	
 
 func generateHealth(lowerCount, upperCount, lowerValue, upperValue):
@@ -63,12 +65,7 @@ func generateHealth(lowerCount, upperCount, lowerValue, upperValue):
 		var cinstance = health.instance()
 		cinstance.init(rng.randi_range(lowerValue, upperValue), rng.randi_range(-100,100))
 		cinstance.transform = get_transform()
-		add_child(cinstance)
+		get_parent().add_child(cinstance)
 
 func _on_Break_area_exited(body):
-	print("Exited")
-	damageHandler()
-
-func _on_Break_area_entered(body):
-	print("Entered")
-	damageHandler()
+	damageHandler(null, null, null)

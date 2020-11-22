@@ -75,8 +75,8 @@ func _ready():
 			VSlice2 = VSlice3
 			_v_slice_evaluate(iterator + 2)
 			VSlice1 = VSlice2
-			_add_interactable(iterator + 2)
 			for val in range(roomLength):
+				_add_interactable(iterator + val + 3)
 				_v_slice_evaluate(iterator + val + 3)
 				_platform_evaluate(iterator + val + 3, val)
 			print("found room on iteration: " + str(iterator))
@@ -105,7 +105,11 @@ func _v_slice_generate():
 	_set_random_vars()
 	
 func _add_interactable(iterator):
-	GameData.interactablePos.append(Vector2(32*iterator,32*(basePointBase - VSlice2.x - 2)))
+	var x = randi() % 8
+	if x > 0:
+		return
+	#will fall to rest on whatever is nearest to the ceiling
+	GameData.interactablePos.append(Vector2(32*iterator,32*(basePointBase - VSlice2.x - VSlice2.y + 3)))
 
 func _platform_evaluate(xVal, roomLengthIteration):
 	#stop evaluations
