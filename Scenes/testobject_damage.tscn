@@ -42,4 +42,4 @@ text = "danger"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

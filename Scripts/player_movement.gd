@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 # Member variables here
-export var playerGravity = 9.81
+export var playerGravity = 600
 export var playerSpeed = 400
 export var terminalVelocity = 1500
 export var sprintVelocity = 2500
@@ -110,12 +110,14 @@ func _physics_process(delta):
 		else: 
 			playerVelocity.y = terminalVelocity
 	
-	
 	#obtain new x velocity
 	_inputSequence()
-	# distance = velocity * time (right?)
-	# playerDistance = playerVelocity * delta
-	var masRET = move_and_slide(playerVelocity, Vector2(0,-1))
+	var masRET = move_and_slide(playerVelocity, Vector2(0,-1), false, 4, .785398, false)
+	var sCount = get_slide_count()
+	for index in range(sCount):
+		var col = get_slide_collision(index)
+		if col.collider.is_in_group("interactables"):
+			col.collider.apply_central_impulse(col.normal * -100)
 
 # Get x velocity from LR inputs
 func _inputSequence():
@@ -254,7 +256,7 @@ func healthChange(amount):
 	PlayerData.playerHealth += amount
 	if PlayerData.playerHealth < 0:
 		PlayerData.playerHealth = 0
-	get_parent().get_node("HUD").get_node("HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
+	get_node("../HUD/HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
 	
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:

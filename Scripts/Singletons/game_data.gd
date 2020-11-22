@@ -14,6 +14,7 @@ const WPN_SCYTHE = ""
 const HEAVYSHAKE = 40
 const MEDIUMSHAKE = 8
 const LIGHTSHAKE = 5
+var interactablePos = []
 
 #the possible unlocks, aka what the player doesn't have yet
 var merchantPool = [
