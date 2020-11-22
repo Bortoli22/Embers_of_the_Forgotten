@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_Character_Animations.png-0753788c02d3074d81f6c5904f7c2f41.stex"
+path="res://.import/interactables_0.png-02e1fdd985af26201d2b86b0daf8b61f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_Character_Animations.png"
-dest_files=[ "res://.import/Player_Character_Animations.png-0753788c02d3074d81f6c5904f7c2f41.stex" ]
+source_file="res://Assets/interactables/interactables_0.png"
+dest_files=[ "res://.import/interactables_0.png-02e1fdd985af26201d2b86b0daf8b61f.stex" ]
 
 [params]
 
