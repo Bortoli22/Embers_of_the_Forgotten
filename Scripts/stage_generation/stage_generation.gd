@@ -79,7 +79,7 @@ func _ready():
 				_add_interactable(iterator + val + 3)
 				_v_slice_evaluate(iterator + val + 3)
 				_platform_evaluate(iterator + val + 3, val)
-			print("found room on iteration: " + str(iterator))
+			#print("found room on iteration: " + str(iterator))
 			iterator += roomLength + 1
 		iterator += 1
 	
@@ -129,7 +129,6 @@ func _platform_evaluate(xVal, roomLengthIteration):
 		if (platformYIndexing.find(y) == -1) and (platformYIndexing.find(y-1) == -1):
 			platforms.append(Vector3(xVal, y + 3, x + 3))
 			platformYIndexing.append(y)
-			print("added platform at " + str(xVal)) 
 
 	#evaluate platforms at VSlice
 	var saveSize = platforms.size()

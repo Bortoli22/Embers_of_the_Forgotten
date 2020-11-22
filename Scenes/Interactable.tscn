@@ -9,10 +9,13 @@ radius = 16.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15.0229, 14.9981 )
 
-[node name="Node2D" type="RigidBody2D"]
+[node name="Node2D" type="RigidBody2D" groups=[
+"interactables",
+]]
 position = Vector2( 32, 32 )
 collision_layer = 129
 collision_mask = 7
+gravity_scale = 10.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,7 +29,9 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Break"]
 shape = SubResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=[
+"interactables",
+]]
 scale = Vector2( 2, 2 )
 shape = SubResource( 2 )
 [connection signal="area_entered" from="Break" to="." method="_on_Break_area_entered"]

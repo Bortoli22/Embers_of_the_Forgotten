@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/hud.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/HUDHealthBar.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -11,10 +15,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "BIG BOY TEXT"
+[node name="Money" type="RichTextLabel" parent="HUD"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 216.0
+margin_bottom = 56.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "Money: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -71,3 +78,6 @@ margin_left = 324.938
 margin_top = 68.3611
 margin_right = 710.938
 margin_bottom = 155.361
+__meta__ = {
+"_edit_use_anchors_": false
+}

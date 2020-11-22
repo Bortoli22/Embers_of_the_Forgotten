@@ -344,11 +344,9 @@ graph_offset = Vector2( 92, -2.0732 )
 position = Vector2( 493.465, 50.5128 )
 collision_layer = 2
 script = ExtResource( 3 )
-playerGravity = 588.0
 playerSpeed = 600
 
 [node name="Player Collision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 1.68369, 10.9435 )
 shape = SubResource( 1 )
 

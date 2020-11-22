@@ -14,7 +14,4 @@ func add_money(value):
 	
 	if add != null:
 		add.change_money(PlayerData.currency)
-		print("added")
-	else:
-		print("nulll")
 	#trigger sounds and stuff
