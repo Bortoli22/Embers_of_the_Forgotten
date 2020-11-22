@@ -2,7 +2,7 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 25
+var grid_size_x = 250
 var grid_size_y = 25
 var final_grid_x_size = grid_size_x
 
@@ -25,13 +25,16 @@ var VSlice1
 var VSlice2
 var VSlice3
 
-var isRoom = false
+var isRoom = true
 var roomLength = 18
 var roomLengthMin = 15
 var roomLengthMax = 30
 var roomHeightBoost = 5
 var roomHeightBoostMin = 3 
 var roomHeightBoostMax = 8
+
+var platforms = []
+var platformYIndexing = []
 
 var Tiles = {
 	"C": 0,			#Center Tile
@@ -72,7 +75,8 @@ func _ready():
 			VSlice1 = VSlice2
 			for val in range(roomLength):
 				_v_slice_evaluate(iterator + val + 3)
-			#print("found room on iteration: " + str(iterator))
+				_platform_evaluate(iterator + val + 3, val)
+			print("found room on iteration: " + str(iterator))
 			iterator += roomLength + 1
 		iterator += 1
 	
@@ -96,6 +100,47 @@ func _v_slice_generate():
 	VSlice1 = VSlice2
 	VSlice2 = VSlice3
 	_set_random_vars()
+
+func _platform_evaluate(xVal, roomLengthIteration):
+	#stop evaluations
+	if roomLengthIteration > (roomLength - 2):
+		while platforms.size():
+			var platform = platforms.pop_front()
+			set_cell(xVal, basePointBase - VSlice2.x - platform.y, Tiles.C_BR)
+			set_cell(xVal, basePointBase - VSlice2.x - platform.y - 1, Tiles.G_TR)
+		platformYIndexing = []
+		return
+
+	#add platform Vector3(starting_x, y, length)
+	var x = randi() % 3
+	if (x == 0) and (roomLengthIteration < roomLength - 4):
+		x = randi() % 5
+		var y = randi() % (height - heightMin + 1)
+		if (platformYIndexing.find(y) == -1) and (platformYIndexing.find(y-1) == -1):
+			platforms.append(Vector3(xVal, y + 3, x + 3))
+			platformYIndexing.append(y)
+			print("added platform at " + str(xVal)) 
+
+	#evaluate platforms at VSlice
+	var saveSize = platforms.size()
+	for v in range(saveSize):
+		var val = platforms.pop_front()
+		#start of platform
+		if val.x == xVal:
+			set_cell(xVal, basePointBase - VSlice2.x - val.y, Tiles.C_BL)
+			set_cell(xVal, basePointBase - VSlice2.x - val.y - 1, Tiles.G_TL)
+		#end of platform
+		elif xVal >= val.x + val.z:
+			set_cell(xVal, basePointBase - VSlice2.x - val.y, Tiles.C_BR)
+			set_cell(xVal, basePointBase - VSlice2.x - val.y - 1, Tiles.G_TR)
+		#middle of platform
+		else:
+			set_cell(xVal, basePointBase - VSlice2.x - val.y, Tiles.C_M)
+			set_cell(xVal, basePointBase - VSlice2.x - val.y - 1, Tiles.G_M)
+		if !(xVal >= val.x + val.z):
+			platforms.push_back(val)
+		else:
+			platformYIndexing.remove(platformYIndexing.find(val.y))
 
 func _v_slice_evaluate_test(iterator): 
 	for val in range(0, height):
