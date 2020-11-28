@@ -66,43 +66,43 @@ atlas = ExtResource( 5 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 9 )
+atlas = ExtResource( 7 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=22]
@@ -186,43 +186,43 @@ atlas = ExtResource( 8 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 256, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 512, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 768, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 1024, 0, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=47]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 0, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 256, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 512, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 768, 256, 256, 256 )
 
 [sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 7 )
+atlas = ExtResource( 9 )
 region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="SpriteFrames" id=52]
@@ -234,7 +234,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
 "loop": false,
-"name": "FireballHover",
+"name": "FireHover",
 "speed": 30.0
 }, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
@@ -249,7 +249,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ) ],
 "loop": false,
-"name": "FireHover",
+"name": "FireballHover",
 "speed": 30.0
 } ]
 
