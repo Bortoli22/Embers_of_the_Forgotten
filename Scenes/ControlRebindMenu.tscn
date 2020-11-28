@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/control_rebind_menu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/ControlPanel.tscn" type="PackedScene" id=2]
 
 [node name="ControlRebindMenu" type="CanvasLayer"]
 
@@ -17,159 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
-margin_left = 437.0
-margin_top = 150.0
-margin_right = 587.0
-margin_bottom = 350.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HBoxJUMP" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 6.0
-margin_right = 150.0
-margin_bottom = 26.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxJUMP"]
-margin_left = 50.0
-margin_top = 3.0
-margin_right = 83.0
-margin_bottom = 17.0
-text = "JUMP"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxJUMP"]
-margin_left = 87.0
-margin_right = 99.0
-margin_bottom = 20.0
-
-[node name="HBoxLEFT" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 30.0
-margin_right = 150.0
-margin_bottom = 50.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxLEFT"]
-margin_left = 53.0
-margin_top = 3.0
-margin_right = 81.0
-margin_bottom = 17.0
-text = "LEFT"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxLEFT"]
-margin_left = 85.0
-margin_right = 97.0
-margin_bottom = 20.0
-
-[node name="HBoxRIGHT" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 54.0
-margin_right = 150.0
-margin_bottom = 74.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxRIGHT"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 87.0
-margin_bottom = 17.0
-text = "RIGHT"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxRIGHT"]
-margin_left = 91.0
-margin_right = 103.0
-margin_bottom = 20.0
-
-[node name="HBoxCROUCH" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 78.0
-margin_right = 150.0
-margin_bottom = 98.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxCROUCH"]
-margin_left = 39.0
-margin_top = 3.0
-margin_right = 94.0
-margin_bottom = 17.0
-text = "CROUCH"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxCROUCH"]
-margin_left = 98.0
-margin_right = 110.0
-margin_bottom = 20.0
-
-[node name="HBoxWALLGRAB" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 102.0
-margin_right = 150.0
-margin_bottom = 122.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxWALLGRAB"]
-margin_left = 29.0
-margin_top = 3.0
-margin_right = 105.0
-margin_bottom = 17.0
-text = "WALL GRAB"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxWALLGRAB"]
-margin_left = 109.0
-margin_right = 121.0
-margin_bottom = 20.0
-
-[node name="HBoxDODGE" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 126.0
-margin_right = 150.0
-margin_bottom = 146.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxDODGE"]
-margin_left = 43.0
-margin_top = 3.0
-margin_right = 91.0
-margin_bottom = 17.0
-text = "DODGE"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxDODGE"]
-margin_left = 95.0
-margin_right = 107.0
-margin_bottom = 20.0
-
-[node name="HBoxPRIMARYATTACK" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 150.0
-margin_right = 150.0
-margin_bottom = 170.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxPRIMARYATTACK"]
-margin_left = 12.0
-margin_top = 3.0
-margin_right = 121.0
-margin_bottom = 17.0
-text = "PRIMARY ATTACK"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxPRIMARYATTACK"]
-margin_left = 125.0
-margin_right = 137.0
-margin_bottom = 20.0
-
-[node name="HBoxALTATTACK" type="HBoxContainer" parent="Control/Panel/VBoxContainer"]
-margin_top = 174.0
-margin_right = 150.0
-margin_bottom = 194.0
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/HBoxALTATTACK"]
-margin_left = 29.0
-margin_top = 3.0
-margin_right = 104.0
-margin_bottom = 17.0
-text = "ALT ATTACK"
-
-[node name="Button" type="Button" parent="Control/Panel/VBoxContainer/HBoxALTATTACK"]
-margin_left = 108.0
-margin_right = 120.0
-margin_bottom = 20.0
+[node name="VBoxContainer" parent="Control/Panel" instance=ExtResource( 2 )]
 
 [node name="Button" type="Button" parent="Control/Panel"]
 margin_left = 485.881
@@ -180,12 +29,4 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxJUMP/Button" to="Control" method="_on_jump_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxLEFT/Button" to="Control" method="_on_left_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxRIGHT/Button" to="Control" method="_on_right_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxCROUCH/Button" to="Control" method="_on_crouch_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxWALLGRAB/Button" to="Control" method="_on_wallgrab_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxDODGE/Button" to="Control" method="_on_dodge_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxPRIMARYATTACK/Button" to="Control" method="_on_primaryattack_pressed"]
-[connection signal="pressed" from="Control/Panel/VBoxContainer/HBoxALTATTACK/Button" to="Control" method="_on_altattack_pressed"]
 [connection signal="pressed" from="Control/Panel/Button" to="Control" method="_on_back_pressed"]
