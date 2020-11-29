@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/firewave1.wav-388181d27249cee530fcd7a01f3b0f48.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/firewave1.wav"
+dest_files=[ "res://.import/firewave1.wav-388181d27249cee530fcd7a01f3b0f48.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
