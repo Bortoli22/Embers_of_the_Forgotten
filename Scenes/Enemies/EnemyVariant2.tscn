@@ -1,0 +1,199 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/enemies/Enemy_Variant_2.png" type="Texture" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Attack_L"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack_R"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -64, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle_L"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 64, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle_R"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -64, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 56, 64 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 32, 16 )
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "Attack_R"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "Attack_L"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Idle_R"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle_L"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=17]
+states/Attack_L/node = SubResource( 7 )
+states/Attack_L/position = Vector2( 313, 63 )
+states/Attack_R/node = SubResource( 8 )
+states/Attack_R/position = Vector2( 535, 63 )
+states/Idle_L/node = SubResource( 9 )
+states/Idle_L/position = Vector2( 313, 179 )
+states/Idle_R/node = SubResource( 10 )
+states/Idle_R/position = Vector2( 535, 179 )
+transitions = [ "Idle_L", "Attack_L", SubResource( 11 ), "Idle_L", "Idle_R", SubResource( 12 ), "Idle_R", "Idle_L", SubResource( 13 ), "Idle_R", "Attack_R", SubResource( 14 ), "Attack_L", "Idle_L", SubResource( 15 ), "Attack_R", "Idle_R", SubResource( 16 ) ]
+graph_offset = Vector2( 1, 0 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[node name="Node2D" type="KinematicBody2D"]
+position = Vector2( 192, 128 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 64, 0 )
+vframes = 5
+hframes = 8
+region_rect = Rect2( 8, 8, 116, 112 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack_L = SubResource( 1 )
+anims/Attack_R = SubResource( 2 )
+anims/Idle_L = SubResource( 3 )
+anims/Idle_R = SubResource( 4 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2( 8, 0 )
+shape = SubResource( 5 )
+
+[node name="Attack_R_Collider" type="CollisionShape2D" parent="."]
+position = Vector2( 160, 24 )
+shape = SubResource( 6 )
+
+[node name="Attack_L_Collider" type="CollisionShape2D" parent="."]
+position = Vector2( -160, 24 )
+shape = SubResource( 6 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 17 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 18 )
