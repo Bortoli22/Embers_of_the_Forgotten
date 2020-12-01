@@ -45,5 +45,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Close" type="Button" parent="Panel"]
+margin_left = 507.703
+margin_top = 376.181
+margin_right = 554.703
+margin_bottom = 396.181
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VolumeSettings" parent="." instance=ExtResource( 1 )]
 [connection signal="pressed" from="Panel/VBoxContainer/VolumeSettingsButton" to="." method="_on_VolumeSettingsButton_pressed"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_Close_pressed"]
