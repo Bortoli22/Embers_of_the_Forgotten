@@ -27,16 +27,6 @@ __meta__ = {
 }
 
 [node name="Controls" type="Tabs" parent="Panel/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 32.0
-margin_right = -980.0
-margin_bottom = -544.0
-
-[node name="VBoxContainer" parent="Panel/TabContainer/Controls" instance=ExtResource( 1 )]
-
-[node name="Sound" type="Tabs" parent="Panel/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,6 +34,40 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+
+[node name="VBoxContainer" parent="Panel/TabContainer/Controls" instance=ExtResource( 1 )]
+
+[node name="Sound" type="Tabs" parent="Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/TabContainer/Sound"]
+margin_left = 417.0
+margin_top = 190.0
+margin_right = 784.0
+margin_bottom = 230.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Sound/HBoxContainer"]
+margin_top = 13.0
+margin_right = 115.0
+margin_bottom = 27.0
+text = "Placeholder slider"
+
+[node name="HSlider" type="HSlider" parent="Panel/TabContainer/Sound/HBoxContainer"]
+margin_left = 119.0
+margin_right = 279.0
+margin_bottom = 60.0
+value = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Graphics" type="Tabs" parent="Panel/TabContainer"]
 visible = false
@@ -53,6 +77,16 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+tab_align = 0
+
+[node name="CheckButton" type="CheckBox" parent="Panel/TabContainer/Graphics"]
+visible = false
+margin_right = 76.0
+margin_bottom = 40.0
+text = "FULLSCREEN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Profile" type="Tabs" parent="Panel/TabContainer"]
 visible = false
@@ -72,4 +106,5 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="Panel/TabContainer/Graphics/CheckButton" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_back_pressed"]
