@@ -1,22 +1,21 @@
 extends Node2D
 
 var playing = false
-var currentSong
+var currentSong = null
+var songList = ["BGM-Merchant","BGM-Stage-A","BGM-Stage-B","BGM-Stage-C","BGM-Stage-D"]
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	play(songList[GameData.current_level])
 	
 func play(songTitle):
 	if playing:
-		if (currentSong && currentSong != get_node("songTitle")):
+		if (currentSong && currentSong != get_node(songTitle)):
 			stop()
-			currentSong = get_node("songTitle")
-			playing = true
-			currentSong.play()
 		else:
 			pass
+	currentSong = get_node(songTitle)
+	playing = true
+	currentSong.play()
 	
 
 func stop():

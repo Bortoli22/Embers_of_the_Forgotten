@@ -9,13 +9,13 @@
 [ext_resource path="res://Scenes/ControlRebindMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/items_menu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/item_generation.gd" type="Script" id=9]
-[ext_resource path="res://Assets/audio/music/04_level_B.wav" type="AudioStream" id=10]
-[ext_resource path="res://Assets/audio/music/03_level_A.wav" type="AudioStream" id=11]
-[ext_resource path="res://Assets/audio/music/05_level_C.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/audio/music/05_level_C.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Assets/audio/music/06_level_D.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Assets/audio/music/03_level_A.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Scripts/BGM.gd" type="Script" id=13]
-[ext_resource path="res://Assets/audio/music/06_level_D.ogg" type="AudioStream" id=14]
-[ext_resource path="res://Assets/audio/music/21_boss1.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Assets/audio/music/02_merchant_room.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/audio/music/02_merchant_room.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Assets/audio/music/04_level_B.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Assets/audio/music/21_boss_1.ogg" type="AudioStream" id=16]
 
 [node name="Root" type="Node2D"]
 
@@ -47,31 +47,34 @@ script = ExtResource( 4 )
 script = ExtResource( 13 )
 
 [node name="BGM-Stage-A" type="AudioStreamPlayer" parent="MasterBGM"]
-stream = ExtResource( 11 )
-volume_db = -4.039
-bus = "BGM"
-
-[node name="BGM-Stage-B" type="AudioStreamPlayer" parent="MasterBGM"]
-stream = ExtResource( 10 )
-volume_db = -4.039
-bus = "BGM"
-
-[node name="BGM-Stage-C" type="AudioStreamPlayer" parent="MasterBGM"]
 stream = ExtResource( 12 )
 volume_db = -4.039
 bus = "BGM"
 
-[node name="BGM-Stage-D" type="AudioStreamPlayer" parent="MasterBGM"]
-stream = ExtResource( 14 )
-volume_db = -7.069
-bus = "BGM"
-
-[node name="BGM-Boss-1" type="AudioStreamPlayer" parent="MasterBGM"]
+[node name="BGM-Stage-B" type="AudioStreamPlayer" parent="MasterBGM"]
 stream = ExtResource( 15 )
 volume_db = -4.039
 bus = "BGM"
 
-[node name="BGM-Merchant" type="AudioStreamPlayer" parent="MasterBGM"]
+[node name="BGM-Stage-C" type="AudioStreamPlayer" parent="MasterBGM"]
+stream = ExtResource( 10 )
+volume_db = -4.039
+bus = "BGM"
+
+[node name="BGM-Stage-D" type="AudioStreamPlayer" parent="MasterBGM"]
+stream = ExtResource( 11 )
+volume_db = -7.069
+bus = "BGM"
+
+[node name="BGM-Boss-1" type="AudioStreamPlayer" parent="MasterBGM"]
 stream = ExtResource( 16 )
+volume_db = -4.039
+bus = "BGM"
+__meta__ = {
+"_editor_description_": "  "
+}
+
+[node name="BGM-Merchant" type="AudioStreamPlayer" parent="MasterBGM"]
+stream = ExtResource( 14 )
 volume_db = -4.039
 bus = "BGM"
