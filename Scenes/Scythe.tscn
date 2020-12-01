@@ -125,11 +125,13 @@ script = ExtResource( 1 )
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = -5.049
+bus = "SFX"
 
 [node name="sfx2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 63.274, -0.411194 )
 stream = ExtResource( 6 )
 volume_db = -6.058
+bus = "SFX"
 
 [node name="Visual" type="Sprite" parent="."]
 position = Vector2( 62.6441, 0.21875 )

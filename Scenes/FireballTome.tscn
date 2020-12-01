@@ -12,5 +12,7 @@ visible = false
 position = Vector2( 55.535, 0.987202 )
 scale = Vector2( 0.670588, 0.683333 )
 
-[node name="sfx" type="AudioStreamPlayer" parent="."]
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = -9.087
+bus = "SFX"

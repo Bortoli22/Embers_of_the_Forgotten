@@ -130,3 +130,4 @@ shape = SubResource( 8 )
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
