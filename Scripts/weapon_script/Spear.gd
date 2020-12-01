@@ -61,6 +61,7 @@ func attack(orientation):
 		orient(orientation)
 		currentPosition += 1
 		currentMove = moveSequence[currentPosition]
+		$sfx.play(0.1)
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
 		yield(animation, "animation_finished")
