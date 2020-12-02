@@ -5,7 +5,8 @@ var currentSong = null
 var songList = ["BGM-Merchant","BGM-Stage-A","BGM-Stage-B","BGM-Stage-C","BGM-Stage-D"]
 
 func _ready():
-	play(songList[GameData.current_level])
+	var song = GameData.current_level % songList.size()
+	play(songList[song])
 	
 func play(songTitle):
 	if playing:
