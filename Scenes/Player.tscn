@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://Assets/Player_Character_Animations.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=2]
@@ -341,6 +341,8 @@ graph_offset = Vector2( 92, -2.0732 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
 
+[sub_resource type="AudioStreamRandomPitch" id=63]
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 493.465, 50.5128 )
 collision_layer = 2
@@ -357,7 +359,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 14
+frame = 22
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -442,6 +444,7 @@ position = Vector2( 0, 0 )
 [node name="Fireball" parent="PlayerCenter" instance=ExtResource( 8 )]
 
 [node name="Spear" parent="PlayerCenter" instance=ExtResource( 9 )]
+position = Vector2( 0.0764465, -4.25543 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Crouch = SubResource( 5 )
@@ -495,5 +498,11 @@ cast_to = Vector2( 0, 40 )
 current = true
 smoothing_enabled = true
 script = ExtResource( 5 )
+
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="hit" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource( 63 )
+bus = "SFX"
 [connection signal="body_entered" from="UsePrompt" to="." method="_on_UsePrompt_body_entered"]
 [connection signal="body_exited" from="UsePrompt" to="." method="_on_UsePrompt_body_exited"]

@@ -44,4 +44,5 @@ func shake(strength, duration):
 		shaking = true
 		force = strength
 		yield(get_tree().create_timer(duration), "timeout")
+		set_offset(Vector2(0, 0))
 		shaking = false

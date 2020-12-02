@@ -1,10 +1,12 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Spear.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/weapon_script/Spear5A.gd" type="Script" id=2]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Sword_Full3.png" type="Texture" id=3]
+[ext_resource path="res://Assets/audio/sfx/spear2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scripts/weapon_script/Spear5AA.gd" type="Script" id=5]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Spear_Full.png" type="Texture" id=6]
+[ext_resource path="res://Assets/audio/sfx/spear1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "5A active"
@@ -226,7 +228,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=14]
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 63.4973, 25.8888 )
+extents = Vector2( 88.5665, 25.8888 )
 
 [node name="Spear" type="Node2D"]
 position = Vector2( 68.6658, -0.629959 )
@@ -276,7 +278,7 @@ collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5A"]
-position = Vector2( 39.643, 5.31612 )
+position = Vector2( 34.4517, 5.31612 )
 shape = SubResource( 15 )
 
 [node name="5AA" type="Area2D" parent="."]
@@ -286,6 +288,13 @@ collision_mask = 4
 script = ExtResource( 5 )
 
 [node name="hitbox" type="CollisionShape2D" parent="5AA"]
-visible = false
 position = Vector2( 39.643, 5.31612 )
 shape = SubResource( 15 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+bus = "SFX"
+
+[node name="sfx2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"

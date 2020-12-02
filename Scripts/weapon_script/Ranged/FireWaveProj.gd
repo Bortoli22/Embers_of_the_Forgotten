@@ -44,6 +44,7 @@ func burst():
 	det = true
 	currentMove = moveSequence[0]
 	var x
+	$sfx.play()
 	$AnimationPlayer.play("burst")
 	GameData.camera_node.shake(GameData.LIGHTSHAKE, 0.15)
 	add_child(currentMove)
