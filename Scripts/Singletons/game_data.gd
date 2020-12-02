@@ -15,6 +15,7 @@ const HEAVYSHAKE = 40
 const MEDIUMSHAKE = 8
 const LIGHTSHAKE = 5
 var interactablePos = []
+var roomEnemyCount = 0
 
 var MasterVol
 var BGMVol
