@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/audio/music/02_merchant_room.ogg" type="AudioStream" id=2]
 [ext_resource path="res://Scripts/merchant_room/merchant_room_option.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -83,4 +84,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -4.039
+autoplay = true
 [connection signal="pressed" from="Submit" to="Movement Abilities" method="_on_Submit_pressed"]

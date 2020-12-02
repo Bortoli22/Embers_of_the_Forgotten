@@ -149,7 +149,8 @@ func _platform_evaluate(xVal, roomLengthIteration):
 		if !(xVal >= val.x + val.z):
 			platforms.push_back(val)
 		else:
-			platformYIndexing.remove(platformYIndexing.find(val.y))
+			if (platformYIndexing.find(val.y) != -1):
+				platformYIndexing.remove(platformYIndexing.find(val.y))
 
 func _v_slice_evaluate_test(iterator): 
 	for val in range(0, height):

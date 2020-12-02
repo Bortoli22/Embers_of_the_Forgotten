@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/weapon_animations/Player_Ranged_Animations_Fireball.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/weapon_script/Ranged/FireballProj.gd" type="Script" id=2]
+[ext_resource path="res://Assets/audio/sfx/fireball.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "left"
@@ -74,4 +75,9 @@ collision_mask = 5
 [node name="Collision" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.0262866, 0.0313664 )
 shape = SubResource( 3 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = 5.825
+bus = "SFX"
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

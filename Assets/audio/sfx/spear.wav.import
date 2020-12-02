@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/spear.wav-f05a004d5ad84af605c340081f0fe495.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/spear.wav"
+dest_files=[ "res://.import/spear.wav-f05a004d5ad84af605c340081f0fe495.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

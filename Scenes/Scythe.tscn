@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Scythe.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/weapon_script/Scythe5A.gd" type="Script" id=2]
+[ext_resource path="res://Assets/audio/sfx/scythe1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/weapon_animations/Player_Weapon_Animations_Scythe_Full3.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/weapon_script/Scythe5AA.gd" type="Script" id=5]
+[ext_resource path="res://Assets/audio/sfx/scythe2.wav" type="AudioStream" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "5A active"
@@ -119,6 +121,17 @@ extents = Vector2( 78.8336, 29.6222 )
 position = Vector2( 68.6658, -0.629959 )
 scale = Vector2( 1, 0.8 )
 script = ExtResource( 1 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.049
+bus = "SFX"
+
+[node name="sfx2" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 63.274, -0.411194 )
+stream = ExtResource( 6 )
+volume_db = -6.058
+bus = "SFX"
 
 [node name="Visual" type="Sprite" parent="."]
 position = Vector2( 62.6441, 0.21875 )

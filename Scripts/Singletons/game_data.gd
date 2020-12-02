@@ -16,6 +16,10 @@ const MEDIUMSHAKE = 8
 const LIGHTSHAKE = 5
 var interactablePos = []
 
+var MasterVol
+var BGMVol
+var SFXVol
+
 #the possible unlocks, aka what the player doesn't have yet
 var merchantPool = [
 	"double jump",
