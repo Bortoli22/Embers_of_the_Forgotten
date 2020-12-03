@@ -20,4 +20,5 @@ func loadScores():
 	$"./Panel/5lab/Score5".text = str(PlayerData.scores[4]) #replace with scoreboard value.
 
 func _on_Close_pressed():
+	get_parent().get_node("MenuSFX").play("select2")
 	hide()

@@ -10,7 +10,8 @@ var button_to_action_map = {
 	"WALLGRAB": "wall_grab",
 	"DODGE": "dodge",
 	"PRIMARYATTACK": "pr_fire", 
-	"ALTATTACK": "alt_fire"
+	"ALTATTACK": "alt_fire",
+	"INVENTORY": "item_menu"
 }
 
 func _ready():
@@ -45,33 +46,46 @@ func set_keys():
 			button.text = "No key assigned"
 
 func _on_jump_pressed():
+	$select.play()
 	can_change = true
 	action = "ui_up"
 
 func _on_left_pressed():
+	$select.play()
 	can_change = true
 	action = "ui_left"
 
 func _on_right_pressed():
+	$select.play()
 	can_change = true
 	action = "ui_right"
 
 func _on_crouch_pressed():
+	$select.play()
 	can_change = true
 	action = "ui_down"
 
 func _on_wallgrab_pressed():
+	$select.play()
 	can_change = true
 	action = "wall_grab"
 
 func _on_dodge_pressed():
+	$select.play()
 	can_change = true
 	action = "dodge"
 
 func _on_primaryattack_pressed():
+	$select.play()
 	can_change = true
 	action = "pr_fire"
 
 func _on_altattack_pressed():
+	$select.play()
 	can_change = true
 	action = "alt_fire"
+
+func _on_inventory_pressed():
+	$select.play()
+	can_change = true
+	action = "item_menu"

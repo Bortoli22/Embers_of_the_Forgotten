@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=81 format=2]
 
 [ext_resource path="res://Assets/Player_Character_Animations.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Pistol.tscn" type="PackedScene" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://Scenes/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/SMG.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scripts/skin_manager.gd" type="Script" id=13]
+[ext_resource path="res://Assets/audio/sfx/dash.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/audio/sfx/player_damaged.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/audio/sfx/heal.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/audio/sfx/jump.wav" type="AudioStream" id=17]
+[ext_resource path="res://Assets/audio/sfx/coin.wav" type="AudioStream" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.8091, 20.9228 )
@@ -341,8 +346,6 @@ graph_offset = Vector2( 92, -2.0732 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=62]
 
-[sub_resource type="AudioStreamRandomPitch" id=63]
-
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 493.465, 50.5128 )
 collision_layer = 2
@@ -359,7 +362,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 22
+frame = 19
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -387,7 +390,6 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="UsePrompt" type="Area2D" parent="."]
-visible = false
 gravity_vec = Vector2( 0, 0 )
 gravity = 728.413
 collision_layer = 0
@@ -501,8 +503,30 @@ script = ExtResource( 5 )
 
 [node name="SFX" type="Node2D" parent="."]
 
-[node name="hit" type="AudioStreamPlayer2D" parent="SFX"]
-stream = SubResource( 63 )
+[node name="damage" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 15 )
+volume_db = -3.028
+bus = "SFX"
+
+[node name="jump" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 17 )
+volume_db = 7.07
+bus = "SFX"
+
+[node name="dash" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 14 )
+volume_db = 2.019
+bus = "SFX"
+
+[node name="heal" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 16 )
+volume_db = 13.126
+bus = "SFX"
+
+[node name="coin" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource( 18 )
+volume_db = -2.043
+pitch_scale = 1.27
 bus = "SFX"
 [connection signal="body_entered" from="UsePrompt" to="." method="_on_UsePrompt_body_entered"]
 [connection signal="body_exited" from="UsePrompt" to="." method="_on_UsePrompt_body_exited"]

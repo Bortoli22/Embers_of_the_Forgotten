@@ -10,7 +10,7 @@ func _ready():
 	get_node("HealthBar/HealthEmpty").color = Color8(3, 72, 9, 255)
 	get_node("HealthBar/HealthGreen").init(float(initHealth)/float(initHealthMax))
 	get_node("HealthBar/HealthText").text = str(initHealth) + "/" + str(initHealthMax)
-	get_node("Money").text = "Money: " + str(PlayerData.currency)
+	get_node("Money").text = "Money: $" + str(PlayerData.currency)
 	pass
 
 #updating HUD values
@@ -21,7 +21,9 @@ func change_health(newHealth, ratio:float):
 		died()
 
 func change_money(newMoney):
-	get_node("Money").text = "$" + str(newMoney)
+	get_node("Money").text = "Money: $" + str(newMoney)
+	if (newMoney > 0):
+		$sfxcoin.play()
 
 #func flash_notice(num):
 	#get_node("Notice")

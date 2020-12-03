@@ -2,10 +2,10 @@ extends Node2D
 
 var playing = false
 var currentSong = null
-var songList = ["BGM-Merchant","BGM-Stage-A","BGM-Stage-B","BGM-Stage-C","BGM-Stage-D"]
+var songList = ["BGM-Stage-A","BGM-Stage-B","BGM-Stage-C","BGM-Stage-D"]
 
 func _ready():
-	var song = GameData.current_level % songList.size()
+	var song = (GameData.current_level-1) % songList.size()
 	play(songList[song])
 	
 func play(songTitle):

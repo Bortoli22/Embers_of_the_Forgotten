@@ -12,6 +12,7 @@ func _on_pressed():
 	selected = !selected
 	if selected:
 		if PlayerData.equipped.size() < 2:
+			get_node("../../MenuSFX").play("select2")
 			self.add_color_override("font_color", Color.red)
 			self.add_color_override("font_color_hover", Color.red)
 			PlayerData.weapons.append(self.name.to_lower())
@@ -19,6 +20,7 @@ func _on_pressed():
 			if GameData.merchantPool.has(self.name.to_lower()):
 				GameData.merchantPool.remove(GameData.merchantPool.find(self.name.to_lower()))
 		else:
+			get_node("../../MenuSFX").play("deny")
 			selected = false
 	else:
 		self.add_color_override("font_color", Color.white)

@@ -30,6 +30,7 @@ func _ready():
 	
 
 func _selectionUpdate(id):
+	$sfxselect2.play()
 	if options[id].isSelected == true:
 		hasSelection = false
 		sID = -1
@@ -71,9 +72,15 @@ func _on_Submit_pressed():
 	if sID != -1:
 		if GameData.merchantPrices[unlockables[sID]] > PlayerData.currency:
 			errorLog.text = "INSUFFICIENT FUNDS"
+			$sfxfail.play()
 			return
 		PlayerData.currency -= GameData.merchantPrices[unlockables[sID]]
-	
+		$sfxpurchase.play()
+		yield($sfxpurchase, "finished")
+	else:
+		$sfxselect1.play()
+		yield($sfxselect1, "finished")
+		
 	#add unchosen upgrades back into mix
 	for val in options:
 		if val.isSelected == false:
