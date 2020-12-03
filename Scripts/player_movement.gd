@@ -50,7 +50,7 @@ signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(PlayerData.abilities)
+	#print(PlayerData.abilities)
 	if "double jump" in PlayerData.abilities:
 		max_JC = 2
 	if "triple jump" in PlayerData.abilities:
@@ -262,6 +262,7 @@ func damageHandler(dmgamount, direction, force):
 		invulnTimer = playerOnHitInvuln #implement countdown in another delta function
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
+		$SFX/damage.play()
 		if PlayerData.playerHealth == 0:
 			GameData.camera_node.shake(GameData.HEAVYSHAKE, 0.2)
 			pass
@@ -280,11 +281,10 @@ func heal(value):
 		return false
 	elif (value + PlayerData.playerHealth > PlayerData.playerHealthMax):
 		healthChange(PlayerData.playerHealthMax - PlayerData.playerHealth)
-		return true
 	else:
 		healthChange(value)
-		return true
-	
+	$SFX/heal.play()
+	return true
 
 func healthChange(amount):
 	PlayerData.playerHealth += amount
@@ -358,6 +358,7 @@ func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:
 		if jump_count < max_JC: 
 			if playerSpeed != 600: capSpeed(600)
+			$SFX/jump.play()
 			jumping = true
 			playerVelocity.y = -jump_power
 			#controls speed of descent after jump 

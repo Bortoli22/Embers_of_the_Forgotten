@@ -1,0 +1,190 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/control_panel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/audio/sfx/menu_select2.wav" type="AudioStream" id=2]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+margin_left = 437.0
+margin_top = 150.0
+margin_right = 587.0
+margin_bottom = 350.0
+alignment = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxJUMP" type="HBoxContainer" parent="."]
+margin_right = 150.0
+margin_bottom = 20.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxJUMP"]
+margin_left = 50.0
+margin_top = 3.0
+margin_right = 83.0
+margin_bottom = 17.0
+text = "JUMP"
+
+[node name="Button" type="Button" parent="HBoxJUMP"]
+margin_left = 87.0
+margin_right = 99.0
+margin_bottom = 20.0
+
+[node name="HBoxLEFT" type="HBoxContainer" parent="."]
+margin_top = 24.0
+margin_right = 150.0
+margin_bottom = 44.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxLEFT"]
+margin_left = 53.0
+margin_top = 3.0
+margin_right = 81.0
+margin_bottom = 17.0
+text = "LEFT"
+
+[node name="Button" type="Button" parent="HBoxLEFT"]
+margin_left = 85.0
+margin_right = 97.0
+margin_bottom = 20.0
+
+[node name="HBoxRIGHT" type="HBoxContainer" parent="."]
+margin_top = 48.0
+margin_right = 150.0
+margin_bottom = 68.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxRIGHT"]
+margin_left = 47.0
+margin_top = 3.0
+margin_right = 87.0
+margin_bottom = 17.0
+text = "RIGHT"
+
+[node name="Button" type="Button" parent="HBoxRIGHT"]
+margin_left = 91.0
+margin_right = 103.0
+margin_bottom = 20.0
+
+[node name="HBoxCROUCH" type="HBoxContainer" parent="."]
+margin_top = 72.0
+margin_right = 150.0
+margin_bottom = 92.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxCROUCH"]
+margin_left = 39.0
+margin_top = 3.0
+margin_right = 94.0
+margin_bottom = 17.0
+text = "CROUCH"
+
+[node name="Button" type="Button" parent="HBoxCROUCH"]
+margin_left = 98.0
+margin_right = 110.0
+margin_bottom = 20.0
+
+[node name="HBoxWALLGRAB" type="HBoxContainer" parent="."]
+margin_top = 96.0
+margin_right = 150.0
+margin_bottom = 116.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxWALLGRAB"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 105.0
+margin_bottom = 17.0
+text = "WALL GRAB"
+
+[node name="Button" type="Button" parent="HBoxWALLGRAB"]
+margin_left = 109.0
+margin_right = 121.0
+margin_bottom = 20.0
+
+[node name="HBoxDODGE" type="HBoxContainer" parent="."]
+margin_top = 120.0
+margin_right = 150.0
+margin_bottom = 140.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxDODGE"]
+margin_left = 43.0
+margin_top = 3.0
+margin_right = 91.0
+margin_bottom = 17.0
+text = "DODGE"
+
+[node name="Button" type="Button" parent="HBoxDODGE"]
+margin_left = 95.0
+margin_right = 107.0
+margin_bottom = 20.0
+
+[node name="HBoxPRIMARYATTACK" type="HBoxContainer" parent="."]
+margin_top = 144.0
+margin_right = 150.0
+margin_bottom = 164.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxPRIMARYATTACK"]
+margin_left = 12.0
+margin_top = 3.0
+margin_right = 121.0
+margin_bottom = 17.0
+text = "PRIMARY ATTACK"
+
+[node name="Button" type="Button" parent="HBoxPRIMARYATTACK"]
+margin_left = 125.0
+margin_right = 137.0
+margin_bottom = 20.0
+
+[node name="HBoxALTATTACK" type="HBoxContainer" parent="."]
+margin_top = 168.0
+margin_right = 150.0
+margin_bottom = 188.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxALTATTACK"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 104.0
+margin_bottom = 17.0
+text = "ALT ATTACK"
+
+[node name="Button" type="Button" parent="HBoxALTATTACK"]
+margin_left = 108.0
+margin_right = 120.0
+margin_bottom = 20.0
+
+[node name="HBoxINVENTORY" type="HBoxContainer" parent="."]
+margin_top = 192.0
+margin_right = 150.0
+margin_bottom = 212.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxINVENTORY"]
+margin_left = 30.0
+margin_top = 3.0
+margin_right = 103.0
+margin_bottom = 17.0
+text = "INVENTORY"
+
+[node name="Button" type="Button" parent="HBoxINVENTORY"]
+margin_left = 107.0
+margin_right = 119.0
+margin_bottom = 20.0
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 4.039
+bus = "SFX"
+[connection signal="pressed" from="HBoxJUMP/Button" to="." method="_on_jump_pressed"]
+[connection signal="pressed" from="HBoxLEFT/Button" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="HBoxRIGHT/Button" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="HBoxCROUCH/Button" to="." method="_on_crouch_pressed"]
+[connection signal="pressed" from="HBoxWALLGRAB/Button" to="." method="_on_wallgrab_pressed"]
+[connection signal="pressed" from="HBoxDODGE/Button" to="." method="_on_dodge_pressed"]
+[connection signal="pressed" from="HBoxPRIMARYATTACK/Button" to="." method="_on_primaryattack_pressed"]
+[connection signal="pressed" from="HBoxALTATTACK/Button" to="." method="_on_altattack_pressed"]
+[connection signal="pressed" from="HBoxINVENTORY/Button" to="." method="_on_inventory_pressed"]

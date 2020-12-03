@@ -34,6 +34,7 @@ func attack(orientation):
 	p.transform.origin.y -= 35
 	p.orientation = wepOrientation
 	get_tree().get_root().add_child(p)
+	$sfx.play()
 	yield(get_tree().create_timer(STARTUP), "timeout")
 	PlayerData.playerNode.capSpeed(600)
 	yield(get_tree().create_timer(FIRERATE), "timeout")

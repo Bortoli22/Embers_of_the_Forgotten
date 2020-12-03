@@ -18,7 +18,7 @@ func _process(delta):
 
 func _on_Area2D_area_entered(area):
 	print("entered")
-	if (GameData.roomEnemyCount != 0):
+	if (GameData.current_level % 4 != 0) or (GameData.roomEnemyCount != 0):
 		return
 	var exec = get_tree().change_scene("res://Scenes/MerchantRoom.tscn")
 	if exec != OK:

@@ -6,7 +6,7 @@ var in_playground = false
 func _ready():
 	hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta):
 	if in_playground: 
 		get_node("VBoxContainer/SaveGame").visible = false
@@ -19,6 +19,7 @@ func _process(delta):
 			GameData.paused = false
 		else:
 			GameData.paused = true
+			$MenuSFX.play("open")
 			show()
 			
 func enter_playground_mode():
@@ -38,3 +39,19 @@ func _on_SaveGame_pressed():
 func _on_CheckBox_toggled(button_pressed):
 	GameData.fullscreen = button_pressed
 	OS.window_fullscreen = button_pressed # Replace with function body.
+
+
+func _on_Resume_pressed():
+	buttonsound()
+
+func _on_Restart_pressed():
+	buttonsound()
+
+func _on_MainMeu_pressed():
+	buttonsound()
+
+func _on_ControlRebind_pressed():
+	buttonsound()
+	
+func buttonsound():
+	$MenuSFX.play("select1")

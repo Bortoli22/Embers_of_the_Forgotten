@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/pause_menu/restart.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Scenes/pause_menu_save.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/pause_menu_load.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/pause_menu/pause_menu_mainmenu.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/SettingsMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/MenuSFX.tscn" type="PackedScene" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -98,7 +100,7 @@ margin_top = 274.0
 margin_right = 958.0
 margin_bottom = 326.0
 custom_fonts/font = SubResource( 2 )
-text = "CHANGE CONTROLS"
+text = "SETTINGS"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -126,7 +128,7 @@ text = "Game Saved!"
 align = 1
 [node name="MainMeu" type="Button" parent="Control/VBoxContainer"]
 margin_top = 218.0
-margin_right = 1111.0
+margin_right = 568.0
 margin_bottom = 270.0
 custom_fonts/font = SubResource( 2 )
 text = "MAIN MENU"
@@ -134,11 +136,23 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Settings" parent="Control" instance=ExtResource( 7 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1.68176
+margin_right = 569.682
+
+[node name="MenuSFX" parent="Control" instance=ExtResource( 8 )]
+[connection signal="pressed" from="Control/VBoxContainer/Resume" to="Control" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Resume" to="Control/VBoxContainer/Resume" method="_on_Resume_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SaveGame" to="Control/VBoxContainer/SaveGame" method="_on_Save_Game_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/SaveGame" to="Control" method="_on_SaveGame_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/LoadGame" to="Control/VBoxContainer/LoadGame" method="_on_LoadGame_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Restart" to="Control" method="_on_Restart_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Restart" to="Control/VBoxContainer/Restart" method="_on_restart_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/ControlRebind" to="Control" method="_on_ControlRebind_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ControlRebind" to="Control/VBoxContainer/ControlRebind" method="_on_control_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/VBoxContainer/CheckBox" to="Control" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="Control/VBoxContainer/MainMeu" to="Control" method="_on_MainMeu_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/MainMeu" to="Control/VBoxContainer/MainMeu" method="_on_MainMeu_pressed"]

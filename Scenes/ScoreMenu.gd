@@ -12,7 +12,7 @@ func _ready():
 	#loadScores()
 
 func loadScores():
-	print("AAAA")
+	#print("AAAA")
 	$"./Panel/1lab/Score1".text = str(PlayerData.scores[0]) #replace with scoreboard value.
 	$"./Panel/2lab/Score2".text = str(PlayerData.scores[1]) #replace with scoreboard value.
 	$"./Panel/3lab/Score3".text = str(PlayerData.scores[2]) #replace with scoreboard value.
@@ -20,4 +20,5 @@ func loadScores():
 	$"./Panel/5lab/Score5".text = str(PlayerData.scores[4]) #replace with scoreboard value.
 
 func _on_Close_pressed():
+	get_parent().get_node("MenuSFX").play("select2")
 	hide()

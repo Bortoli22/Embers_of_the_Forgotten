@@ -28,9 +28,12 @@ func _physics_process(_delta):
 	#print(PlayerData.playerNode.get_parent())
 
 func _on_Hitbox_body_entered(body):
+	$Hitbox.queue_free()
 	if (body.has_method("damageHandler")):
 		body.damageHandler(damageValue, orientation, force)
-	$sfx.play()
 	GameData.camera_node.shake(GameData.LIGHTSHAKE, 0.15)
+	$sfx.play()
+	hide()
+	yield($sfx, "finished")
 	queue_free()
 

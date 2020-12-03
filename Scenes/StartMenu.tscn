@@ -5,6 +5,8 @@
 [ext_resource path="res://Scripts/start_menu_weapon.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/start_menu_submit.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/PlaygroundButton.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/StartMenu.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/MenuSFX.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -37,6 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -1.18921
 margin_bottom = -1.18921
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -147,6 +150,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[node name="MenuSFX" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="Weapons/Sword" to="Weapons/Sword" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Scythe" to="Weapons/Scythe" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Scythe" to="." method="_on_pressed"]

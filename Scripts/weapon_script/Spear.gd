@@ -8,7 +8,7 @@ var currentPosition = -1
 var currentMove
 
 #move control
-var hit = false
+var connected = false
 var active = false
 var wepOrientation
 
@@ -41,16 +41,19 @@ func _process(_delta):
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
-			hit = true
+			connected = true
+			var cmdmg = currentMove.damageValue
+			var cmforce = currentMove.force
+			remove_child(currentMove)
 			for y in x:
-				hit(y)
+				hit(y, cmdmg, cmforce)
 	if (animation.get_current_animation() == "neutral"):
 		PlayerData.playerNode.capSpeed(600)
 		currentPosition = -1
 
 #	see if there's a way to more conditionally trigger a delta process.
 func attack(orientation):
-	hit = false
+	connected = false
 	if (currentPosition < moveCount):
 		if (charging && !negEdge):
 			pass
@@ -70,7 +73,7 @@ func attack(orientation):
 		animation.play(currentMove.animations[1])
 		add_child(currentMove)
 		yield(animation, "animation_finished")
-		if (!hit):
+		if (!connected):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		
@@ -91,10 +94,9 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(600)
 			PlayerData.wpnactionable = true
 
-func hit(body):
+func hit(body, dmg, force):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
-	remove_child(currentMove)
 	
 
 func ICRoutine():
