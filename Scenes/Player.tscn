@@ -359,7 +359,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 22
+frame = 15
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -501,8 +501,14 @@ script = ExtResource( 5 )
 
 [node name="SFX" type="Node2D" parent="."]
 
-[node name="hit" type="AudioStreamPlayer2D" parent="SFX"]
+[node name="damage" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource( 63 )
+bus = "SFX"
+
+[node name="dash" type="AudioStreamPlayer" parent="SFX"]
+bus = "SFX"
+
+[node name="heal" type="AudioStreamPlayer" parent="SFX"]
 bus = "SFX"
 [connection signal="body_entered" from="UsePrompt" to="." method="_on_UsePrompt_body_entered"]
 [connection signal="body_exited" from="UsePrompt" to="." method="_on_UsePrompt_body_exited"]

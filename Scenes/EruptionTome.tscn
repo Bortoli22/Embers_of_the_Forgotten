@@ -14,4 +14,5 @@ scale = Vector2( 0.670588, 0.683333 )
 
 [node name="sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = 7.068
 bus = "SFX"

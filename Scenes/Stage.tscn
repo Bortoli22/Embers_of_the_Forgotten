@@ -20,18 +20,18 @@
 
 [node name="Root" type="Node2D"]
 
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
 [node name="Menus" type="Node2D" parent="."]
 
 [node name="Pause" parent="Menus" instance=ExtResource( 5 )]
-layer = 0
 
 [node name="RespawnMenu" parent="Menus" instance=ExtResource( 6 )]
 
 [node name="ControlRebindMenu" parent="Menus" instance=ExtResource( 7 )]
+layer = 2
 
 [node name="Items" parent="Menus" instance=ExtResource( 8 )]
-
-[node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 320 )

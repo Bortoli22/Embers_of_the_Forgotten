@@ -22,6 +22,8 @@ func change_health(newHealth, ratio:float):
 
 func change_money(newMoney):
 	get_node("Money").text = "Money: $" + str(newMoney)
+	if (newMoney > 0):
+		$sfxcoin.play()
 
 #func flash_notice(num):
 	#get_node("Notice")

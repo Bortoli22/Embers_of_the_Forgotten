@@ -81,3 +81,5 @@ margin_bottom = 155.361
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="sfxcoin" type="AudioStreamPlayer" parent="HUD"]

@@ -23,23 +23,27 @@ func _process(delta):
 			$"PopupMenu".hide()
 			#GameData.paused = false
 		else:
+			$MenuSFX.play("open")
 			get_tree().paused = true
 			#GameData.paused = true
 			$"PopupMenu".show()
 			show()
 	if Input.is_action_just_released("ui_left"):
+		$MenuSFX.play("move")
 		items[cursorIndex].toggleHover()
 		cursorIndex -= 1
 		if cursorIndex < 0:
 			cursorIndex = itemCount - 1
 		items[cursorIndex].toggleHover()
 	if Input.is_action_just_released("ui_right"):
+		$MenuSFX.play("move")
 		items[cursorIndex].toggleHover()
 		cursorIndex += 1
 		if cursorIndex >= itemCount:
 			cursorIndex = 0
 		items[cursorIndex].toggleHover()
 	if Input.is_action_just_released("ui_accept"):
+		$MenuSFX.play("select2")
 		if !items[cursorIndex].selectable:
 			return
 		if items[cursorIndex].selected:

@@ -10,7 +10,7 @@ var currentMove
 var sfxSequence
 
 #move control
-var hit = false
+var connected = false
 var active = false
 var wepOrientation
 
@@ -46,7 +46,7 @@ func _process(_delta):
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
-			hit = true
+			connected = true
 			for y in x:
 				hit(y)
 	if (animation.get_current_animation() == "neutral"):
@@ -55,7 +55,7 @@ func _process(_delta):
 
 #	see if there's a way to more conditionally trigger a delta process.
 func attack(orientation):
-	hit = false
+	connected = false
 	if (currentPosition < moveCount):
 		if (!PlayerData.playerNode.jump_count > 0 && !PlayerData.playerNode.jumping):
 			PlayerData.playerNode.capSpeed(200)
@@ -71,7 +71,7 @@ func attack(orientation):
 		animation.play(currentMove.animations[1])
 		add_child(currentMove)
 		yield(animation, "animation_finished")
-		if (!hit):
+		if (!connected):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		

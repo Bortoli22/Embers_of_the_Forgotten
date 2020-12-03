@@ -7,5 +7,5 @@ func _ready():
 
 
 func _on_control_pressed():
-	get_node("../../../../ControlRebindMenu/Control").show()
+	get_node("../../Settings").show()
 	
