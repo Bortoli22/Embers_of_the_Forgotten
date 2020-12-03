@@ -19,3 +19,8 @@ func _on_Settings_pressed():
 
 func _on_Quit_pressed():
 	get_tree().quit()
+
+
+func _on_Scoreboard_pressed():
+	$"./ScoreMenu".loadScores()
+	$ScoreMenu.show()
