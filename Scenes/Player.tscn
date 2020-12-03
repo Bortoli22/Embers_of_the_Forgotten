@@ -13,6 +13,7 @@
 [ext_resource path="res://Scenes/Sniper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/SMG.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/PlatformGrab.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/skin_manager.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.8091, 20.9228 )
@@ -343,6 +344,7 @@ graph_offset = Vector2( 92, -2.0732 )
 
 [sub_resource type="RectangleShape2D" id=63]
 extents = Vector2( 10, 10.9724 )
+[sub_resource type="AudioStreamRandomPitch" id=63]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 493.465, 50.5128 )
@@ -365,6 +367,11 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
+
+[node name="SkinManager" type="Node2D" parent="Player Sprite"]
+position = Vector2( -4.58521, -6.25249 )
+scale = Vector2( 2.10069, 2.10069 )
+script = ExtResource( 13 )
 
 [node name="Item Magnetism" type="Area2D" parent="."]
 visible = false
@@ -440,6 +447,7 @@ position = Vector2( 0, 0 )
 [node name="Fireball" parent="PlayerCenter" instance=ExtResource( 8 )]
 
 [node name="Spear" parent="PlayerCenter" instance=ExtResource( 9 )]
+position = Vector2( 0.0764465, -4.25543 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Crouch = SubResource( 5 )
@@ -503,6 +511,11 @@ script = ExtResource( 13 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LedgeGrab"]
 position = Vector2( 22, 11 )
 shape = SubResource( 63 )
+[node name="SFX" type="Node2D" parent="."]
+
+[node name="hit" type="AudioStreamPlayer2D" parent="SFX"]
+stream = SubResource( 63 )
+bus = "SFX"
 [connection signal="body_entered" from="UsePrompt" to="." method="_on_UsePrompt_body_entered"]
 [connection signal="body_exited" from="UsePrompt" to="." method="_on_UsePrompt_body_exited"]
 [connection signal="area_entered" from="LedgeGrab" to="." method="_on_LedgeGrab_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/pause_menu/restart.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/pause_menu/pause_menu_control.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/pause_menu_save.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/pause_menu_load.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/pause_menu/pause_menu_mainmenu.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 1 )
@@ -123,6 +124,13 @@ margin_bottom = 606.0
 custom_fonts/font = SubResource( 1 )
 text = "Game Saved!"
 align = 1
+[node name="MainMeu" type="Button" parent="Control/VBoxContainer"]
+margin_top = 218.0
+margin_right = 1111.0
+margin_bottom = 270.0
+custom_fonts/font = SubResource( 2 )
+text = "MAIN MENU"
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -133,3 +141,4 @@ __meta__ = {
 [connection signal="pressed" from="Control/VBoxContainer/Restart" to="Control/VBoxContainer/Restart" method="_on_restart_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/ControlRebind" to="Control/VBoxContainer/ControlRebind" method="_on_control_pressed"]
 [connection signal="toggled" from="Control/VBoxContainer/VBoxContainer/CheckBox" to="Control" method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="Control/VBoxContainer/MainMeu" to="Control/VBoxContainer/MainMeu" method="_on_MainMeu_pressed"]

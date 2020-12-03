@@ -3,14 +3,17 @@ extends VBoxContainer
 
 # Declare member variables here. Examples:
 var hasSelection = false
+var sID = -1
 var options = []
 var unlockables = []
 onready var errorLog = get_node("../Submit/Error_Log")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Loaded Merchant Menu. Items:")
-	print(GameData.merchantPool)
+	#print("Loaded Merchant Menu. Items:")
+	#print(GameData.merchantPool)
+	
+	get_node("PlayerMoney").text += str(PlayerData.currency)
 	
 	_get_valid_options()
 	
@@ -19,19 +22,28 @@ func _ready():
 	options.append({"id": 2, "NodeVal": get_node("Option3"), "isSelected": false})
 	
 	for val in options:
-		val.NodeVal.text = unlockables[val.id].to_upper()
-		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
+		var tText = unlockables[val.id].to_upper() + " : $"
+		tText += str(GameData.merchantPrices[unlockables[val.id]])
+		val.NodeVal.get_node("Label").text = tText
+		val.NodeVal.get_node("Label").set("custom_colors/font_color", Color("#FFFFFF"))
 		val.NodeVal.connect("pressed", self, "_selectionUpdate", [val.id])
 	
 
 func _selectionUpdate(id):
-	hasSelection = true
+	if options[id].isSelected == true:
+		hasSelection = false
+		sID = -1
+	else:
+		hasSelection = true
+		sID = id
+	
 	for val in options:
 		val.isSelected = false
-		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
+		val.NodeVal.get_node("Label").set("custom_colors/font_color", Color("#FFFFFF"))
 	
-	options[id].isSelected = true
-	options[id].NodeVal.set("custom_colors/font_color", Color("#FFFFFF"))
+	if hasSelection:
+		options[id].isSelected = true
+		options[id].NodeVal.get_node("Label").set("custom_colors/font_color", Color("#8b2a2a"))
 
 func _get_valid_options():
 	var totalPoolSize = GameData.merchantPool.size()
@@ -53,9 +65,15 @@ func _get_valid_options():
 #	pass
 
 func _on_Submit_pressed():
-	if !hasSelection:
-		errorLog.text = "CHOOSE AN UNLOCK FIRST!"
-		return
+	#if !hasSelection:
+	#	errorLog.text = "CHOOSE AN UNLOCK FIRST!"
+	#	return
+	if sID != -1:
+		if GameData.merchantPrices[unlockables[sID]] > PlayerData.currency:
+			errorLog.text = "INSUFFICIENT FUNDS"
+			return
+		PlayerData.currency -= GameData.merchantPrices[unlockables[sID]]
+	
 	#add unchosen upgrades back into mix
 	for val in options:
 		if val.isSelected == false:

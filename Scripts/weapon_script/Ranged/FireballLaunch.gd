@@ -35,6 +35,7 @@ func attack(orientation):
 	p.transform.origin.x += 35*wepOrientation
 	p.orientation = wepOrientation
 	get_tree().get_root().add_child(p)
+	
 	PlayerData.playerNode.capSpeed(600)
 	yield(get_tree().create_timer(FIRERATE), "timeout")
 	PlayerData.wpnactionable = true

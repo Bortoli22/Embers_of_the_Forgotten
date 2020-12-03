@@ -11,8 +11,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if playerNode.position.x >= end_goal_x:
-		var exec = get_tree().change_scene("res://Scenes/MerchantRoom.tscn")
+	if (playerNode.position.x >= end_goal_x) and (GameData.current_level % 4 != 0):
+		GameData.current_level += 1
+		#print(GameData.current_level)
+		var exec = get_tree().change_scene("res://Scenes/Stage.tscn")
 		if exec != OK:
 			print("ERROR LOADING MERCHANT ROOM SCENE")
 			return

@@ -1,0 +1,176 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/VolumeSettingsMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/audio/music/02_merchant_room.ogg" type="AudioStream" id=2]
+
+[node name="VolumeSettings" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="DEBUG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "BGM"
+
+[node name="Window" type="Panel" parent="."]
+anchor_top = -0.00235703
+anchor_right = 1.0
+anchor_bottom = 0.997643
+margin_left = 1.41418
+margin_right = 1.41418
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window"]
+margin_left = 296.0
+margin_top = 131.142
+margin_right = 764.0
+margin_bottom = 371.142
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master" type="HBoxContainer" parent="Window/VBoxContainer"]
+margin_right = 468.0
+margin_bottom = 20.0
+
+[node name="MMute" type="Button" parent="Window/VBoxContainer/Master"]
+margin_right = 48.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "MUTE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="Window/VBoxContainer/Master"]
+margin_left = 52.0
+margin_right = 56.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Window/VBoxContainer/Master"]
+margin_left = 60.0
+margin_top = 3.0
+margin_right = 157.0
+margin_bottom = 17.0
+text = "Master Volume"
+
+[node name="MasterSlider" type="HSlider" parent="Window/VBoxContainer"]
+margin_top = 24.0
+margin_right = 468.0
+margin_bottom = 40.0
+min_value = -60.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BGM" type="HBoxContainer" parent="Window/VBoxContainer"]
+margin_top = 44.0
+margin_right = 468.0
+margin_bottom = 64.0
+
+[node name="BMute" type="Button" parent="Window/VBoxContainer/BGM"]
+margin_right = 48.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "MUTE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator2" type="VSeparator" parent="Window/VBoxContainer/BGM"]
+margin_left = 52.0
+margin_right = 56.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Window/VBoxContainer/BGM"]
+margin_left = 60.0
+margin_top = 3.0
+margin_right = 91.0
+margin_bottom = 17.0
+text = "BGM"
+
+[node name="BGMSlider" type="HSlider" parent="Window/VBoxContainer"]
+margin_top = 68.0
+margin_right = 468.0
+margin_bottom = 84.0
+min_value = -60.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SFX" type="HBoxContainer" parent="Window/VBoxContainer"]
+margin_top = 88.0
+margin_right = 468.0
+margin_bottom = 108.0
+
+[node name="SMute" type="Button" parent="Window/VBoxContainer/SFX"]
+margin_right = 48.0
+margin_bottom = 20.0
+toggle_mode = true
+text = "MUTE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator3" type="VSeparator" parent="Window/VBoxContainer/SFX"]
+margin_left = 52.0
+margin_right = 56.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Window/VBoxContainer/SFX"]
+margin_left = 60.0
+margin_top = 3.0
+margin_right = 82.0
+margin_bottom = 17.0
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Window/VBoxContainer"]
+margin_top = 112.0
+margin_right = 468.0
+margin_bottom = 128.0
+min_value = -60.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Window/VBoxContainer"]
+margin_top = 132.0
+margin_right = 468.0
+margin_bottom = 152.0
+alignment = 1
+
+[node name="Back" type="Button" parent="Window/VBoxContainer/HBoxContainer4"]
+margin_left = 213.0
+margin_right = 255.0
+margin_bottom = 20.0
+text = "Back"
+
+[node name="Label" type="Label" parent="Window"]
+margin_left = 485.91
+margin_top = 56.6882
+margin_right = 530.91
+margin_bottom = 70.6882
+rect_scale = Vector2( 2, 2 )
+text = "AUDIO"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="Window/VBoxContainer/Master/MMute" to="." method="_on_MMute_toggled"]
+[connection signal="value_changed" from="Window/VBoxContainer/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
+[connection signal="toggled" from="Window/VBoxContainer/BGM/BMute" to="." method="_on_BMute_toggled"]
+[connection signal="value_changed" from="Window/VBoxContainer/BGMSlider" to="." method="_on_BGMSlider_value_changed"]
+[connection signal="toggled" from="Window/VBoxContainer/SFX/SMute" to="." method="_on_SMute_toggled"]
+[connection signal="value_changed" from="Window/VBoxContainer/SFXSlider" to="." method="_on_SFXSlider_value_changed"]
+[connection signal="pressed" from="Window/VBoxContainer/HBoxContainer4/Back" to="." method="_on_Back_pressed"]

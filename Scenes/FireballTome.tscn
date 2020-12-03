@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/weapon_script/Ranged/FireballLaunch.gd" type="Script" id=1]
+[ext_resource path="res://Assets/audio/sfx/fireballlaunch.wav" type="AudioStream" id=2]
 
 [node name="FireballTome" type="Node2D"]
 position = Vector2( 2.18268, 2.97639 )
@@ -10,3 +11,8 @@ script = ExtResource( 1 )
 visible = false
 position = Vector2( 55.535, 0.987202 )
 scale = Vector2( 0.670588, 0.683333 )
+
+[node name="sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -9.087
+bus = "SFX"

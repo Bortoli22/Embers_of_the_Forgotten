@@ -10,12 +10,15 @@ var abilities = []
 var weapons = []
 var ranged = ["pistol", "smg", "sniper"]
 var rangedUnlocks = [false, false, false]
+var scores = [0, 0, 0, 0, 0]
+#var scores = [9999, 9999, 9999, 9999, 9999]
 var orientation #rightness
 var baseATK
 var equipped = []
 var wpnslot1 = null
 var wpnslot2 = null
 var wpnactionable
+var skin = "default"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
