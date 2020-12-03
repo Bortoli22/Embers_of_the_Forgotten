@@ -29,4 +29,12 @@ text = "BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="Control/Panel"]
+margin_left = 442.0
+margin_top = 90.0
+margin_right = 512.0
+margin_bottom = 104.0
+rect_scale = Vector2( 2, 2 )
+text = "CONTROLS"
 [connection signal="pressed" from="Control/Panel/Button" to="Control" method="_on_back_pressed"]
