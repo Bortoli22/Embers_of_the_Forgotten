@@ -96,7 +96,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Panel/5lab"]
+[node name="Score5" type="Label" parent="Panel/5lab"]
 margin_left = 20.0
 margin_right = 231.0
 margin_bottom = 14.0
@@ -108,4 +108,12 @@ margin_top = 354.0
 margin_right = 559.0
 margin_bottom = 374.0
 text = "Close"
+
+[node name="HighScores" type="Label" parent="Panel"]
+margin_left = 407.0
+margin_top = 79.0
+margin_right = 447.0
+margin_bottom = 93.0
+rect_scale = Vector2( 3, 3 )
+text = "HIGH SCORES"
 [connection signal="pressed" from="Panel/Close" to="." method="_on_Close_pressed"]

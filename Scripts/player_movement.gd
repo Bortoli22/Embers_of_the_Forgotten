@@ -91,6 +91,18 @@ func _physics_process(delta):
 	
 	if PlayerData.playerHealth == 0: 
 		GameData.player_dead = true
+		var index = 0
+		var lastScore = -1
+		for score in PlayerData.scores:
+			if(PlayerData.currency > score and lastScore == -1):
+				lastScore = score
+				PlayerData.scores[index] = PlayerData.currency
+			elif(lastScore != -1):
+				var swap = lastScore
+				lastScore = PlayerData.scores[index]
+				PlayerData.scores[index] = swap
+			index += 1
+			
 		respawn()
 		return
 	
