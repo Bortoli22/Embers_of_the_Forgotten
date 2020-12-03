@@ -96,12 +96,12 @@ text = "ABILITIES
 "
 align = 1
 
-[node name="Dodge" type="Button" parent="Abilities"]
+[node name="Double Jump" type="Button" parent="Abilities"]
 margin_top = 99.0
 margin_right = 300.0
 margin_bottom = 151.0
 custom_fonts/font = SubResource( 5 )
-text = "DODGE"
+text = "DOUBLE JUMP"
 script = ExtResource( 2 )
 
 [node name="Wall Jump" type="Button" parent="Abilities"]
@@ -112,12 +112,12 @@ custom_fonts/font = SubResource( 6 )
 text = "WALL JUMP"
 script = ExtResource( 2 )
 
-[node name="Wall Grab" type="Button" parent="Abilities"]
+[node name="Dash" type="Button" parent="Abilities"]
 margin_top = 211.0
 margin_right = 300.0
 margin_bottom = 263.0
 custom_fonts/font = SubResource( 7 )
-text = "WALL GRAB"
+text = "DASH"
 script = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="."]
@@ -134,7 +134,7 @@ __meta__ = {
 [connection signal="pressed" from="Weapons/Sword" to="Weapons/Sword" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Scythe" to="Weapons/Scythe" method="_on_pressed"]
 [connection signal="pressed" from="Weapons/Spear" to="Weapons/Spear" method="_on_pressed"]
-[connection signal="pressed" from="Abilities/Dodge" to="Abilities/Dodge" method="_on_pressed"]
+[connection signal="pressed" from="Abilities/Double Jump" to="Abilities/Double Jump" method="_on_pressed"]
 [connection signal="pressed" from="Abilities/Wall Jump" to="Abilities/Wall Jump" method="_on_pressed"]
-[connection signal="pressed" from="Abilities/Wall Grab" to="Abilities/Wall Grab" method="_on_pressed"]
+[connection signal="pressed" from="Abilities/Dash" to="Abilities/Dash" method="_on_pressed"]
 [connection signal="pressed" from="Button" to="Button" method="_submit"]
