@@ -31,5 +31,5 @@ func _on_pressed():
 		PlayerData.equipped.remove(index)
 		if !GameData.merchantPool.has(self.name.to_lower()):
 			GameData.merchantPool.append(self.name.to_lower())
-	print(PlayerData.equipped)
+	#print(PlayerData.equipped)
 #	print(GameData.merchantPool)

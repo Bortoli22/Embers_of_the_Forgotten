@@ -43,7 +43,7 @@ signal respawn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(PlayerData.abilities)
+	#print(PlayerData.abilities)
 	if "double jump" in PlayerData.abilities:
 		max_JC = 2
 	if "triple jump" in PlayerData.abilities:
