@@ -2,7 +2,7 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 250
+var grid_size_x = 25
 var grid_size_y = 25
 var final_grid_x_size = grid_size_x
 
@@ -54,7 +54,11 @@ var Tiles = {
 
 # Generate and evaluate the appropriate amount of Vertical Slices
 func _ready():
-	#for a consistent, testable seed, comment the below line
+	# do not proceed if stage is boss
+	if GameData.current_level % 4 == 0:
+		return
+	
+	# for a consistent, testable seed, comment the below line
 	randomize()
 	
 	GameData.interactablePos = []
