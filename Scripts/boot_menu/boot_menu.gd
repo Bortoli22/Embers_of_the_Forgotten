@@ -12,8 +12,7 @@ func _on_Start_pressed():
 	get_tree().change_scene("res://Scenes/StartMenu.tscn")
 
 func _on_Settings_pressed():
-	#consider not changing scenes for this one, since the menu music won't follow 
-	buttonsound()
+	$MenuSFX.play("open")
 	$SettingsMenu.show()
 	
 
@@ -23,9 +22,6 @@ func _on_Quit_pressed():
 	get_tree().quit()
 
 func _on_Scoreboard_pressed():
-	buttonsound()
+	$MenuSFX.play("open")
 	$"./ScoreMenu".loadScores()
 	$ScoreMenu.show()
-
-func buttonsound():
-	$MenuSFX.play("select1")

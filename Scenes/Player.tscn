@@ -361,7 +361,7 @@ scale = Vector2( 0.476033, 0.476033 )
 texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
-frame = 14
+frame = 22
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -389,7 +389,6 @@ __meta__ = {
 shape = SubResource( 2 )
 
 [node name="UsePrompt" type="Area2D" parent="."]
-visible = false
 gravity_vec = Vector2( 0, 0 )
 gravity = 728.413
 collision_layer = 0

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/control_panel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/audio/sfx/menu_select2.wav" type="AudioStream" id=2]
 
 [node name="VBoxContainer" type="VBoxContainer"]
 margin_left = 437.0
@@ -14,9 +15,8 @@ __meta__ = {
 }
 
 [node name="HBoxJUMP" type="HBoxContainer" parent="."]
-margin_top = 6.0
 margin_right = 150.0
-margin_bottom = 26.0
+margin_bottom = 20.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxJUMP"]
@@ -32,9 +32,9 @@ margin_right = 99.0
 margin_bottom = 20.0
 
 [node name="HBoxLEFT" type="HBoxContainer" parent="."]
-margin_top = 30.0
+margin_top = 24.0
 margin_right = 150.0
-margin_bottom = 50.0
+margin_bottom = 44.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxLEFT"]
@@ -50,9 +50,9 @@ margin_right = 97.0
 margin_bottom = 20.0
 
 [node name="HBoxRIGHT" type="HBoxContainer" parent="."]
-margin_top = 54.0
+margin_top = 48.0
 margin_right = 150.0
-margin_bottom = 74.0
+margin_bottom = 68.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxRIGHT"]
@@ -68,9 +68,9 @@ margin_right = 103.0
 margin_bottom = 20.0
 
 [node name="HBoxCROUCH" type="HBoxContainer" parent="."]
-margin_top = 78.0
+margin_top = 72.0
 margin_right = 150.0
-margin_bottom = 98.0
+margin_bottom = 92.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxCROUCH"]
@@ -86,9 +86,9 @@ margin_right = 110.0
 margin_bottom = 20.0
 
 [node name="HBoxWALLGRAB" type="HBoxContainer" parent="."]
-margin_top = 102.0
+margin_top = 96.0
 margin_right = 150.0
-margin_bottom = 122.0
+margin_bottom = 116.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxWALLGRAB"]
@@ -104,9 +104,9 @@ margin_right = 121.0
 margin_bottom = 20.0
 
 [node name="HBoxDODGE" type="HBoxContainer" parent="."]
-margin_top = 126.0
+margin_top = 120.0
 margin_right = 150.0
-margin_bottom = 146.0
+margin_bottom = 140.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxDODGE"]
@@ -122,9 +122,9 @@ margin_right = 107.0
 margin_bottom = 20.0
 
 [node name="HBoxPRIMARYATTACK" type="HBoxContainer" parent="."]
-margin_top = 150.0
+margin_top = 144.0
 margin_right = 150.0
-margin_bottom = 170.0
+margin_bottom = 164.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxPRIMARYATTACK"]
@@ -140,9 +140,9 @@ margin_right = 137.0
 margin_bottom = 20.0
 
 [node name="HBoxALTATTACK" type="HBoxContainer" parent="."]
-margin_top = 174.0
+margin_top = 168.0
 margin_right = 150.0
-margin_bottom = 194.0
+margin_bottom = 188.0
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxALTATTACK"]
@@ -156,6 +156,29 @@ text = "ALT ATTACK"
 margin_left = 108.0
 margin_right = 120.0
 margin_bottom = 20.0
+
+[node name="HBoxINVENTORY" type="HBoxContainer" parent="."]
+margin_top = 192.0
+margin_right = 150.0
+margin_bottom = 212.0
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxINVENTORY"]
+margin_left = 30.0
+margin_top = 3.0
+margin_right = 103.0
+margin_bottom = 17.0
+text = "INVENTORY"
+
+[node name="Button" type="Button" parent="HBoxINVENTORY"]
+margin_left = 107.0
+margin_right = 119.0
+margin_bottom = 20.0
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 4.039
+bus = "SFX"
 [connection signal="pressed" from="HBoxJUMP/Button" to="." method="_on_jump_pressed"]
 [connection signal="pressed" from="HBoxLEFT/Button" to="." method="_on_left_pressed"]
 [connection signal="pressed" from="HBoxRIGHT/Button" to="." method="_on_right_pressed"]
@@ -164,3 +187,4 @@ margin_bottom = 20.0
 [connection signal="pressed" from="HBoxDODGE/Button" to="." method="_on_dodge_pressed"]
 [connection signal="pressed" from="HBoxPRIMARYATTACK/Button" to="." method="_on_primaryattack_pressed"]
 [connection signal="pressed" from="HBoxALTATTACK/Button" to="." method="_on_altattack_pressed"]
+[connection signal="pressed" from="HBoxINVENTORY/Button" to="." method="_on_inventory_pressed"]

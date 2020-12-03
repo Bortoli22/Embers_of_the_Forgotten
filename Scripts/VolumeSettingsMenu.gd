@@ -23,14 +23,17 @@ func close():
 	
 
 func _on_MMute_toggled(button_pressed):
+	$MenuSFX.play("select2")
 	AudioServer.set_bus_mute(MASBus, button_pressed)
 
 
 func _on_BMute_toggled(button_pressed):
+	$MenuSFX.play("select2")
 	AudioServer.set_bus_mute(BGMBus, button_pressed)
 
 
 func _on_SMute_toggled(button_pressed):
+	$MenuSFX.play("select2")
 	AudioServer.set_bus_mute(SFXBus, button_pressed)
 
 
@@ -47,4 +50,5 @@ func _on_BGMSlider_value_changed(value):
 
 
 func _on_Back_pressed():
+	$MenuSFX.play("select2")
 	close()
