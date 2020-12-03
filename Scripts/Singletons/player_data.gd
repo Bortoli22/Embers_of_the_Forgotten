@@ -25,6 +25,36 @@ func _ready():
 	#rangedUnlocks[2] = true
 	wpnactionable = true
 	orientation = 1
+	PlayerData.add_to_group("Persist", true)
 	
+
 func check_abilities(ability):
 	return abilities.find(ability) >= 0
+	
+func grant_all_abilities():
+	abilities.append("double jump")
+	abilities.append("triple jump")
+	abilities.append("dash")
+	abilities.append("wall jump")
+	abilities.append("dodge")
+	
+func remove_all_abilities():
+	abilities.clear()
+	
+func save():
+	
+	var save_dict = {
+		"name" : "PlayerData",
+		"parent"	   : get_parent().get_path(),
+		"player_health" : playerHealth,
+		"currency" : currency,
+		"items_found" : itemsfound,
+		"abilities" : abilities,
+		"weapons" : weapons,
+		"baseATK" : baseATK,
+		"wpnslot1" : wpnslot1,
+		"wpslot2" : wpnslot2,
+		"wpnactionable" : wpnactionable
+	}
+	return save_dict
+	

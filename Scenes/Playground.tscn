@@ -1,15 +1,37 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Assets/Test Ground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/hud.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/box.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Platform.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/HUDHealthBar.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Playground.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/pickup_health.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/testobject_damage.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/items_menu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fireball.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/SniperSelect.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/SniperLock.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/PistolLock.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/SMGLock.gd" type="Script" id=17]
+[ext_resource path="res://Scenes/SMGSelect.gd" type="Script" id=18]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Fire.png" type="Texture" id=19]
+[ext_resource path="res://Assets/items_menu/Border.png" type="Texture" id=20]
+[ext_resource path="res://data/sprite/Unlocked.png" type="Texture" id=21]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Sword.png" type="Texture" id=22]
+[ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=23]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Spear.png" type="Texture" id=24]
+[ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=25]
+[ext_resource path="res://Assets/Black_BG.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/items_menu/item_menu_manager.gd" type="Script" id=27]
+[ext_resource path="res://Scenes/PopupMenu.gd" type="Script" id=28]
+[ext_resource path="res://Scenes/PistolSelect.gd" type="Script" id=29]
+[ext_resource path="res://Assets/items_menu/Weapons_Menu_Animation_Scythe.png" type="Texture" id=30]
+[ext_resource path="res://Assets/items_menu/Border_Selected.png" type="Texture" id=31]
+[ext_resource path="res://Scenes/PauseMenu.tscn" type="PackedScene" id=32]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1402.43, 5.91837 )
@@ -20,7 +42,240 @@ extents = Vector2( 128.938, 14.4354 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 125.875, 11.6255 )
 
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 22 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 22 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 22 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 22 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 22 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 22 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 22 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 22 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 22 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 30 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 30 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 30 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 30 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 30 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 30 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 30 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 30 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 30 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 19 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 19 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 19 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 19 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 19 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 19 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 19 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 19 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 24 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 24 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 24 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 24 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 24 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 24 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 24 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 24 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 24 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 24 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 13 )
+region = Rect2( 256, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 13 )
+region = Rect2( 512, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 13 )
+region = Rect2( 768, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 0, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 13 )
+region = Rect2( 0, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 13 )
+region = Rect2( 256, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 13 )
+region = Rect2( 512, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 13 )
+region = Rect2( 768, 256, 256, 256 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 13 )
+region = Rect2( 1024, 256, 256, 256 )
+
+[sub_resource type="SpriteFrames" id=55]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
+"loop": false,
+"name": "SwordHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
+"loop": false,
+"name": "ScytheHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": false,
+"name": "FireHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ) ],
+"loop": false,
+"name": "SpearHover",
+"speed": 30.0
+}, {
+"frames": [ SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ) ],
+"loop": false,
+"name": "FireballHover",
+"speed": 30.0
+} ]
+
 [node name="Main" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
@@ -71,15 +326,15 @@ shape = SubResource( 3 )
 [node name="Slime" parent="." instance=ExtResource( 7 )]
 position = Vector2( 633.181, 205.204 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="HUD"]
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money" type="Label" parent="CanvasLayer/HUD"]
+[node name="Money" type="Label" parent="HUD/HUD"]
 margin_right = 40.0
 margin_bottom = 14.0
 text = "BIG BOY TEXT"
@@ -87,10 +342,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthBar" type="Node2D" parent="CanvasLayer/HUD"]
+[node name="HealthBar" type="Node2D" parent="HUD/HUD"]
 position = Vector2( 3.77977, 565.075 )
 
-[node name="HealthFrame" type="ColorRect" parent="CanvasLayer/HUD/HealthBar"]
+[node name="HealthFrame" type="ColorRect" parent="HUD/HUD/HealthBar"]
 margin_left = -1.29962
 margin_top = -8.9248
 margin_right = 424.7
@@ -100,7 +355,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthEmpty" type="ColorRect" parent="CanvasLayer/HUD/HealthBar"]
+[node name="HealthEmpty" type="ColorRect" parent="HUD/HUD/HealthBar"]
 margin_left = 2.43872
 margin_top = -4.04419
 margin_right = 420.439
@@ -111,7 +366,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthGreen" type="ColorRect" parent="CanvasLayer/HUD/HealthBar"]
+[node name="HealthGreen" type="ColorRect" parent="HUD/HUD/HealthBar"]
 margin_left = 2.43872
 margin_top = -4.04419
 margin_right = 422.439
@@ -123,7 +378,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthText" type="Label" parent="CanvasLayer/HUD/HealthBar"]
+[node name="HealthText" type="Label" parent="HUD/HUD/HealthBar"]
 margin_left = 192.828
 margin_top = -3.29291
 margin_right = 232.828
@@ -133,7 +388,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Notice" type="Popup" parent="CanvasLayer/HUD"]
+[node name="Notice" type="Popup" parent="HUD/HUD"]
 visible = true
 margin_left = 324.938
 margin_top = 68.3611
@@ -143,10 +398,361 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Items Menu" parent="." instance=ExtResource( 12 )]
+[node name="Items Menu" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="Items Menu"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen Dim" type="Sprite" parent="Items Menu/Control"]
+modulate = Color( 1, 1, 1, 0.8 )
+position = Vector2( 512, 300 )
+scale = Vector2( 4.57143, 4.6875 )
+texture = ExtResource( 26 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MenuTitle" type="RichTextLabel" parent="Items Menu/Control"]
+margin_left = 416.0
+margin_top = 96.0
+margin_right = 634.0
+margin_bottom = 156.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "ITEMS MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuBorder" type="Sprite" parent="Items Menu/Control"]
+position = Vector2( 512, 288 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 20 )
+
+[node name="MeleeItems" type="Node2D" parent="Items Menu/Control"]
+
+[node name="sword" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 312, 192 )
+script = ExtResource( 25 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items Menu/Control/MeleeItems/sword"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 55 )
+animation = "SwordHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/sword"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/sword"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="scythe" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 448, 192 )
+script = ExtResource( 25 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items Menu/Control/MeleeItems/scythe"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 55 )
+animation = "ScytheHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/scythe"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/scythe"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="spear" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 584, 192 )
+script = ExtResource( 25 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items Menu/Control/MeleeItems/spear"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 55 )
+animation = "SpearHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/spear"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/spear"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="firewave" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 312, 328 )
+script = ExtResource( 25 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items Menu/Control/MeleeItems/firewave"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 55 )
+animation = "FireHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/firewave"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/firewave"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="fireball" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 448, 328 )
+script = ExtResource( 25 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Items Menu/Control/MeleeItems/fireball"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 55 )
+animation = "FireballHover"
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/fireball"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/fireball"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="Empty" type="Node2D" parent="Items Menu/Control/MeleeItems"]
+position = Vector2( 584, 328 )
+script = ExtResource( 25 )
+
+[node name="Border" type="Sprite" parent="Items Menu/Control/MeleeItems/Empty"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 31 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cursor" type="Sprite" parent="Items Menu/Control/MeleeItems/Empty"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 23 )
+
+[node name="RangeItems" type="Node2D" parent="Items Menu/Control"]
+visible = false
+
+[node name="Pistol" type="Control" parent="Items Menu/Control/RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolSelect" type="Button" parent="Items Menu/Control/RangeItems/Pistol"]
+margin_left = 292.573
+margin_top = 223.231
+margin_right = 393.573
+margin_bottom = 286.231
+text = "PISTOL"
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolTooltip" type="Label" parent="Items Menu/Control/RangeItems/Pistol"]
+visible = false
+margin_left = 292.749
+margin_top = 289.4
+margin_right = 395.749
+margin_bottom = 354.4
+text = "Pistol
+Firerate: 2
+Trigger: Semi
+Damage: 200"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMG" type="Control" parent="Items Menu/Control/RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMGSelect" type="Button" parent="Items Menu/Control/RangeItems/SMG"]
+margin_left = 460.383
+margin_top = 223.231
+margin_right = 561.383
+margin_bottom = 286.231
+text = "SMG"
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMGTooltip" type="Label" parent="Items Menu/Control/RangeItems/SMG"]
+visible = false
+margin_left = 461.309
+margin_top = 290.149
+margin_right = 564.309
+margin_bottom = 355.149
+text = "SMG
+Firerate: 6.67
+Trigger: Auto
+Damage: 100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sniper" type="Control" parent="Items Menu/Control/RangeItems"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperSelect" type="Button" parent="Items Menu/Control/RangeItems/Sniper"]
+margin_left = 629.692
+margin_top = 223.98
+margin_right = 730.692
+margin_bottom = 286.98
+text = "SNIPER"
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperTooltip" type="Label" parent="Items Menu/Control/RangeItems/Sniper"]
+visible = false
+margin_left = 629.119
+margin_top = 290.898
+margin_right = 732.119
+margin_bottom = 355.898
+text = "Sniper
+Firerate: 0.67
+Trigger: Semi
+Damage: 800"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Unlocks" type="Node2D" parent="Items Menu/Control"]
+visible = false
+
+[node name="Pistol" type="Label" parent="Items Menu/Control/Unlocks"]
+margin_left = 286.98
+margin_top = 187.749
+margin_right = 370.98
+margin_bottom = 206.749
+text = "Pistol"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PistolLock" type="Sprite" parent="Items Menu/Control/Unlocks"]
+position = Vector2( 271.568, 192.907 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 21 )
+script = ExtResource( 16 )
+
+[node name="SMG" type="Label" parent="Items Menu/Control/Unlocks"]
+margin_left = 286.231
+margin_top = 213.97
+margin_right = 370.231
+margin_bottom = 232.97
+text = "SMG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SMGLock" type="Sprite" parent="Items Menu/Control/Unlocks"]
+position = Vector2( 271.568, 219.877 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 21 )
+script = ExtResource( 17 )
+
+[node name="Sniper" type="Label" parent="Items Menu/Control/Unlocks"]
+margin_left = 286.98
+margin_top = 237.942
+margin_right = 370.98
+margin_bottom = 256.942
+text = "Sniper"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SniperLock" type="Sprite" parent="Items Menu/Control/Unlocks"]
+position = Vector2( 271.568, 245.348 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 21 )
+script = ExtResource( 15 )
+
+[node name="PopupMenu" type="PopupMenu" parent="Items Menu/Control"]
+margin_left = 216.0
+margin_top = 104.0
+margin_right = 316.0
+margin_bottom = 131.0
+script = ExtResource( 28 )
 
 [node name="box" parent="." instance=ExtResource( 5 )]
 position = Vector2( 325.795, 359.188 )
 
 [node name="Slime" parent="." instance=ExtResource( 7 )]
 position = Vector2( 654.481, 244.204 )
+
+[node name="Platform" parent="." instance=ExtResource( 6 )]
+position = Vector2( 499, 306 )
+
+[node name="Pause" parent="." instance=ExtResource( 32 )]

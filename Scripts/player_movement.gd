@@ -24,6 +24,13 @@ var holdingm2 = false
 var sprinting = false
 var wallgrabbing = false
 
+var platform_cling_time = 0
+const min_cling_time = 0.3
+
+var platform_clinging = false
+var platform_clinging_side
+var ledge_area_clinging
+
 #healthbar 
 export var playerOnHitInvuln = 2
 var invulnTimer
@@ -94,6 +101,17 @@ func _physics_process(delta):
 		respawn()
 		return
 	
+	if platform_clinging :
+		platform_cling_time += delta
+		
+	if platform_clinging && platform_cling_time >= min_cling_time	 :
+		if platform_clinging && Input.is_action_pressed("ui_down") :
+			let_go_of_ledge()
+		elif platform_clinging && platform_clinging_side == "left" && Input.is_action_pressed("ui_right") :
+			vault_ledge(platform_clinging_side)
+		elif platform_clinging && platform_clinging_side == "right" && Input.is_action_pressed("ui_left") :
+			vault_ledge(platform_clinging_side)
+			
 	# obtain new y velocity and check crouch
 	if is_on_floor():
 		playerVelocity.y = playerGravity
@@ -112,7 +130,9 @@ func _physics_process(delta):
 	
 	#obtain new x velocity
 	_inputSequence()
-	var masRET = move_and_slide(playerVelocity, Vector2(0,-1), false, 4, .785398, false)
+	if !platform_clinging:
+		var masRET = move_and_slide(playerVelocity, Vector2(0,-1), false, 4, .785398, false)
+
 	var sCount = get_slide_count()
 	for index in range(sCount):
 		var col = get_slide_collision(index)
@@ -127,6 +147,8 @@ func _inputSequence():
 	jump_check()
 	dodge_check()
 	use_check()
+	
+	down_check()
 	
 	if Input.is_action_just_pressed("kill_self"):
 		healthChange(-PlayerData.playerHealthMax)
@@ -257,7 +279,69 @@ func healthChange(amount):
 	if PlayerData.playerHealth < 0:
 		PlayerData.playerHealth = 0
 	get_node("../HUD/HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
+
+func down_check():
+
+	if Input.is_action_pressed("ui_down"):
+		#find layer platform
+		set_collision_mask_bit(19, false)
+	else:
+		set_collision_mask_bit(19, true)
+		
+func handle_platform_cling(ledge_area):
 	
+	platform_clinging = true;
+	ledge_area_clinging = ledge_area
+	
+	var platform_position = ledge_area.get_parent().get_global_position()
+	
+	if ledge_area.get_global_position().x < platform_position.x:
+		platform_clinging_side = "left"
+		position = get_hang_left_pos(ledge_area)
+	else:
+		platform_clinging_side = "right"
+		position = get_hang_right_pos(ledge_area)
+	
+func get_hang_left_pos(ledge_area):
+	
+	var platform = ledge_area.get_parent()
+	var platform_position = platform.get_global_position()
+	var platform_shape = get_node(platform.get_collision_shape()).shape
+	var ledge_shape = get_node(ledge_area.collision_shape_path).shape
+	
+	var at_ledge_pos_x = - (ledge_shape.extents.x)*2 + platform_position.x - platform_shape.extents.x
+	var at_ledge_pos_y = - ledge_shape.extents.y + platform_position.y #- platform_shape.extents.y/2
+	
+	return Vector2(at_ledge_pos_x, at_ledge_pos_y)
+
+func get_hang_right_pos(ledge_area):
+	
+	var platform = ledge_area.get_parent()
+	var platform_position = platform.get_global_position()
+	var platform_shape = get_node(platform.get_collision_shape()).shape
+	var ledge_shape = get_node(ledge_area.collision_shape_path).shape
+	
+	var at_ledge_pos_x = - (ledge_shape.extents.x)*2 + platform_position.x + platform_shape.extents.x
+	var at_ledge_pos_y = - ledge_shape.extents.y + platform_position.y #- platform_shape.extents.y/2
+	
+	return Vector2(at_ledge_pos_x, at_ledge_pos_y)
+	
+	
+func let_go_of_ledge():
+	platform_clinging = false
+	platform_cling_time = 0
+	
+func vault_ledge(ledge_side):
+	let_go_of_ledge()
+	var platform = ledge_area_clinging.get_parent()
+	var platform_position = platform.get_global_position()
+	var platform_shape = get_node(platform.get_collision_shape()).shape
+	
+	if(ledge_side == "left"):
+		position = Vector2(-platform_shape.extents.x + platform_position.x, platform_position.y - platform_shape.extents.y*3)
+	elif(ledge_side == "right"):
+		position = Vector2(platform_shape.extents.x + platform_position.x, platform_position.y - platform_shape.extents.y*3)
+		
 func jump_check():
 	if Input.is_action_pressed("ui_up") && jumping != true:
 		if jump_count < max_JC: 
@@ -361,7 +445,9 @@ func _on_UsePrompt_body_entered(body):
 
 func _on_UsePrompt_body_exited(_body):
 	clearUse()
-
+func _on_LedgeGrab_area_entered(area):
+	handle_platform_cling(area)
+	
 func respawn():
 	#var tree = get_tree()
 	#var root = tree.get_root()

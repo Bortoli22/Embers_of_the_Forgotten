@@ -36,6 +36,7 @@ var roomHeightBoostMax = 8
 var platforms = []
 var platformYIndexing = []
 
+var test 
 var Tiles = {
 	"C": 0,			#Center Tile
 	"C_TL": 12,		#Ceiling Top Left
@@ -52,8 +53,12 @@ var Tiles = {
 	"S_L": 7 		#Side Left
 }
 
+var loaded
 # Generate and evaluate the appropriate amount of Vertical Slices
 func _ready():
+	
+	#if GameData.loaded :
+	#	return
 	#for a consistent, testable seed, comment the below line
 	randomize()
 	
@@ -280,3 +285,8 @@ func _V_finalize(iterator):
 	var items = get_node_or_null("../../Item_Generation")
 	if items != null:
 		items._place_interactables()
+		
+#	GameData.stage_tile_set = inst2dict(self)
+	#GameData.stage_parent = get_parent().get_path()
+
+
