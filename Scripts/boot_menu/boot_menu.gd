@@ -11,7 +11,6 @@ func _on_Start_pressed():
 
 
 func _on_Settings_pressed():
-	#get_tree().change_scene("res://Scenes/SettingsMenu.tscn")
 	#consider not changing scenes for this one, since the menu music won't follow 
 	$SettingsMenu.show()
 	
