@@ -4,7 +4,7 @@ extends Control
 func _ready():
 	hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the previous frame
 func _process(delta):
 	if Input.is_action_just_released("pause"):
 		if GameData.paused:
