@@ -7,6 +7,7 @@ var moveSequence
 var moveCount = 3
 var currentPosition = -1
 var currentMove
+var sfxSequence
 
 #move control
 var hit = false
@@ -31,6 +32,7 @@ func _ready():
 	sprite.frame = 16
 	wepOrientation = 1
 	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
+	sfxSequence = [$slash1, $slash2, $slash1, $slash3]
 	for node in moveSequence:
 		remove_child(node)
 	PlayerData.wpnactionable = true
@@ -60,8 +62,11 @@ func attack(orientation):
 		currentMove = moveSequence[currentPosition]
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
+		if (currentPosition < 3):
+			sfxSequence[currentPosition].play()
 		yield(animation, "animation_finished")
-		
+		if (currentPosition == 3):
+			sfxSequence[currentPosition].play()
 		active = true
 		animation.play(currentMove.animations[1])
 		add_child(currentMove)
