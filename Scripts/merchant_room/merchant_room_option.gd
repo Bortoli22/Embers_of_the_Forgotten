@@ -24,8 +24,8 @@ func _ready():
 	for val in options:
 		var tText = unlockables[val.id].to_upper() + " : $"
 		tText += str(GameData.merchantPrices[unlockables[val.id]])
-		val.NodeVal.text = tText
-		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
+		val.NodeVal.get_node("Label").text = tText
+		val.NodeVal.get_node("Label").set("custom_colors/font_color", Color("#FFFFFF"))
 		val.NodeVal.connect("pressed", self, "_selectionUpdate", [val.id])
 	
 
@@ -39,11 +39,11 @@ func _selectionUpdate(id):
 	
 	for val in options:
 		val.isSelected = false
-		val.NodeVal.set("custom_colors/font_color", Color("#000000"))
+		val.NodeVal.get_node("Label").set("custom_colors/font_color", Color("#FFFFFF"))
 	
 	if hasSelection:
 		options[id].isSelected = true
-		options[id].NodeVal.set("custom_colors/font_color", Color("#FFFFFF"))
+		options[id].NodeVal.get_node("Label").set("custom_colors/font_color", Color("#8b2a2a"))
 
 func _get_valid_options():
 	var totalPoolSize = GameData.merchantPool.size()
