@@ -42,8 +42,11 @@ func _process(_delta):
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
 			connected = true
+			var cmdmg = currentMove.damageValue
+			var cmforce = currentMove.force
+			remove_child(currentMove)
 			for y in x:
-				hit(y)
+				hit(y, cmdmg, cmforce)
 	if (animation.get_current_animation() == "neutral"):
 		PlayerData.playerNode.capSpeed(600)
 		currentPosition = -1
@@ -91,10 +94,9 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(600)
 			PlayerData.wpnactionable = true
 
-func hit(body):
+func hit(body, dmg, force):
 	if (body.has_method("damageHandler")):
 		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
-	remove_child(currentMove)
 	
 
 func ICRoutine():
