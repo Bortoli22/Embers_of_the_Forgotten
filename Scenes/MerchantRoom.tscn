@@ -125,10 +125,10 @@ text = "Your Money: $"
 align = 1
 
 [node name="Submit" type="TextureButton" parent="."]
-margin_left = 430.112
-margin_top = 449.888
-margin_right = 590.112
-margin_bottom = 513.888
+margin_left = 606.112
+margin_top = 481.888
+margin_right = 766.112
+margin_bottom = 545.888
 texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
