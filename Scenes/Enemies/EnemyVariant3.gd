@@ -29,10 +29,10 @@ onready var ray = get_node("RayCast2D")
 
 #Attack Reach for knowing when to actually try to attack
 var attack_reach = 190
-var attack_damage = 3
+var attack_damage = 120
 
 #Enemy Health
-var health = 150
+var health = 200
 
 func _ready():
 	animFSM.travel("Idle_L")
@@ -97,22 +97,18 @@ func _process(delta):
 		var hits = ray.get_collider()
 		if hits != null:
 			if hits.name.find("Player") > -1:
-				healthChange(attack_damage * -1)
+				PlayerData.playerNode.damageHandler(attack_damage, next_dir, Vector2(2100,-450))
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
 	
 
-func healthChange(amount):
-	PlayerData.playerHealth += amount
-	if PlayerData.playerHealth < 0:
-		PlayerData.playerHealth = 0
-	get_node("../../../HUD/HUD").change_health(PlayerData.playerHealth, float(PlayerData.playerHealth)/float(PlayerData.playerHealthMax))
-
 func damageHandler(_damageValue, _orientation, _force):
-		health -= 50 #standin
+		health -= _damageValue
+		knockback(_orientation, _force)
 		if (health <= 0):
 			GameData.roomEnemyCount -= 1
 			queue_free()
 
-func _on_Get_Damage_area_exited(area):
-	damageHandler(null, null, null)
+func knockback(direction, force):
+	vel.x += direction*force.x
+	vel.y += force.y

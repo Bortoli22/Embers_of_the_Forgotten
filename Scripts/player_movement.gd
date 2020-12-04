@@ -32,7 +32,7 @@ var platform_clinging_side
 var ledge_area_clinging
 
 #healthbar 
-export var playerOnHitInvuln = 2
+export var playerOnHitInvuln = 1
 var invulnTimer
 var main
 
@@ -259,7 +259,7 @@ func lr_check():
 #Use this function for all non-DoT damage sources
 func damageHandler(dmgamount, direction, force):
 	if invulnTimer <= 0:
-		invulnTimer = playerOnHitInvuln #implement countdown in another delta function
+		invulnTimer = playerOnHitInvuln
 		knockback(direction, force)
 		healthChange(-1*dmgamount)
 		$SFX/damage.play()
@@ -274,7 +274,6 @@ func damageHandler(dmgamount, direction, force):
 func knockback(direction, force):
 	playerVelocity.x += direction*force.x
 	playerVelocity.y += force.y
-	pass
 
 func heal(value):
 	if (PlayerData.playerHealth == PlayerData.playerHealthMax):
