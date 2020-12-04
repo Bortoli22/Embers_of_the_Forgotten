@@ -12,7 +12,7 @@ var enemy4Scene = load("res://Scenes/Enemies/EnemyVariant4.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if GameData.current_level % 4 == 0:
+	if GameData.current_level as int % 4 == 0:
 		show()
 		scale = Vector2(1,1)
 	else:

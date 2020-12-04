@@ -59,7 +59,10 @@ func load_game():
 				continue
 			else :
 				load_node.set(i, node_data[i])
-		
+		if node_data["name"] == "GameData" :
+			GameData.loadValues()
+		elif node_data["name"] == "PlayerData" :
+			PlayerData.loadSkin()
 		#new_object.Singleton = true
 		
 	save_game.close()

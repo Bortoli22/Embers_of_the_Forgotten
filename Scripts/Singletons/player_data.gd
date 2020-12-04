@@ -62,4 +62,6 @@ func save():
 		"skin" : skin
 	}
 	return save_dict
-	
+
+func loadSkin() :
+	pass

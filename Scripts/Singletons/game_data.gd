@@ -71,7 +71,7 @@ func save():
 		#"main_node" : main_node,
 		"camera_node" : camera_node,
 		"final_grid_sixe_x" : final_grid_size_x,
-		"current_level" : current_level,
+		"current_level" : current_level as int,
 		"tile_size" : tile_size,
 		"playground" : playground,
 		"fullscreen" : fullscreen,
@@ -79,3 +79,5 @@ func save():
 	}
 	return save_dict
 	
+func loadValues():
+	current_level = current_level as int

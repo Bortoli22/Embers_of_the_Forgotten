@@ -57,7 +57,7 @@ var loaded
 # Generate and evaluate the appropriate amount of Vertical Slices
 func _ready():
 	# do not proceed if stage is boss
-	if GameData.current_level % 4 == 0:
+	if GameData.current_level as int % 4 == 0:
 		return
 	
 	# for a consistent, testable seed, comment the below line
