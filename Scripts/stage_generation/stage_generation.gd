@@ -104,7 +104,12 @@ func _ready():
 	var enemy3 = preload("res://Scenes/Enemies/EnemyVariant3.tscn")
 	var enemy4 = preload("res://Scenes/Enemies/EnemyVariant4.tscn")
 	
-	var enemyScenes = [enemy1, enemy2, enemy3, enemy4]
+	var enemyScenes = [enemy1, enemy2]
+	#adding more diffcult enemies as the game progresses 
+	if GameData.current_level > 3:
+		enemyScenes.append(enemy3)
+	if GameData.current_level > 5:
+		 enemyScenes.append(enemy4)
 	GameData.roomEnemyCount = enemyIndexing.size()
 	
 	for index in enemyIndexing:

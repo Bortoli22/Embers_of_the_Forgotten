@@ -312,7 +312,7 @@ graph_offset = Vector2( 1, 0 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
 [sub_resource type="CircleShape2D" id=18]
-radius = 6.3594
+radius = 2.80142
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 192, 128 )
@@ -339,7 +339,7 @@ position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
-frame = 7
+frame = 3
 
 [node name="Idle_R" type="Sprite" parent="."]
 visible = false
@@ -372,11 +372,11 @@ collision_mask = 6
 collide_with_areas = true
 
 [node name="Get_Damage" type="Area2D" parent="."]
-position = Vector2( 6.67419, 2.66969 )
+position = Vector2( -52.0587, -16.018 )
 collision_layer = 132
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
-position = Vector2( -349.117, -199.722 )
+position = Vector2( 71.3575, 48.5579 )
 shape = SubResource( 18 )
 [connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]
