@@ -308,6 +308,7 @@ points = PoolVector2Array( 0, 11.0602, 10.952, 11.0602, 11.1143, 0, 32, 0, 32, 3
 12/z_index = 0
 
 [node name="Node2D" type="Node2D"]
+position = Vector2( 6, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 13 )

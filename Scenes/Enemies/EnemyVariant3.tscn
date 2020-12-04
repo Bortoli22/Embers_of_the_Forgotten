@@ -1,11 +1,12 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/enemies/EnemyVariant3Attack_L.png" type="Texture" id=1]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Idle_L.png" type="Texture" id=2]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Attack_R.png" type="Texture" id=3]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Idle_R.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Enemies/EnemyVariant3.gd" type="Script" id=5]
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=1]
 resource_name = "Attack_L"
 length = 0.77
 step = 0.07
@@ -70,7 +71,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=2]
 resource_local_to_scene = true
 resource_name = "Attack_R"
 length = 0.8
@@ -136,8 +137,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle_L"
+[sub_resource type="Animation" id=3]
 loop = true
 step = 0.07
 tracks/0/type = "value"
@@ -201,8 +201,7 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle_R"
+[sub_resource type="Animation" id=4]
 loop = true
 step = 0.07
 tracks/0/type = "value"
@@ -266,89 +265,84 @@ tracks/4/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 39, 37 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 32, 16 )
-
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Attack_L"
 
-[sub_resource type="AnimationNodeAnimation" id=21]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Attack_R"
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Idle_L"
 
-[sub_resource type="AnimationNodeAnimation" id=22]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Idle_R"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=15]
-states/Attack_L/node = SubResource( 20 )
+[sub_resource type="AnimationNodeStateMachine" id=16]
+states/Attack_L/node = SubResource( 6 )
 states/Attack_L/position = Vector2( 243, 45 )
-states/Attack_R/node = SubResource( 21 )
+states/Attack_R/node = SubResource( 7 )
 states/Attack_R/position = Vector2( 461, 45 )
-"states/Idle_L 2/node" = SubResource( 18 )
-"states/Idle_L 2/position" = Vector2( 243, 149 )
-states/Idle_R/node = SubResource( 22 )
+states/Idle_L/node = SubResource( 8 )
+states/Idle_L/position = Vector2( 243, 149 )
+states/Idle_R/node = SubResource( 9 )
 states/Idle_R/position = Vector2( 461, 149 )
-transitions = [ "Idle_L 2", "Attack_L", SubResource( 23 ), "Attack_L", "Idle_L 2", SubResource( 24 ), "Idle_L 2", "Idle_R", SubResource( 25 ), "Idle_R", "Idle_L 2", SubResource( 26 ), "Idle_R", "Attack_R", SubResource( 27 ), "Attack_R", "Idle_R", SubResource( 28 ) ]
+transitions = [ "Idle_L", "Attack_L", SubResource( 10 ), "Attack_L", "Idle_L", SubResource( 11 ), "Idle_L", "Idle_R", SubResource( 12 ), "Idle_R", "Idle_L", SubResource( 13 ), "Idle_R", "Attack_R", SubResource( 14 ), "Attack_R", "Idle_R", SubResource( 15 ) ]
+start_node = "Idle_L"
 graph_offset = Vector2( 1, 0 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=17]
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 2.80142
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 192, 128 )
+script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack_L = SubResource( 19 )
-anims/Attack_R = SubResource( 17 )
-anims/Idle_L = SubResource( 1 )
-anims/Idle_R = SubResource( 2 )
+anims/Attack_L = SubResource( 1 )
+anims/Attack_R = SubResource( 2 )
+anims/Idle_L = SubResource( 3 )
+anims/Idle_R = SubResource( 4 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 0 )
-shape = SubResource( 3 )
-
-[node name="Attack_R_Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 160, 24 )
-shape = SubResource( 4 )
-
-[node name="Attack_L_Collider" type="CollisionShape2D" parent="."]
-position = Vector2( -160, 24 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 15 )
+tree_root = SubResource( 16 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 16 )
+parameters/playback = SubResource( 17 )
 
 [node name="Idle_L" type="Sprite" parent="."]
-visible = false
 position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+frame = 3
 
 [node name="Idle_R" type="Sprite" parent="."]
+visible = false
 position = Vector2( 7.55099, 0.471939 )
 texture = ExtResource( 4 )
 vframes = 4
@@ -370,3 +364,19 @@ position = Vector2( 7.78697, 0 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 3
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 150, 0 )
+collision_mask = 6
+collide_with_areas = true
+
+[node name="Get_Damage" type="Area2D" parent="."]
+position = Vector2( -52.0587, -16.018 )
+collision_layer = 132
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
+position = Vector2( 71.3575, 48.5579 )
+shape = SubResource( 18 )
+[connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]

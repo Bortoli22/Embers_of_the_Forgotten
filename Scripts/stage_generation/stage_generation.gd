@@ -2,7 +2,7 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 25
+var grid_size_x = 250
 var grid_size_y = 25
 var final_grid_x_size = grid_size_x
 
@@ -35,6 +35,7 @@ var roomHeightBoostMax = 8
 
 var platforms = []
 var platformYIndexing = []
+var enemyIndexing = []
 
 var Tiles = {
 	"C": 0,			#Center Tile
@@ -56,6 +57,11 @@ var Tiles = {
 func _ready():
 	# do not proceed if stage is boss
 	if GameData.current_level % 4 == 0:
+		
+		#will cause trouble, remember to migrate
+		GameData.roomEnemyCount = 0
+		
+		
 		return
 	
 	# for a consistent, testable seed, comment the below line
@@ -83,11 +89,50 @@ func _ready():
 				_add_interactable(iterator + val + 3)
 				_v_slice_evaluate(iterator + val + 3)
 				_platform_evaluate(iterator + val + 3, val)
+				_enemy_indexing(iterator + val + 3, val)
 			#print("found room on iteration: " + str(iterator))
 			iterator += roomLength + 1
 		iterator += 1
 	
 	_V_finalize(iterator)
+	#youtube tutorial to create enemy 
+	print("made stages!")
+	var rand = RandomNumberGenerator.new()
+	
+	var enemy1 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
+	var enemy2 = preload("res://Scenes/Enemies/EnemyVariant2.tscn")
+	var enemy3 = preload("res://Scenes/Enemies/EnemyVariant3.tscn")
+	var enemy4 = preload("res://Scenes/Enemies/EnemyVariant4.tscn")
+	
+	var enemyScenes = [enemy1, enemy2]
+	#adding more diffcult enemies as the game progresses 
+	if GameData.current_level > 3:
+		enemyScenes.append(enemy3)
+	if GameData.current_level > 5:
+		 enemyScenes.append(enemy4)
+	GameData.roomEnemyCount = enemyIndexing.size()
+	
+	for index in enemyIndexing:
+		var x = randi() % enemyScenes.size() - 1
+		var en = enemyScenes[x].instance()
+		en.position.x = GameData.tile_size * index.x
+		en.position.y = GameData.tile_size * index.y
+		add_child(en)
+		GameData.roomEnemyCount += 1
+	
+	# keep this handy, but here's my thought of an implement
+	
+	# var screensize = get_viewport().get_visible_rect().size
+	# for i in range(0, GameData.current_level):
+	#	var enemy = enemyscene.instance()
+	#	rand.randomize()
+	#	var x = rand.randf_range(0, screensize.x)
+	#	rand.randomize()
+	#	var y = rand.randf_range(0, screensize.y)
+	#	enemy.position.x = x 
+	#	enemy.position.y = y
+	#	add_child(enemy)
+	
 
 # Initialize with the first three Vertical Slices
 func _V_setup():
@@ -155,6 +200,11 @@ func _platform_evaluate(xVal, roomLengthIteration):
 		else:
 			if (platformYIndexing.find(val.y) != -1):
 				platformYIndexing.remove(platformYIndexing.find(val.y))
+
+func _enemy_indexing(iterator, roomLengthIteration):
+	var x = randi() % 8
+	if (x == 0) and (roomLengthIteration < roomLength - 4):
+		enemyIndexing.append(Vector2(iterator, basePointBase - VSlice2.y - VSlice2.x + 4))
 
 func _v_slice_evaluate_test(iterator): 
 	for val in range(0, height):
