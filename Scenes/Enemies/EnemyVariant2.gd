@@ -97,6 +97,7 @@ func _process(delta):
 		var hits = ray.get_collider()
 		if hits != null:
 			if hits.name.find("Player") > -1:
+				print("hit 2")
 				healthChange(attack_damage * -1)
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
