@@ -160,6 +160,7 @@ states/Idle_L/position = Vector2( 313, 179 )
 states/Idle_R/node = SubResource( 10 )
 states/Idle_R/position = Vector2( 535, 179 )
 transitions = [ "Idle_L", "Attack_L", SubResource( 11 ), "Idle_L", "Idle_R", SubResource( 12 ), "Idle_R", "Idle_L", SubResource( 13 ), "Idle_R", "Attack_R", SubResource( 14 ), "Attack_L", "Idle_L", SubResource( 15 ), "Attack_R", "Idle_R", SubResource( 16 ) ]
+start_node = "Idle_L"
 graph_offset = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
@@ -170,10 +171,10 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-offset = Vector2( 64, 0 )
+offset = Vector2( -64, 0 )
 vframes = 5
 hframes = 8
-frame = 12
+frame = 7
 region_rect = Rect2( 8, 8, 116, 112 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

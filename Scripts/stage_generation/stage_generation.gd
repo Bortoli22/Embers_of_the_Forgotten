@@ -100,9 +100,9 @@ func _ready():
 	var rand = RandomNumberGenerator.new()
 	
 	var enemy1 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
-	var enemy2 = preload("res://Scenes/Enemies/EnemyVariant2.tscn")
-	var enemy3 = preload("res://Scenes/Enemies/EnemyVariant3.tscn")
-	var enemy4 = preload("res://Scenes/Enemies/EnemyVariant4.tscn")
+	var enemy2 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
+	var enemy3 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
+	var enemy4 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
 	
 	var enemyScenes = [enemy1, enemy2, enemy3, enemy4]
 	GameData.roomEnemyCount = enemyIndexing.size()

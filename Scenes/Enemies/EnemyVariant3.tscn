@@ -303,11 +303,12 @@ states/Attack_L/node = SubResource( 7 )
 states/Attack_L/position = Vector2( 243, 45 )
 states/Attack_R/node = SubResource( 8 )
 states/Attack_R/position = Vector2( 461, 45 )
-"states/Idle_L 2/node" = SubResource( 9 )
-"states/Idle_L 2/position" = Vector2( 243, 149 )
+states/Idle_L/node = SubResource( 9 )
+states/Idle_L/position = Vector2( 243, 149 )
 states/Idle_R/node = SubResource( 10 )
 states/Idle_R/position = Vector2( 461, 149 )
-transitions = [ "Idle_L 2", "Attack_L", SubResource( 11 ), "Attack_L", "Idle_L 2", SubResource( 12 ), "Idle_L 2", "Idle_R", SubResource( 13 ), "Idle_R", "Idle_L 2", SubResource( 14 ), "Idle_R", "Attack_R", SubResource( 15 ), "Attack_R", "Idle_R", SubResource( 16 ) ]
+transitions = [ "Idle_L", "Attack_L", SubResource( 11 ), "Attack_L", "Idle_L", SubResource( 12 ), "Idle_L", "Idle_R", SubResource( 13 ), "Idle_R", "Idle_L", SubResource( 14 ), "Idle_R", "Attack_R", SubResource( 15 ), "Attack_R", "Idle_R", SubResource( 16 ) ]
+start_node = "Idle_L"
 graph_offset = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=18]
@@ -340,13 +341,14 @@ active = true
 parameters/playback = SubResource( 18 )
 
 [node name="Idle_L" type="Sprite" parent="."]
-visible = false
 position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+frame = 2
 
 [node name="Idle_R" type="Sprite" parent="."]
+visible = false
 position = Vector2( 7.55099, 0.471939 )
 texture = ExtResource( 4 )
 vframes = 4
