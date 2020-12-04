@@ -28,6 +28,7 @@ func open():
 
 
 func _on_Close_pressed():
+	get_node("../../MenuSFX").play("select2")
 	currentUnLbl.text = ""
 	newUnEdit.text = ""
 	newPwEdit.text = ""
@@ -38,6 +39,7 @@ func _on_Close_pressed():
 
 
 func _on_UnSubmit_pressed():
+	get_node("../../MenuSFX").play("open")
 	var newUn = newUnEdit.text.strip_edges(true,true)
 	if newUn.empty():
 		unError.show()
@@ -63,6 +65,7 @@ func _on_UnSubmit_pressed():
 
 
 func _on_PwSubmit_pressed():
+	get_node("../../MenuSFX").play("open")
 	var oldPw = oldPwEdit.text.strip_edges(true,true)
 	var newPw = newPwEdit.text.strip_edges(true, true)
 	var newPw2 = newPw2Edit.text.strip_edges(true,true)

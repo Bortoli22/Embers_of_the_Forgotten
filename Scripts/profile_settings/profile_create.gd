@@ -18,6 +18,7 @@ func _ready():
 	hide()
 
 func _on_Create_pressed():
+	get_node("../../MenuSFX").play("select2")
 	var un = unEdit.text
 	var pw = pwdEdit.text
 	var rpw = rpwdEdit.text
@@ -59,6 +60,17 @@ func _on_Create_pressed():
 	db.close_db()
 	
 func _on_Close_pressed():
+	get_node("../../MenuSFX").play("select2")
+	unEdit.text = ""
+	pwdEdit.text = ""
+	rpwdEdit.text = ""
+	errorlabel.hide()
+	$Panel/SuccessPanel.hide()
+	hide()
+
+
+func _on_Back_pressed():
+	get_node("../../MenuSFX").play("select2")
 	unEdit.text = ""
 	pwdEdit.text = ""
 	rpwdEdit.text = ""

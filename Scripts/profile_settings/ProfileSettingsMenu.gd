@@ -19,14 +19,17 @@ func _on_un_changed():
 	$Control/Panel/ProfileInfo/Label.text = "Username: " + PlayerData.username
 	
 func _on_Back_pressed():
+	get_node("../MenuSFX").play("select2")
 	$Control.hide()
 
 
 func _on_AccountButton_pressed():
+	get_node("../MenuSFX").play("open")
 	$ProfileCreate.show()
 
 
 func _on_SignInButton_pressed():
+	get_node("../MenuSFX").play("open")
 	var unEdit = $Control/Panel/SignIn/UserLineEdit
 	var pwEdit = $Control/Panel/SignIn/PasswordLineEdit
 	var un = unEdit.text.strip_edges(true, true)
@@ -44,15 +47,18 @@ func _on_SignInButton_pressed():
 		PlayerData.username = un
 		unEdit.text = ""
 		pwEdit.text = ""
+		errorLabel.hide()
 		open()
 	db.close_db()
 
 
 func _on_ChangeButton_pressed():
+	get_node("../MenuSFX").play("open")
 	$ProfileChange.open()
 
 
 func _on_SignOutButton_pressed():
+	get_node("../MenuSFX").play("select2")
 	var db = PlayerData.SQLite.new()
 	db.path = "res://data/users"
 	db.open_db()
