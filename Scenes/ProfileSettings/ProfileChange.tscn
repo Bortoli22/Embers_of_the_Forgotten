@@ -1,0 +1,146 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/profile_settings/profile_change.gd" type="Script" id=1]
+
+[node name="ProfileChange" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -1.41418
+margin_right = 1022.59
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 292.0
+margin_top = 50.0
+margin_right = 512.0
+margin_bottom = 64.0
+rect_scale = Vector2( 2, 2 )
+text = "CHANGE ACCOUNT INFORMATION"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnChange" type="VBoxContainer" parent="Panel"]
+margin_left = 347.0
+margin_top = 100.0
+margin_right = 677.0
+margin_bottom = 283.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentUnLabel" type="Label" parent="Panel/UnChange"]
+margin_right = 330.0
+margin_bottom = 14.0
+text = "Current Username: "
+
+[node name="NewUnLabel" type="Label" parent="Panel/UnChange"]
+margin_top = 18.0
+margin_right = 330.0
+margin_bottom = 32.0
+text = "New Username"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewUnLineEdit" type="LineEdit" parent="Panel/UnChange"]
+margin_top = 36.0
+margin_right = 330.0
+margin_bottom = 60.0
+
+[node name="Submit" type="Button" parent="Panel/UnChange"]
+margin_top = 64.0
+margin_right = 330.0
+margin_bottom = 84.0
+text = "Submit"
+
+[node name="ErrorLabel" type="Label" parent="Panel/UnChange"]
+margin_top = 88.0
+margin_right = 330.0
+margin_bottom = 102.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Username is empty"
+align = 1
+
+[node name="PwChange" type="VBoxContainer" parent="Panel"]
+margin_left = 347.0
+margin_top = 250.0
+margin_right = 677.0
+margin_bottom = 433.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OldPwLabel" type="Label" parent="Panel/PwChange"]
+margin_right = 330.0
+margin_bottom = 14.0
+text = "Old Passowrd"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OldPwLineEdit" type="LineEdit" parent="Panel/PwChange"]
+margin_top = 18.0
+margin_right = 330.0
+margin_bottom = 42.0
+secret = true
+
+[node name="NewPwLabel" type="Label" parent="Panel/PwChange"]
+margin_top = 46.0
+margin_right = 330.0
+margin_bottom = 60.0
+text = "New Password"
+
+[node name="NewPwLineEdit" type="LineEdit" parent="Panel/PwChange"]
+margin_top = 64.0
+margin_right = 330.0
+margin_bottom = 88.0
+secret = true
+
+[node name="NewPw2Label" type="Label" parent="Panel/PwChange"]
+margin_top = 92.0
+margin_right = 330.0
+margin_bottom = 106.0
+text = "Re-Enter New Password"
+
+[node name="NewPw2LineEdit" type="LineEdit" parent="Panel/PwChange"]
+margin_top = 110.0
+margin_right = 330.0
+margin_bottom = 134.0
+secret = true
+
+[node name="Submit" type="Button" parent="Panel/PwChange"]
+margin_top = 138.0
+margin_right = 330.0
+margin_bottom = 158.0
+text = "Submit"
+
+[node name="ErrorLabel" type="Label" parent="Panel/PwChange"]
+margin_top = 162.0
+margin_right = 330.0
+margin_bottom = 176.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Password field(s) empty"
+align = 1
+
+[node name="Close" type="Button" parent="Panel"]
+margin_left = 489.0
+margin_top = 480.0
+margin_right = 536.0
+margin_bottom = 500.0
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Panel/UnChange/Submit" to="." method="_on_UnSubmit_pressed"]
+[connection signal="pressed" from="Panel/PwChange/Submit" to="." method="_on_PwSubmit_pressed"]
+[connection signal="pressed" from="Panel/Close" to="." method="_on_Close_pressed"]
