@@ -2,7 +2,7 @@ extends TileMap
 
 
 # Grid Variables
-var grid_size_x = 250
+var grid_size_x = 25
 var grid_size_y = 25
 var final_grid_x_size = grid_size_x
 
