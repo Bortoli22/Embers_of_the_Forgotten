@@ -39,7 +39,6 @@ func _on_Create_pressed():
 	db.path = "res://data/users"
 	db.open_db()
 	db.query("SELECT COUNT(*) as cnt FROM users WHERE username ='" + un + "';")
-	print(db.query_result)
 	if db.query_result[0]["cnt"] == 0:
 		var row : Dictionary  = Dictionary()
 		
@@ -59,8 +58,6 @@ func _on_Create_pressed():
 		errorlabel.show()
 	db.close_db()
 	
-
-
 func _on_Close_pressed():
 	unEdit.text = ""
 	pwdEdit.text = ""

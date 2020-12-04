@@ -45,6 +45,7 @@ __meta__ = {
 }
 
 [node name="ProfileInfo" type="VBoxContainer" parent="Control/Panel"]
+visible = false
 margin_left = 345.068
 margin_top = 114.551
 margin_right = 675.068
@@ -71,7 +72,6 @@ margin_bottom = 62.0
 text = "Sign Out"
 
 [node name="SignIn" type="VBoxContainer" parent="Control/Panel"]
-visible = false
 margin_left = 343.654
 margin_top = 110.309
 margin_right = 673.654
@@ -101,6 +101,7 @@ text = "Password"
 margin_top = 64.0
 margin_right = 330.0
 margin_bottom = 88.0
+secret = true
 
 [node name="SignInButton" type="Button" parent="Control/Panel/SignIn"]
 margin_top = 92.0
@@ -114,7 +115,17 @@ margin_right = 330.0
 margin_bottom = 136.0
 text = "Create Account"
 
+[node name="ErrorLabel" type="Label" parent="Control/Panel/SignIn"]
+visible = false
+margin_top = 140.0
+margin_right = 330.0
+margin_bottom = 154.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Incorrect username or password"
+align = 1
+
 [node name="ProfileCreate" parent="." instance=ExtResource( 2 )]
 visible = false
 [connection signal="pressed" from="Control/Panel/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Control/Panel/SignIn/SignInButton" to="." method="_on_SignInButton_pressed"]
 [connection signal="pressed" from="Control/Panel/SignIn/AccountButton" to="." method="_on_AccountButton_pressed"]
