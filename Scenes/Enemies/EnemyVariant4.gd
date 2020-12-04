@@ -18,6 +18,7 @@ var target_player_dist = 0
 
 var eye_reach = 300
 var vision = 600
+var exploding = false
 #enable getting hit 
 
 
@@ -46,11 +47,11 @@ func set_dir(target_dir):
 func _process(delta):
 	#setting correct x coordinate
 	if Player.position.x < position.x - target_player_dist:
-		if (animFSM.get_current_node() != "Idle_L"):
+		if (animFSM.get_current_node() != "Idle_L" && !exploding):
 			animFSM.travel("Idle_L")
 		set_dir(-1)
 		ray.cast_to = Vector2(-190, 0)
-	elif Player.position.x > position.x + target_player_dist :
+	elif Player.position.x > position.x + target_player_dist && !exploding:
 		if (animFSM.get_current_node() != "Idle_R"):
 			animFSM.travel("Idle_R")
 		set_dir(1)
@@ -85,14 +86,16 @@ func _process(delta):
 		vel.y = 0
 	#print("supposed to move")
 	
-	#check if should attack
-	if abs(Player.position.x - position.x) < attack_reach:
-		if dir > 0:
-			animFSM.travel("Attack_L")
-		elif dir < 0:
-			animFSM.travel("Attack_L")
-		yield(get_tree().create_timer(1), "timeout") #uneasy
-		explode()
+	
+	if !exploding:
+		if abs(Player.position.x - position.x) < attack_reach:
+			exploding = true
+			if dir > 0:
+				animFSM.travel("Attack_L")
+			elif dir < 0:
+				animFSM.travel("Attack_L")
+			yield(get_tree().create_timer(1), "timeout") #uneasy
+			explode()
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
 	
@@ -114,9 +117,7 @@ func explode():
 	if (list != []):
 		var cmforce = Vector2(2100, -600)
 		for y in list:
-			hit(y, attack_damage, cmforce)
+			if (y.has_method("damageHandler")):
+				y.damageHandler(attack_damage, next_dir, cmforce)
+	yield(get_tree().create_timer(0.4), "timeout") #uneasy
 	queue_free()
-
-func hit(body, dmg, force):
-	if (body.has_method("damageHandler")):
-		body.damageHandler(dmg, next_dir, force)

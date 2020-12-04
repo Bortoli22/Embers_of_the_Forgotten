@@ -104,7 +104,7 @@ func _ready():
 	#adding more diffcult enemies as the game progresses 
 	if GameData.current_level > 3:
 		enemyScenes.append(enemy3)
-	if GameData.current_level > 5:
+	if GameData.current_level > 0:
 		 enemyScenes.append(enemy4)
 	GameData.roomEnemyCount = enemyIndexing.size()
 	

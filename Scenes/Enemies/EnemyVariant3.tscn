@@ -374,6 +374,7 @@ position = Vector2( 7.78697, 0 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 3
+frame = 11
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
