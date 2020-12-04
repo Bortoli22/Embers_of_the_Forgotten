@@ -15,23 +15,13 @@ func respawn():
 func _on_Button_pressed():
 	GameData.player_dead = false
 	GameData.paused = false
-	#var tree = get_tree() 
-	#var root = tree.get_root()
-	#get_parent().remove_child(self)
-	#self.queue_free()
-	
-	#var stage = root.get_node("Root") 
-	#if stage == null:
-	#	stage = root.get_node("Main")
-		
-	#tree.current_scene = stage
-	#tree.reload_current_scene()
 	
 	PlayerData.abilities = []
 	PlayerData.weapons = []
 	PlayerData.equipped = []
 	GameData.current_level = 1
 	PlayerData.playerHealth = PlayerData.playerHealthMax
+	PlayerData.currency = 0
 	hide()
 	
 	get_tree().change_scene("res://Scenes/StartMenu.tscn")
@@ -40,22 +30,12 @@ func _on_Button_pressed():
 func _on_Menu_pressed():
 	GameData.player_dead = false
 	GameData.paused = false
-	#var tree = get_tree() 
-	#var root = tree.get_root()
-	#get_parent().remove_child(self)
-	#self.queue_free()
-	
-	#var stage = root.get_node("Root") 
-	#if stage == null:
-	#	stage = root.get_node("Main")
-		
-	#tree.current_scene = stage
-	#tree.reload_current_scene()
 	
 	PlayerData.abilities = []
 	PlayerData.weapons = []
 	PlayerData.equipped = []
 	GameData.current_level = 1
+	PlayerData.currency = 0
 	PlayerData.playerHealth = PlayerData.playerHealthMax
 	hide()
 	get_tree().change_scene("res://Scenes/BootMenu.tscn")

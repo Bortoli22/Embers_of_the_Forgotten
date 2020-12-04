@@ -97,7 +97,6 @@ func _process(delta):
 		var hits = ray.get_collider()
 		if hits != null:
 			if hits.name.find("Player") > -1:
-				print("hit 4")
 				healthChange(attack_damage * -1)
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
@@ -111,7 +110,6 @@ func healthChange(amount):
 
 func damageHandler(_damageValue, _orientation, _force):
 		health -= 50 #standin
-		print("got hit 4")
 		if (health <= 0):
 			GameData.roomEnemyCount -= 1
 			queue_free()

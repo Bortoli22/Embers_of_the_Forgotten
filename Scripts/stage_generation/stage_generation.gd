@@ -95,8 +95,7 @@ func _ready():
 		iterator += 1
 	
 	_V_finalize(iterator)
-	#youtube tutorial to create enemy 
-	print("made stages!")
+
 	var rand = RandomNumberGenerator.new()
 	
 	var enemy1 = preload("res://Scenes/Enemies/EnemyVariant1.tscn")
@@ -118,21 +117,6 @@ func _ready():
 		en.position.x = GameData.tile_size * index.x
 		en.position.y = GameData.tile_size * index.y
 		add_child(en)
-		GameData.roomEnemyCount += 1
-	
-	# keep this handy, but here's my thought of an implement
-	
-	# var screensize = get_viewport().get_visible_rect().size
-	# for i in range(0, GameData.current_level):
-	#	var enemy = enemyscene.instance()
-	#	rand.randomize()
-	#	var x = rand.randf_range(0, screensize.x)
-	#	rand.randomize()
-	#	var y = rand.randf_range(0, screensize.y)
-	#	enemy.position.x = x 
-	#	enemy.position.y = y
-	#	add_child(enemy)
-	
 
 # Initialize with the first three Vertical Slices
 func _V_setup():

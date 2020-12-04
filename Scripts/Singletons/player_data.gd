@@ -26,6 +26,7 @@ var username = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerHealth = playerHealthMax
+	currency = 0
 	rangedUnlocks[0] = true
 	#rangedUnlocks[1] = true
 	#rangedUnlocks[2] = true
