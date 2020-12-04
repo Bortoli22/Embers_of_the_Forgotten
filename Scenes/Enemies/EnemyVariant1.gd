@@ -29,7 +29,7 @@ onready var ray = get_node("RayCast2D")
 
 #Attack Reach for knowing when to actually try to attack
 var attack_reach = 190
-var attack_damage = 1
+var attack_damage = 5
 
 #Enemy Health
 var health = 150
