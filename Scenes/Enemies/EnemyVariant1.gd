@@ -112,6 +112,7 @@ func healthChange(amount):
 func damageHandler(_damageValue, _orientation, _force):
 		health -= 50 #standin
 		if (health <= 0):
+			GameData.roomEnemyCount -= 1
 			queue_free()
 
 func _on_Get_Damage_area_exited(area):

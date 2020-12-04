@@ -118,6 +118,7 @@ func _ready():
 		en.position.x = GameData.tile_size * index.x
 		en.position.y = GameData.tile_size * index.y
 		add_child(en)
+		GameData.roomEnemyCount += 1
 	
 	# keep this handy, but here's my thought of an implement
 	

@@ -331,7 +331,7 @@ position = Vector2( 8, 0 )
 texture = ExtResource( 1 )
 vframes = 5
 hframes = 5
-frame = 16
+frame = 4
 
 [node name="Idle_R" type="Sprite" parent="."]
 visible = false
