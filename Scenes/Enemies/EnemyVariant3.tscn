@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/enemies/EnemyVariant3Attack_L.png" type="Texture" id=1]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Idle_L.png" type="Texture" id=2]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Attack_R.png" type="Texture" id=3]
 [ext_resource path="res://Assets/enemies/EnemyVariant3Idle_R.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Enemies/EnemyVariant3.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Attack_L"
@@ -314,6 +315,7 @@ graph_offset = Vector2( 1, 0 )
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 192, 128 )
+script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Attack_L = SubResource( 1 )
@@ -340,18 +342,19 @@ active = true
 parameters/playback = SubResource( 18 )
 
 [node name="Idle_L" type="Sprite" parent="."]
-visible = false
 position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+frame = 1
 
 [node name="Idle_R" type="Sprite" parent="."]
+visible = false
 position = Vector2( 7.55099, 0.471939 )
 texture = ExtResource( 4 )
 vframes = 4
 hframes = 4
-frame = 4
+frame = 11
 
 [node name="Attack_L" type="Sprite" parent="."]
 visible = false
@@ -368,3 +371,20 @@ position = Vector2( 7.78697, 0 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 3
+frame = 11
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 150, 0 )
+collision_mask = 6
+collide_with_areas = true
+
+[node name="Get_Damage" type="Area2D" parent="."]
+position = Vector2( -64, -48 )
+collision_layer = 132
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
+position = Vector2( 71.3575, 48.5579 )
+shape = SubResource( 18 )
+[connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]
