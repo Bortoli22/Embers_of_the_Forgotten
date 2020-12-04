@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/enemies/Enemy_Variant_1.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Enemies/EnemyVariant1.gd" type="Script" id=2]
@@ -163,14 +163,11 @@ graph_offset = Vector2( 1, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
-[sub_resource type="CircleShape2D" id=18]
-radius = 23.0197
-
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 192, 128 )
 scale = Vector2( 0.5, 0.5 )
-collision_layer = 5
-collision_mask = 2147483653
+collision_layer = 4
+collision_mask = 2147483655
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -178,7 +175,7 @@ texture = ExtResource( 1 )
 offset = Vector2( -64, 0 )
 vframes = 5
 hframes = 8
-frame = 9
+frame = 10
 region_rect = Rect2( 8, 8, 116, 112 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -203,13 +200,3 @@ enabled = true
 cast_to = Vector2( 190, 0 )
 collision_mask = 6
 collide_with_areas = true
-
-[node name="Get_Damage" type="Area2D" parent="."]
-position = Vector2( -80, -16 )
-collision_layer = 132
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
-position = Vector2( 78.5297, 33.2054 )
-shape = SubResource( 18 )
-[connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]
