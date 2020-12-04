@@ -1,0 +1,175 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Assets/items_menu/Border_Selected.png" type="Texture" id=1]
+[ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Black_BG.png" type="Texture" id=4]
+[ext_resource path="res://Skins.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Alt_Player_Character_Animations.png" type="Texture" id=6]
+[ext_resource path="res://Assets/items_menu/Border.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Player_Character_Animations.png" type="Texture" id=8]
+[ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Scripts/items_menu/item_in_menu.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/MenuSFX.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/skin_in_menu.gd" type="Script" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 128, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 256, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 384, 0, 128, 153 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "DefaultSkin",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 128, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 256, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 384, 0, 128, 153 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "AltSkin",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=12]
+size = 12
+font_data = ExtResource( 9 )
+
+[node name="Skins" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen Dim" type="Sprite" parent="Control"]
+modulate = Color( 1, 1, 1, 0.8 )
+position = Vector2( 512.542, 300.542 )
+scale = Vector2( 4.57143, 4.6875 )
+texture = ExtResource( 4 )
+
+[node name="MenuTitle" type="RichTextLabel" parent="Control"]
+margin_left = 357.0
+margin_top = 96.0
+margin_right = 575.0
+margin_bottom = 156.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "SKINS MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuBorder" type="Sprite" parent="Control"]
+position = Vector2( 452.356, 241.64 )
+scale = Vector2( 1.25148, 1.17806 )
+texture = ExtResource( 7 )
+
+[node name="Skins" type="Node2D" parent="Control"]
+
+[node name="default" type="Node2D" parent="Control/Skins"]
+position = Vector2( 312, 192 )
+script = ExtResource( 12 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/Skins/default"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+frames = SubResource( 6 )
+animation = "DefaultSkin"
+playing = true
+
+[node name="Border" type="Sprite" parent="Control/Skins/default"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+
+[node name="Cursor" type="Sprite" parent="Control/Skins/default"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="alt" type="Node2D" parent="Control/Skins"]
+position = Vector2( 448, 192 )
+script = ExtResource( 10 )
+
+[node name="ItemSprite" type="AnimatedSprite" parent="Control/Skins/alt"]
+position = Vector2( 63.4578, 63.1867 )
+scale = Vector2( 0.5, 0.503544 )
+frames = SubResource( 11 )
+animation = "AltSkin"
+frame = 2
+playing = true
+
+[node name="Border" type="Sprite" parent="Control/Skins/alt"]
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+
+[node name="Cursor" type="Sprite" parent="Control/Skins/alt"]
+visible = false
+position = Vector2( 64, 64 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="MenuSFX" parent="Control" instance=ExtResource( 11 )]
+
+[node name="CloseMenu" type="Button" parent="Control"]
+margin_left = 402.0
+margin_top = 339.782
+margin_right = 484.0
+margin_bottom = 380.782
+custom_fonts/font = SubResource( 12 )
+text = "Close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Control/CloseMenu" to="Control" method="_on_CloseMenu_pressed"]

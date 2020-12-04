@@ -458,6 +458,7 @@ func _on_UsePrompt_body_entered(body):
 
 func _on_UsePrompt_body_exited(_body):
 	clearUse()
+	
 func _on_LedgeGrab_area_entered(area):
 	handle_platform_cling(area)
 	

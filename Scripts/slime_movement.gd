@@ -20,6 +20,7 @@ var attackDamage = 20
 var orientation
 var aggroRange
 
+onready var playerNode = get_node("../../../Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	slimeVelocity.y = slimeGravity
@@ -32,7 +33,7 @@ func _physics_process(delta):
 	
 	# obtain new y velocity and check crouch
 	if is_on_floor():
-		if get_parent().get_node("Player").position.y - position.y > 5:
+		if playerNode.position.y - position.y > 5:
 			slimeVelocity.y += slimeJumpImpulse
 		else:
 			slimeVelocity.y = slimeGravity
@@ -46,20 +47,20 @@ func _physics_process(delta):
 	#obtain new x velocity
 	if(currentHealth > 0 and (damageTimer < 0 or OS.get_ticks_msec()-damageTimer>=250)):
 		damageTimer = -OS.get_ticks_msec()
-		if abs($"../Player".position.x-position.x) < aggroRange and abs($"../Player".position.y-position.y) < aggroRange:
+		if abs(playerNode.position.x-position.x) < aggroRange and abs(playerNode.position.y-position.y) < aggroRange:
 			slimeVelocity.x = 0
 			$SlimeSprite.play("attack")
 			if(!attackSwitch):
-				$"../Player".damageHandler(attackDamage, orientation, Vector2(800,-500))
+				playerNode.damageHandler(attackDamage, orientation, Vector2(800,-500))
 				attackSwitch = true
 				#if aggro will be decoupled from attack
 				#aggroRange = 120
 		else:
 			attackSwitch = false
-			if abs(get_parent().get_node("Player").position.x - position.x) > 800:
+			if abs(playerNode.position.x - position.x) > 800:
 				slimeVelocity.x = 0
 				$SlimeSprite.play("idle")
-			elif get_parent().get_node("Player").position.x > position.x:
+			elif playerNode.position.x > position.x:
 				slimeVelocity.x = slimeSpeed
 				$SlimeSprite.play("move")
 			else:

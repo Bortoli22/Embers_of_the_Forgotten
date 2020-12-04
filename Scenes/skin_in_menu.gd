@@ -14,14 +14,11 @@ var texture_unselected = load("res://Assets/items_menu/Border_Unselected.png")
 func _ready():
 	if !PlayerData.skin == self.name :
 		get_node("Border").texture = texture_selected
-		
 		if has_node("ItemSprite"):
-			pass
-			#get_node("ItemSprite").hide()
+			get_node("ItemSprite").hide()
 		else:
 			get_node("Border").texture = texture_unselected
-		
-
+	
 func toggleHover():
 	hovered = !hovered
 	if hovered:
@@ -38,6 +35,8 @@ func toggleHover():
 
 func toggleSelected():
 	if get_node_or_null("ItemSprite") == null:
+		return
+	if !PlayerData.weapons.has(self.name.to_lower()):
 		return
 	selected = !selected
 	if selected:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Assets/fonts/Pixeled.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/items_menu/Cursor.png" type="Texture" id=2]
@@ -21,10 +21,31 @@
 [ext_resource path="res://Scenes/SniperLock.gd" type="Script" id=19]
 [ext_resource path="res://Scenes/SMGLock.gd" type="Script" id=20]
 [ext_resource path="res://Scenes/MenuSFX.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Assets/Alt_Player_Character_Animations.png" type="Texture" id=22]
 
-[sub_resource type="DynamicFont" id=53]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=53]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 0, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=54]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 128, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=55]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 256, 0, 128, 153 )
+
+[sub_resource type="AtlasTexture" id=56]
+flags = 4
+atlas = ExtResource( 22 )
+region = Rect2( 384, 0, 128, 153 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 7 )
@@ -228,7 +249,12 @@ region = Rect2( 1024, 256, 256, 256 )
 
 [sub_resource type="SpriteFrames" id=52]
 animations = [ {
-"frames": [ SubResource( 54 ), SubResource( 55 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ) ],
+"loop": true,
+"name": "AltSkin",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": false,
 "name": "FireHover",
 "speed": 30.0
@@ -257,7 +283,6 @@ animations = [ {
 [node name="Items" type="CanvasLayer"]
 
 [node name="Control" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 11 )
@@ -279,7 +304,7 @@ margin_left = 416.0
 margin_top = 96.0
 margin_right = 634.0
 margin_bottom = 156.0
-custom_fonts/normal_font = SubResource( 53 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "ITEMS MENU"
 __meta__ = {
 "_edit_use_anchors_": false

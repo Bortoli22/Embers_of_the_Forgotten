@@ -8,11 +8,10 @@ onready var altSkin = load("res://Assets/Alt_Player_Character_Animations.png")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	_changeSkin(PlayerData.skin) # Replace with function body.
 
 func _changeSkin(skin):
-	if skin == PlayerData.skin:
-		return
+
 	if skin == "alt":
 		get_parent().texture = altSkin
 	elif skin == "default":

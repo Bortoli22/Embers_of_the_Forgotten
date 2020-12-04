@@ -20,6 +20,7 @@ var wpnslot2 = null
 var wpnactionable
 var skin = "default"
 
+var availableSkins = ["default", "alt"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	playerHealth = playerHealthMax
@@ -57,7 +58,8 @@ func save():
 		"baseATK" : baseATK,
 		"wpnslot1" : wpnslot1,
 		"wpslot2" : wpnslot2,
-		"wpnactionable" : wpnactionable
+		"wpnactionable" : wpnactionable,
+		"skin" : skin
 	}
 	return save_dict
 	
