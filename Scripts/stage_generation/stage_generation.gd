@@ -61,7 +61,7 @@ func _ready():
 	if GameData.current_level % 4 == 0:
 		
 		#will cause trouble, remember to migrate
-		GameData.roomEnemyCount = 0
+		#GameData.roomEnemyCount = 0
 		
 		
 		return

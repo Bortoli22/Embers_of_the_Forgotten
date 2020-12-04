@@ -27,6 +27,8 @@ var stage_tile_set
 var stage_parent
 
 var loaded
+
+var bossRoomFinished = false
 #the possible unlocks, aka what the player doesn't have yet
 var merchantPool = [
 	"double jump",
