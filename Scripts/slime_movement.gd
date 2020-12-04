@@ -64,7 +64,7 @@ func _physics_process(delta):
 				slimeVelocity.x = slimeSpeed
 				$SlimeSprite.play("move")
 			else:
-				slimeVelocity.x = -slimeSpeed
+				slimeVelocity.x = -slimeSpeed 
 				$SlimeSprite.play("move")
 	elif(currentHealth < 0 and OS.get_ticks_msec()-damageTimer >= 650):
 		queue_free()
