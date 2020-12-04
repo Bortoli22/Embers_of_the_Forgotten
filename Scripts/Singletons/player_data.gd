@@ -21,7 +21,7 @@ var wpnslot2 = null
 var wpnactionable
 var skin = "default"
 var signedin = false
-var username = null
+var username = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

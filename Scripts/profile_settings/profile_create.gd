@@ -43,7 +43,7 @@ func _on_Create_pressed():
 		var row : Dictionary  = Dictionary()
 		
 		db.query("SELECT MAX(userid) maxid FROM users;")
-		if db.query_result[0]["maxid"] == "":
+		if str(db.query_result[0]["maxid"]) == "":
 			row["userid"] = 0
 		else:
 			row["userid"] = db.query_result[0]["maxid"] + 1		
