@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/menu_deny.wav-49c1911c4953bfa5e96ed2c6da7c832c.sample"
+
+[deps]
+
+source_file="res://Assets/audio/sfx/menu_deny.wav"
+dest_files=[ "res://.import/menu_deny.wav-49c1911c4953bfa5e96ed2c6da7c832c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -20,18 +20,18 @@
 
 [node name="Root" type="Node2D"]
 
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
 [node name="Menus" type="Node2D" parent="."]
 
 [node name="Pause" parent="Menus" instance=ExtResource( 5 )]
-layer = 0
 
 [node name="RespawnMenu" parent="Menus" instance=ExtResource( 6 )]
 
 [node name="ControlRebindMenu" parent="Menus" instance=ExtResource( 7 )]
+layer = 2
 
 [node name="Items" parent="Menus" instance=ExtResource( 8 )]
-
-[node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 80, 320 )
@@ -50,26 +50,31 @@ script = ExtResource( 4 )
 script = ExtResource( 13 )
 
 [node name="BGM-Stage-A" type="AudioStreamPlayer" parent="MasterBGM"]
+pause_mode = 2
 stream = ExtResource( 12 )
 volume_db = -4.039
 bus = "BGM"
 
 [node name="BGM-Stage-B" type="AudioStreamPlayer" parent="MasterBGM"]
+pause_mode = 2
 stream = ExtResource( 15 )
 volume_db = -4.039
 bus = "BGM"
 
 [node name="BGM-Stage-C" type="AudioStreamPlayer" parent="MasterBGM"]
+pause_mode = 2
 stream = ExtResource( 10 )
 volume_db = -4.039
 bus = "BGM"
 
 [node name="BGM-Stage-D" type="AudioStreamPlayer" parent="MasterBGM"]
+pause_mode = 2
 stream = ExtResource( 11 )
 volume_db = -7.069
 bus = "BGM"
 
 [node name="BGM-Boss-1" type="AudioStreamPlayer" parent="MasterBGM"]
+pause_mode = 2
 stream = ExtResource( 16 )
 volume_db = -4.039
 bus = "BGM"

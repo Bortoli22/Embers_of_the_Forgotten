@@ -14,6 +14,8 @@ func _ready():
 
 
 func _submit():
+	get_node("../MenuSFX").play("select1") #need to do it in the same function otherwise it will pass the timer to another thread
+	yield(get_tree().create_timer(0.8), "timeout")
 	var exec = get_tree().change_scene("res://Scenes/Stage.tscn")
 	if exec != OK:
 		print("ERROR SWITCHING FROM MAIN MENU TO STAGE")

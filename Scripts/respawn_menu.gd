@@ -8,7 +8,7 @@ func _ready():
 
 
 func respawn():
-	print("gothere")
+	#print("gothere")
 	show()
 	
 

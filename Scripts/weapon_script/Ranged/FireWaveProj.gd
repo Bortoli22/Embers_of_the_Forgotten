@@ -6,7 +6,7 @@ var orientation = 1
 var force = Vector2(400, -120) #
 var velocity
 var active
-var hit
+var connected
 var fall
 var det = false
 var currentMove
@@ -51,35 +51,35 @@ func burst():
 	yield(get_tree().create_timer(0.04), "timeout")
 	x = currentMove.get_overlapping_bodies()
 	if (x != []):
-		hit = true
+		connected = true
 		for y in x:
 			hit(y)
 	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
-	hit = false
+	connected = false
 	
 	currentMove = moveSequence[1]
 	add_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
 	x = currentMove.get_overlapping_bodies()
 	if (x != []):
-		hit = true
+		connected = true
 		for y in x:
 			hit(y)
 	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
-	hit = false
+	connected = false
 	
 	currentMove = moveSequence[2]
 	add_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
 	x = currentMove.get_overlapping_bodies()
 	if (x != []):
-		hit = true
+		connected = true
 		for y in x:
 			hit(y)
 	remove_child(currentMove)
 	yield(get_tree().create_timer(0.04), "timeout")
-	hit = false
+	connected = false
 	yield(get_tree().create_timer(0.08), "timeout")
 	queue_free()

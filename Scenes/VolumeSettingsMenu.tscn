@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/VolumeSettingsMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/audio/music/02_merchant_room.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/MenuSFX.tscn" type="PackedScene" id=3]
 
 [node name="VolumeSettings" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -167,6 +168,8 @@ text = "AUDIO"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuSFX" parent="." instance=ExtResource( 3 )]
 [connection signal="toggled" from="Window/VBoxContainer/Master/MMute" to="." method="_on_MMute_toggled"]
 [connection signal="value_changed" from="Window/VBoxContainer/MasterSlider" to="." method="_on_MasterSlider_value_changed"]
 [connection signal="toggled" from="Window/VBoxContainer/BGM/BMute" to="." method="_on_BMute_toggled"]
