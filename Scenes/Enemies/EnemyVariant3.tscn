@@ -386,5 +386,4 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
 position = Vector2( 71.3575, 48.5579 )
-shape = SubResource( 18 )
 [connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]

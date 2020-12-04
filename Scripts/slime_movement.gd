@@ -97,7 +97,6 @@ func damageHandler(dmg, dir, force):
 		
 
 func died():
-	drops()
 	$SlimeSprite.play("death")
 	
 func drops():

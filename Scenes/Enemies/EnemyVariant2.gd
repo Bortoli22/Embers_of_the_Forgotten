@@ -97,7 +97,7 @@ func _process(delta):
 		var hits = ray.get_collider()
 		if hits != null:
 			if hits.name.find("Player") > -1:
-				PlayerData.playerNode.damageHandler(attack_damage, next_dir, Vector2(2100,-450))
+				PlayerData.playerNode.damageHandler(attack_damage, next_dir, Vector2(1000,-450))
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
 	
