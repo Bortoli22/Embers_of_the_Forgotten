@@ -29,7 +29,7 @@ onready var ray = get_node("RayCast2D")
 
 #Attack Reach for knowing when to actually try to attack
 var attack_reach = 190
-var attack_damage = 240
+var attack_damage = 400
 
 #Enemy Health
 var health = 170
@@ -88,16 +88,11 @@ func _process(delta):
 	#check if should attack
 	if abs(Player.position.x - position.x) < attack_reach:
 		if dir > 0:
-			animFSM.travel("Attack_R")
+			animFSM.travel("Attack_L")
 		elif dir < 0:
 			animFSM.travel("Attack_L")
-	
-	#check if hitting
-	if animFSM.get_current_node() != "Attack_L" or animFSM.get_current_node() == "Attack_R":
-		var hits = ray.get_collider()
-		if hits != null:
-			if hits.name.find("Player") > -1:
-				PlayerData.playerNode.damageHandler(attack_damage, next_dir, Vector2(1600,-450))
+		yield(get_tree().create_timer(1), "timeout") #uneasy
+		explode()
 	
 	vel = move_and_slide(vel, Vector2(0, -1))
 	
@@ -112,3 +107,16 @@ func damageHandler(_damageValue, _orientation, _force):
 func knockback(direction, force):
 	vel.x += direction*force.x
 	vel.y += force.y
+
+
+func explode():
+	var list = $hitbox.get_overlapping_bodies()
+	if (list != []):
+		var cmforce = Vector2(2100, -600)
+		for y in list:
+			hit(y, attack_damage, cmforce)
+	queue_free()
+
+func hit(body, dmg, force):
+	if (body.has_method("damageHandler")):
+		body.damageHandler(dmg, next_dir, force)

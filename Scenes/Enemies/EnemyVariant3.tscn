@@ -315,6 +315,8 @@ graph_offset = Vector2( 1, 0 )
 
 [node name="Node2D" type="KinematicBody2D"]
 position = Vector2( 192, 128 )
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -342,6 +344,7 @@ active = true
 parameters/playback = SubResource( 18 )
 
 [node name="Idle_L" type="Sprite" parent="."]
+visible = false
 position = Vector2( 8, 0 )
 texture = ExtResource( 2 )
 vframes = 4
@@ -363,15 +366,14 @@ texture = ExtResource( 1 )
 offset = Vector2( -64, 0 )
 vframes = 4
 hframes = 3
+frame = 11
 region_rect = Rect2( 8, 8, 116, 112 )
 
 [node name="Attack_R" type="Sprite" parent="."]
-visible = false
 position = Vector2( 7.78697, 0 )
 texture = ExtResource( 3 )
 vframes = 4
 hframes = 3
-frame = 11
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true

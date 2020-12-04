@@ -97,6 +97,8 @@ func damageHandler(dmg, dir, force):
 		
 
 func died():
+	GameData.roomEnemyCount -= 1
+	print(GameData.roomEnemyCount)
 	$SlimeSprite.play("death")
 	
 func drops():

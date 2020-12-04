@@ -362,7 +362,6 @@ shape = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Door"]
 position = Vector2( 368, 216 )
 frames = SubResource( 8 )
-frame = 5
 speed_scale = 0.5
 playing = true
 __meta__ = {

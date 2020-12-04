@@ -32,7 +32,7 @@ var attack_reach = 190
 var attack_damage = 120
 
 #Enemy Health
-var health = 200
+var health = 360
 
 func _ready():
 	animFSM.travel("Idle_L")

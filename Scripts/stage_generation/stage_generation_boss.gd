@@ -18,11 +18,10 @@ func _ready():
 	else:
 		hide()
 		scale = Vector2(0,0)
-		
 	spawnEnemies()
 
 func spawnEnemies():
-	GameData.roomEnemyCount += 1
+	GameData.roomEnemyCount = 1
 	var enemy = enemy0Scene.instance()
 	add_child(enemy)
 
