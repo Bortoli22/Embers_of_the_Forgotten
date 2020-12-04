@@ -7,9 +7,10 @@ var moveSequence
 var moveCount = 3
 var currentPosition = -1
 var currentMove
+var sfxSequence
 
 #move control
-var hit = false
+var connected = false
 var active = false
 var wepOrientation
 
@@ -31,6 +32,7 @@ func _ready():
 	sprite.frame = 16
 	wepOrientation = 1
 	moveSequence = [get_node("5A"),get_node("5AA"),get_node("5AAA"),get_node("5AAAA")]
+	sfxSequence = [$slash1, $slash2, $slash1, $slash3]
 	for node in moveSequence:
 		remove_child(node)
 	PlayerData.wpnactionable = true
@@ -42,16 +44,19 @@ func _process(_delta):
 	if active:
 		var x = currentMove.get_overlapping_bodies()
 		if (x != []):
-			hit = true
+			connected = true
+			var cmdmg = currentMove.damageValue
+			var cmforce = currentMove.force
+			remove_child(currentMove)
 			for y in x:
-				hit(y)
+				hit(y, cmdmg, cmforce)
 	if (animation.get_current_animation() == "neutral"):
 		PlayerData.playerNode.capSpeed(600)
 		currentPosition = -1
 
 #	see if there's a way to more conditionally trigger a delta process.
 func attack(orientation):
-	hit = false
+	connected = false
 	if (currentPosition < moveCount):
 		if (!PlayerData.playerNode.jump_count > 0 && !PlayerData.playerNode.jumping):
 			PlayerData.playerNode.capSpeed(200)
@@ -60,13 +65,16 @@ func attack(orientation):
 		currentMove = moveSequence[currentPosition]
 		var tempMove = currentPosition
 		animation.play(currentMove.animations[0])
+		if (currentPosition < 3):
+			sfxSequence[currentPosition].play()
 		yield(animation, "animation_finished")
-		
+		if (currentPosition == 3):
+			sfxSequence[currentPosition].play()
 		active = true
 		animation.play(currentMove.animations[1])
 		add_child(currentMove)
 		yield(animation, "animation_finished")
-		if (!hit):
+		if (!connected):
 			remove_child(moveSequence[tempMove])
 		animation.play(currentMove.animations[2])
 		
@@ -87,10 +95,9 @@ func attack(orientation):
 			PlayerData.playerNode.capSpeed(600)
 			PlayerData.wpnactionable = true
 
-func hit(body):
+func hit(body, dmg, force):
 	if (body.has_method("damageHandler")):
-		body.damageHandler(currentMove.damageValue, wepOrientation, currentMove.force)
-	remove_child(currentMove)
+		body.damageHandler(dmg, wepOrientation, force)
 
 func orient(orientation):
 	var flip 

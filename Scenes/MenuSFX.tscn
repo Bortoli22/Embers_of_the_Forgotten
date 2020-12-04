@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/audio/sfx/menu_open.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/audio/sfx/menu_move.wav" type="AudioStream" id=2]
+[ext_resource path="res://Assets/audio/sfx/menu_select2.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/audio/sfx/menu_select1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scripts/MenuSFX.gd" type="Script" id=5]
+[ext_resource path="res://Assets/audio/sfx/menu_deny.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/audio/sfx/save_game.wav" type="AudioStream" id=7]
+
+[node name="MenuSFX" type="Node"]
+script = ExtResource( 5 )
+
+[node name="open" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = 3.03
+bus = "SFX"
+
+[node name="move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+bus = "SFX"
+
+[node name="select1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 5.049
+bus = "SFX"
+
+[node name="select2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 4.039
+bus = "SFX"
+
+[node name="save" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -2.019
+bus = "SFX"
+
+[node name="deny" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 2.018
+bus = "SFX"
