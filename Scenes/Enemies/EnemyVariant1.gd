@@ -18,6 +18,7 @@ var target_player_dist = 0
 
 var eye_reach = 90
 var vision = 600
+#enable getting hit 
 
 func _ready():
 	set_process(true)
@@ -44,7 +45,7 @@ func _process(delta):
 			vel.y = -800
 		next_jump_time = -1
 
-	vel.x = dir * 500
+	vel.x = dir * 300
 #setting correct y coordinate 
 	if Player.position.y < position.y - 64 and(next_jump_time == -1):
 		next_jump_time = OS.get_ticks_msec() + react_time
