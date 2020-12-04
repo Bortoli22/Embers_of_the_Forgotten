@@ -363,7 +363,6 @@ texture = ExtResource( 1 )
 vframes = 6
 hframes = 12
 frame = 20
-
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
@@ -521,7 +520,7 @@ bus = "SFX"
 
 [node name="heal" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource( 16 )
-volume_db = 13.126
+volume_db = 20.194
 bus = "SFX"
 
 [node name="coin" type="AudioStreamPlayer2D" parent="SFX"]
