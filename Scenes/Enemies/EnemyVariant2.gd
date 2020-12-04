@@ -111,7 +111,7 @@ func healthChange(amount):
 
 func damageHandler(_damageValue, _orientation, _force):
 		health -= 50 #standin
-		print("got hit!")
+		#print("got hit!")
 		if (health <= 0):
 			queue_free()
 

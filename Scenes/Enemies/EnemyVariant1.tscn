@@ -178,7 +178,7 @@ texture = ExtResource( 1 )
 offset = Vector2( -64, 0 )
 vframes = 5
 hframes = 8
-frame = 7
+frame = 11
 region_rect = Rect2( 8, 8, 116, 112 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -210,6 +210,6 @@ collision_layer = 132
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Get_Damage"]
-position = Vector2( 80.5297, 31.2054 )
+position = Vector2( 78.5297, 33.2054 )
 shape = SubResource( 18 )
 [connection signal="area_exited" from="Get_Damage" to="." method="_on_Get_Damage_area_exited"]

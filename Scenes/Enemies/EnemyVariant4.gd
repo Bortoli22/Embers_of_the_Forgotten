@@ -29,7 +29,7 @@ onready var ray = get_node("RayCast2D")
 
 #Attack Reach for knowing when to actually try to attack
 var attack_reach = 190
-var attack_damage = 5
+var attack_damage = 10
 
 #Enemy Health
 var health = 150
@@ -111,6 +111,7 @@ func healthChange(amount):
 
 func damageHandler(_damageValue, _orientation, _force):
 		health -= 50 #standin
+		print("got hit 4")
 		if (health <= 0):
 			queue_free()
 
